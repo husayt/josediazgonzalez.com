@@ -1,0 +1,35 @@
+---
+layout: default
+title: Jose Diaz-Gonzalez
+---
+
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  <h1>Open Source Projects</h1>
+  <ul class="posts">
+    <li><a href="http://github.com/josegonzalez/cakephp-filter-plugin/">Filter Plugin:</a> Filter your pagination</li>
+    <li><a href="http://github.com/josegonzalez/marcyavenue/">Marcy Avenue:</a> A CMS made of borrowed code</li>
+    <li><a href="http://gist.github.com/243248">Railish Errors Messages:</a> Collects all your errors into a neat little box :)</li>
+    <li><a href="http://github.com/josegonzalez/cakephp-calendar-helper/">Calendar:</a> CakePHP Calendar Helper</li>
+    <li><a href="http://github.com/josegonzalez/git-php/">Git-PHP:</a> Update to an Update of a Port of gitweb to PHP</li>
+    <li><a href="http://github.com/josegonzalez/cakephp-wysiwyg-helper/">WysiwygHelper:</a> TinyMCE or Nicedit? You got it</li>
+    <li><a href="http://github.com/josegonzalez/cakephp-trim-behavior/">Trimmable:</a> Gimme a shorturl for this record</li>
+    <li><a href="http://github.com/josegonzalez/cakephp-trackable-behavior/">Trackable:</a> Who created or modified this record?</li>
+    <li><a href="http://github.com/josegonzalez/cakephp-github-plugin-plugin/">Github Plugin Plugin:</a> Installs cake plugins from github</li>
+    <li><a href="http://github.com/josegonzalez/cakephp-admin-panel/">Admin Panel:</a> Campy admin panel template</li>
+  </ul>
+
+  <h1>Work on the Web</h1>
+  <ul class="posts">
+    <li><a href="http://sosarris.com" class="link cell" target="_self">sosarris.com</a></li>
+    <li><a href="http://vulcan.seidenberg.pace.edu/~skevoulis" class="link cell" target="_self">Sotiris Skevoulis</a></li>
+    <li><a href="http://pacecs.com/world-usability-day-pace/" class="link cell" target="_self">upapace</a> <a href="http://pacecs.com/pacewebmedia/upapace/first.html" class="link cell" target="_self">(r1)</a></li>
+    <li><a href="http://watertaxibeach.com" class="link cell" target="_self">wtb</a></li>
+  </ul>
+</div>

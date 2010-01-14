@@ -1,0 +1,5 @@
+markdown: rdiscount
+pygments: true
+permalink: pretty
+regeneration: true
+lsi: true
