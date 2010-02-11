@@ -120,9 +120,9 @@ class UsersController extends AppController{
 
 You can even mix and match whether or not you need to be un-authenticated or authenticated to perform an action. Or anything else for that matter.
 
-So far, the component works pretty well for my use-case, and I figure others might have similar use-cases, where they would like to use AuthSome Authentication, have a very simple user/group setup, but would need to worry about Authorization. I know I've built apps that were pretty much like this, where there isn't a need for ACL and I found myself screwing around with Controller::beforeFilter() methods.
+So far, the component works pretty well for my use-case, and I figure others might have similar use-cases, where they would like to use AuthSome Authentication, have a very simple user/group setup, but would need to worry about Authorization. I know I've built apps that were pretty much like this, where there isn't a need for ACL and I found myself screwing around with `Controller::beforeFilter()` methods.
 
-_NOTE: By default, this component works on the initialization of the application, meaning that it works before the Controller::beforeFilter() action. This means that if you don't set the callback parameter to "startup", then it CANNOT be used in the AppController. You can still set it to "startup" even if using it in a specific Controller in case you have some Controller::beforeFilter() that needs to occur though._
+_NOTE: By default, this component works on the initialization of the application, meaning that it works before the `Controller::beforeFilter()` action. This means that if you don't set the callback parameter to "startup", then it CANNOT be used in the AppController. You can still set it to "startup" even if using it in a specific Controller in case you have some `Controller::beforeFilter()` that needs to occur though._
 
 A possible road to go down is to match actions via regular expressions, meaning that one COULD then support multiple groups of users with Prefixed Routes (a feature of 1.3) extremely easily. Anyone want to jump in and add that for me? :)
 

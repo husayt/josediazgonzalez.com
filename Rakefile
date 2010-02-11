@@ -103,10 +103,9 @@ def create_blank_post(path, title)
   File.open(path, "w") do |f|
     f << <<-EOS.gsub(/^    /, '')
     ---
-    layout: post
-    title: #{title}
-    published: false
-    categories:
+      title: #{title}
+      tags:
+      layout: post
     ---
 
     EOS
