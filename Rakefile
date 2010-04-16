@@ -38,7 +38,7 @@ end
 desc 'rsync the contents of ./_site to the server'
 task :sync do
   puts '* Publishing files to live server'
-  puts `rsync -avz "_site/" jose@josediazgonzalez.com:~/public_html/josediazgonzalez.com/public`
+  puts `rsync -avz "_site/" jose@josediazgonzalez.com:~/public_html/josediazgonzalez.com/default/public`
 end
 
 desc 'Push source code to Github'
