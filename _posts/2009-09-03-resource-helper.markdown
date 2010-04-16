@@ -1,5 +1,5 @@
 ---
-  title: Conditional Loading of Helpers
+  title: ResourceHelper
   topics:
     - cakephp
     - helpers
