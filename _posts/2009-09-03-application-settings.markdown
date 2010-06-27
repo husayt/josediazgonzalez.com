@@ -1,6 +1,7 @@
 ---
   title: Application Settings
-  topics:
+  category: Snippets
+  tags:
     - cakephp
     - helpers
     - settings

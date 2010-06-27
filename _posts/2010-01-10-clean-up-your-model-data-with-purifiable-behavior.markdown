@@ -1,5 +1,6 @@
 ---
   title: Clean up your Model data with Purifiable Behavior
+  category: Code
   tags:
     - cakephp
     - behaviors

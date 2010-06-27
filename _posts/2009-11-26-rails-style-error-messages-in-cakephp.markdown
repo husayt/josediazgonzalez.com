@@ -1,5 +1,6 @@
 ---
   title: Rails-Style Error Messages in CakePHP
+  category: Code
   tags:
     - cakephp
     - rails

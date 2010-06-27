@@ -1,6 +1,7 @@
 ---
   title: Commentable Behavior
-  topics:
+  category: Code
+  tags:
     - cakephp
     - commentable
     - behaviors

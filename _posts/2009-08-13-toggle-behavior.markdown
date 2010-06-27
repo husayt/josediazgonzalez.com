@@ -1,6 +1,7 @@
 ---
   title: Toggle Behavior
-  topics:
+  category: Code
+  tags:
     - cakephp
     - toggle
     - behaviors

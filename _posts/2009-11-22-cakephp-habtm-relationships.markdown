@@ -1,6 +1,7 @@
 ---
   title: CakePHP HABTM Relationships
-  topics:
+  category: Models
+  tags:
     - cakephp
     - habtm
     - relationships

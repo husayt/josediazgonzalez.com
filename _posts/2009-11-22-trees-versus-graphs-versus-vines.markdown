@@ -1,6 +1,7 @@
 ---
   title: Trees Versus Graphs versus Vines
-  topics:
+  category: Other
+  tags:
     - trees
     - graphs
     - vines

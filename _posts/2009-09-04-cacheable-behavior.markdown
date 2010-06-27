@@ -1,6 +1,7 @@
 ---
   title: Cacheable Behavior
-  topics:
+  category: Code
+  tags:
     - cakephp
     - behaviors
     - caching

@@ -1,3 +1,4 @@
+require 'date'
 task :default => :dev
 
 desc 'Ping pingomatic'
@@ -5,7 +6,7 @@ task :ping do
   begin
     require 'xmlrpc/client'
     puts '* Pinging ping-o-matic'
-    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Arjan van der Gaag' , 'http://arjanvandergaag.nl', 'http://arjanvandergaag.nl/atom.xml')
+    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , 'http://josediazgonzalez.com', 'http://josediazgonzalez.com/atom.xml')
   rescue LoadError
     puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
   end
@@ -17,7 +18,7 @@ task :sitemap do
     require 'net/http'
     require 'uri'
     puts '* Pinging Google about our sitemap'
-    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape('http://arjanvandergaag.nl/sitemap.xml'))
+    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape('http://josediazgonzalez.com/sitemap.xml'))
   rescue LoadError
     puts '! Could not ping Google about our sitemap, because Net::HTTP or URI could not be found.'
   end
@@ -26,13 +27,19 @@ end
 desc 'Run Jekyll in development mode'
 task :dev do
   puts '* Running Jekyll with auto-generation and server'
-  puts `jekyll --auto --server`
+  puts `ejekyll --auto --server --lsi`
+end
+
+desc 'Removes the contents of _site'
+task :destroy do
+  puts '* Destroying generated content'
+  puts `rm -rf _site/*`
 end
 
 desc 'Run Jekyll to generate the site'
 task :build do
   puts '* Generating static site with Jekyll'
-  puts `jekyll`
+  puts `ejekyll`
 end
 
 desc 'rsync the contents of ./_site to the server'

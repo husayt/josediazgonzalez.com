@@ -1,5 +1,6 @@
 ---
   title: How CakePHP Automagic fails me (or How I failed at the FormHelper)
+  category: Forms
   tags:
     - fails
     - cakephp

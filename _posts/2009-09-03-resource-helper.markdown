@@ -1,6 +1,7 @@
 ---
   title: ResourceHelper
-  topics:
+  category: Snippets
+  tags:
     - cakephp
     - helpers
     - overload

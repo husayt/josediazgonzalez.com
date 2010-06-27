@@ -1,6 +1,7 @@
 ---
   title: First Post
-  topics:
+  category: Other
+  tags:
     - jekyll
     - ruby
     - first

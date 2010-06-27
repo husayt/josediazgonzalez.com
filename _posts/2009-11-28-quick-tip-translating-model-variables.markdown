@@ -1,7 +1,9 @@
 ---
   title: Quick Tip - Translating Model Variables
+  category: Internationalization
   tags:
     - cakephp
+    - internationalization
     - translation
     - models
   layout: post

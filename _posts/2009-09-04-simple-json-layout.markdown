@@ -1,6 +1,7 @@
 ---
   title: Simple JSON Layout
-  topics:
+  category: Views
+  tags:
     - cakephp
     - views
     - layout

@@ -1,7 +1,9 @@
 ---
   title: Drop-down select fields in CakePHP
+  category: Forms
   tags:
     - cakephp
+    - forms
     - selects
     - dropdowns
   layout: post

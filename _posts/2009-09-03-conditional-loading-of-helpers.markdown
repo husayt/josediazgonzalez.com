@@ -1,6 +1,7 @@
 ---
   title: Conditional Loading of Helpers
-  topics:
+  category: Snippets
+  tags:
     - cakephp
     - helpers
     - conditional
@@ -14,6 +15,7 @@ class TumblesController extends TumbleAppController {
 
 	var $name = 'Tumbles';
 	function beforeRender() {
+		parent::beforeRender()
 		$this->_configureHelpers($this->params['action']);
 	}
 /**

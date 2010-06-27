@@ -1,9 +1,11 @@
 ---
   title: Quick Tip - Bring Out Yer Queries
-  topics:
+  category: Snippets
+  tags:
     - cakephp
     - quicktip
     - datasources
+    - debugging
     - mysql
     - logging
   layout: post

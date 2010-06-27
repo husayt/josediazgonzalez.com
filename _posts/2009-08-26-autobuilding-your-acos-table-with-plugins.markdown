@@ -1,5 +1,6 @@
 ---
   title: Auto-Building your ACOs table with Plugins
+  category: Snippets
   tags:
     - acos
     - cakephp

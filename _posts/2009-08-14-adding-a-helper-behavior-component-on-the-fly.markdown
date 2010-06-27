@@ -1,5 +1,6 @@
 ---
   title: Adding a Helper/Behavior/Component on the fly
+  category: Snippets
   tags:
     - cakephp
     - behaviors

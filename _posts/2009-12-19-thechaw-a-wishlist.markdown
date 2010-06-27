@@ -1,6 +1,7 @@
 ---
   title: The Chaw - A Wishlist
-  topics:
+  category: Rant
+  tags:
     - cakephp
     - thechaw
     - project management

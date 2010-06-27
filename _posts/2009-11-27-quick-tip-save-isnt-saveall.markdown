@@ -1,5 +1,6 @@
 ---
   title: Quick Tip - Model::save() isn't Model::saveAll()
+  category: Models
   tags:
     - quicktip
     - cakephp

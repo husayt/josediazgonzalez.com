@@ -1,0 +1,7 @@
+---
+layout: full
+title: Categories
+---
+{% for category in site.iterable.categories %}
+	<li><a href="/categories/{{ category.name }}">{{ category.name }}</a></li>
+{% endfor %}

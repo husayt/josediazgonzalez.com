@@ -1,0 +1,8 @@
+---
+layout: full
+title: Tags
+---
+
+{% for tag in site.iterable.tags %}
+	<li><a href="/tags/{{ tag.name }}">{{ tag.name }}</a></li>
+{% endfor %}

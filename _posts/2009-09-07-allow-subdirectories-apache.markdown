@@ -1,6 +1,7 @@
 ---
   title: Allow Subdirectories Apache
-  topics:
+  category: Deployment
+  tags:
     - cakephp
     - htaccess
     - apache

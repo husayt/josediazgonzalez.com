@@ -1,5 +1,6 @@
 ---
   title: Your username/password should never be a lastname/uid
+  category: Authentication
   tags:
     - passwords
     - authentication

@@ -1,5 +1,6 @@
 ---
   title: How to Grow or A Look Back at 2009
+  category: Other
   tags:
     - thoughts
     - cakephp
