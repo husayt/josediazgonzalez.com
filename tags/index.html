@@ -1,8 +1,14 @@
 ---
 layout: full
 title: Tags
+lead: These tags are for quick browsing, not for anything else
 ---
 
 {% for tag in site.iterable.tags %}
-	<li><a href="/tags/{{ tag.name }}">{{ tag.name }}</a></li>
+<h4><a href="/tags/{{ tag.name }}" name="{{ tag.name | replace:' ','_' | downcase }}">{{ tag.name }}</a></h4>
+<ul>
+{% for post in tag.posts %}
+<li><a href="{{ site.baseurl }}{{post.url}}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
 {% endfor %}
