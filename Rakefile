@@ -1,14 +1,71 @@
-require 'date'
+require "rubygems"
+require "bundler"
+require "date"
+
+site_url    = "http://josediazgonzalez.com"   # deployed site url for sitemap.xml generator
+port        = "4000"
+site        = "_site"
+
 task :default => :dev
 
-desc 'Ping pingomatic'
-task :ping do
-  begin
-    require 'xmlrpc/client'
-    puts '* Pinging ping-o-matic'
-    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , 'http://josediazgonzalez.com', 'http://josediazgonzalez.com/atom.xml')
-  rescue LoadError
-    puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
+desc 'Generate and publish the entire site, and send out pings'
+task :publish => [:build, :generate_sitemap, :push, :sync, :sitemap, :ping] do
+end
+
+desc "list tasks"
+task :list do
+  puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).to_sentence}"
+  puts "(type rake -T for more detail)\n\n"
+end
+
+desc 'Run Jekyll to generate the site'
+task :build do
+  puts '* Generating static site with Jekyll'
+  puts `ejekyll`
+end
+
+desc 'Push source code to Github'
+task :push do
+  puts '* Pushing to Github'
+  puts `git push origin master`
+end
+
+desc 'rsync the contents of ./_site to the server'
+task :sync do
+  puts '* Publishing files to live server'
+  puts `rsync -avz "_site/" jose@josediazgonzalez.com:~/public_html/josediazgonzalez.com/default/public`
+end
+
+desc "Build an XML sitemap of all html files."
+task :generate_sitemap do
+  html_files = FileList.new("#{site}/**/*.html").map{|f| f[("#{site}".size)..-1]}.map do |f|
+    if f.ends_with?("index.html")
+      f[0..(-("index.html".size + 1))]
+    else
+      f
+    end
+  end.sort_by{|f| f.size}
+  open("#{site}/sitemap.xml", 'w') do |sitemap|
+    sitemap.puts %Q{<?xml version="1.0" encoding="UTF-8"?>}
+    sitemap.puts %Q{<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">}
+    html_files.each do |f|
+      priority = case f
+      when %r{^/$}
+        1.0
+      when %r{^/articles}
+        0.9
+      else
+        0.8
+      end
+      sitemap.puts %Q{  <url>}
+      sitemap.puts %Q{    <loc>#{site_url}#{f}</loc>}
+      sitemap.puts %Q{    <lastmod>#{Time.now.strftime('%Y-%m-%d')}</lastmod>}
+      sitemap.puts %Q{    <changefreq>weekly</changefreq>}
+      sitemap.puts %Q{    <priority>#{priority}</priority>}
+      sitemap.puts %Q{  </url>}
+    end
+    sitemap.puts %Q{</urlset>}
+    puts "Created #{site}/sitemap.xml"
   end
 end
 
@@ -18,9 +75,20 @@ task :sitemap do
     require 'net/http'
     require 'uri'
     puts '* Pinging Google about our sitemap'
-    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape('http://josediazgonzalez.com/sitemap.xml'))
+    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape("#{site_url}/sitemap.xml"))
   rescue LoadError
     puts '! Could not ping Google about our sitemap, because Net::HTTP or URI could not be found.'
+  end
+end
+
+desc 'Ping pingomatic'
+task :ping do
+  begin
+    require 'xmlrpc/client'
+    puts '* Pinging ping-o-matic'
+    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , "#{site_url}", "#{site_url}/atom.xml")
+  rescue LoadError
+    puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
   end
 end
 
@@ -30,28 +98,10 @@ task :dev do
   puts `ejekyll --auto --server --lsi`
 end
 
-desc 'Removes the contents of _site'
-task :destroy do
-  puts '* Destroying generated content'
+desc "remove files in output directory"
+task :clean do
+  puts '* Removing Output'
   puts `rm -rf _site/*`
-end
-
-desc 'Run Jekyll to generate the site'
-task :build do
-  puts '* Generating static site with Jekyll'
-  puts `ejekyll`
-end
-
-desc 'rsync the contents of ./_site to the server'
-task :sync do
-  puts '* Publishing files to live server'
-  puts `rsync -avz "_site/" jose@josediazgonzalez.com:~/public_html/josediazgonzalez.com/default/public`
-end
-
-desc 'Push source code to Github'
-task :push do
-  puts '* Pushing to Github'
-  puts `git push origin master`
 end
 
 desc 'Create and push a tag'
@@ -67,11 +117,7 @@ task :tag do
   puts `git tag -a -m "#{m}" #{t}`
 
   puts '* Pushing tags'
-  puts `git push github master --tags`
-end
-
-desc 'Generate and publish the entire site, and send out pings'
-task :publish => [:build, :push, :sync, :sitemap, :ping] do
+  puts `git push origin master --tags`
 end
 
 desc 'create a new draft post'
@@ -85,6 +131,63 @@ end
 desc 'List all draft posts'
 task :drafts do
   puts `find ./_posts -type f -exec grep -H 'published: false' {} \\;`
+end
+
+desc "start up an instance of serve on the output files"
+task :start_serve => :stop_serve do
+  cd "#{site}" do
+    print "Starting serve..."
+    ok_failed system("serve #{port} > /dev/null 2>&1 &")
+  end
+end
+
+desc "stop all instances of serve"
+task :stop_serve do
+  pid = `ps auxw | awk '/bin\\/serve\\ #{port}/ { print $2 }'`.strip
+  if pid.empty?
+    puts "Serve is not running"
+  else
+    print "Stoping serve..."
+    ok_failed system("kill -9 #{pid}")
+  end
+end
+
+desc "preview the site in a web browser"
+multitask :preview => [:start_serve] do
+  system "open http://localhost:#{port}"
+end
+
+def rebuild_site(relative)
+  puts "\n\n>>> Change Detected to: #{relative} <<<"
+  IO.popen('rake generate_site'){|io| print(io.readpartial(512)) until io.eof?}
+  puts '>>> Update Complete <<<'
+end
+
+def rebuild_style(relative)
+  puts "\n\n>>> Change Detected to: #{relative} <<<"
+  IO.popen('rake generate_style'){|io| print(io.readpartial(512)) until io.eof?}
+  puts '>>> Update Complete <<<'
+end
+
+desc "Watch the site and regenerate when it changes"
+task :watch do
+  require 'fssm'
+  puts ">>> Watching for Changes <<<"
+  FSSM.monitor do
+    path "#{File.dirname(__FILE__)}" do
+      update {|base, relative| rebuild_site(relative)}
+      delete {|base, relative| rebuild_site(relative)}
+      create {|base, relative| rebuild_site(relative)}
+    end
+  end
+end
+
+def ok_failed(condition)
+  if (condition)
+    puts "OK"
+  else
+    puts "FAILED"
+  end
 end
 
 # Helper method for :draft and :post, that required a TITLE environment
@@ -111,6 +214,7 @@ def create_blank_post(path, title)
     f << <<-EOS.gsub(/^    /, '')
     ---
       title: #{title}
+      category: Code
       tags:
       layout: post
     ---
@@ -124,4 +228,73 @@ def open_in_editor(file)
   if (ENV['EDITOR'])
     system ("#{ENV['EDITOR']} #{file}")
   end
+end
+
+class Array
+  # Converts the array to a comma-separated sentence where the last element is joined by the connector word. Options:
+  # * <tt>:words_connector</tt> - The sign or word used to join the elements in arrays with two or more elements (default: ", ")
+  # * <tt>:two_words_connector</tt> - The sign or word used to join the elements in arrays with two elements (default: " and ")
+  # * <tt>:last_word_connector</tt> - The sign or word used to join the last element in arrays with three or more elements (default: ", and ")
+  def to_sentence(options = {})
+    default_words_connector     = ", "
+    default_two_words_connector = " and "
+    default_last_word_connector = ", and "
+
+    options.assert_valid_keys(:words_connector, :two_words_connector, :last_word_connector, :locale)
+    options.reverse_merge! :words_connector => default_words_connector, :two_words_connector => default_two_words_connector, :last_word_connector => default_last_word_connector
+
+    case length
+      when 0
+        ""
+      when 1
+        self[0].to_s
+      when 2
+        "#{self[0]}#{options[:two_words_connector]}#{self[1]}"
+      else
+        "#{self[0...-1].join(options[:words_connector])}#{options[:last_word_connector]}#{self[-1]}"
+    end
+  end
+end
+
+class Hash
+  # Validate all keys in a hash match *valid keys, raising ArgumentError on a mismatch.
+  # Note that keys are NOT treated indifferently, meaning if you use strings for keys but assert symbols
+  # as keys, this will fail.
+  #
+  # ==== Examples
+  #   { :name => "Rob", :years => "28" }.assert_valid_keys(:name, :age) # => raises "ArgumentError: Unknown key(s): years"
+  #   { :name => "Rob", :age => "28" }.assert_valid_keys("name", "age") # => raises "ArgumentError: Unknown key(s): name, age"
+  #   { :name => "Rob", :age => "28" }.assert_valid_keys(:name, :age) # => passes, raises nothing
+  def assert_valid_keys(*valid_keys)
+    unknown_keys = keys - [valid_keys].flatten
+    raise(ArgumentError, "Unknown key(s): #{unknown_keys.join(", ")}") unless unknown_keys.empty?
+  end
+  # Allows for reverse merging two hashes where the keys in the calling hash take precedence over those
+  # in the <tt>other_hash</tt>. This is particularly useful for initializing an option hash with default values:
+  #
+  #   def setup(options = {})
+  #     options.reverse_merge! :size => 25, :velocity => 10
+  #   end
+  #
+  # Using <tt>merge</tt>, the above example would look as follows:
+  #
+  #   def setup(options = {})
+  #     { :size => 25, :velocity => 10 }.merge(options)
+  #   end
+  #
+  # The default <tt>:size</tt> and <tt>:velocity</tt> are only set if the +options+ hash passed in doesn't already
+  # have the respective key.
+  def reverse_merge(other_hash)
+    other_hash.merge(self)
+  end
+  # Performs the opposite of <tt>merge</tt>, with the keys and values from the first hash taking precedence over the second.
+  # Modifies the receiver in place.
+  def reverse_merge!(other_hash)
+    merge!( other_hash ){|k,o,n| o }
+  end
+end
+
+class String
+  alias_method :starts_with?, :start_with?
+  alias_method :ends_with?, :end_with?
 end
