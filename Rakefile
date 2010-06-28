@@ -9,7 +9,7 @@ site        = "_site"
 task :default => :dev
 
 desc 'Generate and publish the entire site, and send out pings'
-task :publish => [:build, :generate_sitemap, :push, :sync, :sitemap, :ping] do
+task :publish => [:generate_sitemap, :build, :push, :sync, :sitemap, :ping] do
 end
 
 desc "list tasks"
