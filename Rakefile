@@ -5,6 +5,7 @@ require "date"
 site_url    = "http://josediazgonzalez.com"   # deployed site url for sitemap.xml generator
 port        = "4000"
 site        = "_site"
+editor      = "mate"
 
 task :default => :dev
 
@@ -125,7 +126,7 @@ task :post do
   title, slug = get_title
   file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
   create_blank_post(file, title)
-  open_in_editor(file)
+  open_in_editor(file, editor)
 end
 
 desc 'List all draft posts'
@@ -159,13 +160,7 @@ end
 
 def rebuild_site(relative)
   puts "\n\n>>> Change Detected to: #{relative} <<<"
-  IO.popen('rake generate_site'){|io| print(io.readpartial(512)) until io.eof?}
-  puts '>>> Update Complete <<<'
-end
-
-def rebuild_style(relative)
-  puts "\n\n>>> Change Detected to: #{relative} <<<"
-  IO.popen('rake generate_style'){|io| print(io.readpartial(512)) until io.eof?}
+  IO.popen('rake build'){|io| print(io.readpartial(512)) until io.eof?}
   puts '>>> Update Complete <<<'
 end
 
@@ -224,10 +219,8 @@ def create_blank_post(path, title)
 end
 
 # Helper method to open a file in the default text editor.
-def open_in_editor(file)
-  if (ENV['EDITOR'])
-    system ("#{ENV['EDITOR']} #{file}")
-  end
+def open_in_editor(file, editor)
+  system ("#{editor} #{file}")
 end
 
 class Array
