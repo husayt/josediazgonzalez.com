@@ -4,12 +4,12 @@ body: full-width page
 ---
 <div id="content">
 	<div class="post">
-		<h1 class="post-title">{{ page.month | to_month }} {{ page.year }}</h1>
-		<p class="lead">Posts from {{ page.month | to_month }}, {{ page.year }}</p>
+		<h1 class="post-title">{{ page.month | date_to_month }} {{ page.year }}</h1>
+		<p class="lead">Posts from {{ page.month | date_to_month }}, {{ page.year }}</p>
 		<ul>
 			{% for d in (1..31) reversed %}
-				{% if site.collated_posts[page.year][page.month][d] %}
-					{% for p in site.collated_posts[page.year][page.month][d] reversed %}
+				{% if page.collated_posts[page.year][page.month][d] %}
+					{% for p in page.collated_posts[page.year][page.month][d] reversed %}
 					<li><a href='{{ p.url }}'>{{ p.title }}</a></li>
 					{% endfor %}
 				{% endif %}
