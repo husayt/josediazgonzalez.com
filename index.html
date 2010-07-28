@@ -14,7 +14,7 @@ title: Jose Diaz-Gonzalez
 			Filed in: {% for tag in post.tags limit: 3 %}<a href="/tags/{{tag}}">{{ tag }}{% if forloop.last == false %}, {%endif %}</a> {% endfor %}
 		</span>
 	</div>
-	<p>{{ post.content | html_truncatewords }} <a class="more-link" href="{{ post.url }}">Read More&hellip;</a></p>
+	{{ post.content | html_truncatewords }} <a class="more-link" href="{{ post.url }}">Read More&hellip;</a>
 </div>
 {% endfor %}
 
@@ -27,7 +27,7 @@ title: Jose Diaz-Gonzalez
 			<div class="post-meta">
 				<span class="date"><img src="images/icons/ico_calendar.png" alt="" />{{ post.date | date_to_string }}</span>
 			</div>
-			<p>{{ post.content | html_truncatewords }} <a class="more-link" href="{{ post.url }}">Read More&hellip;</a></p>
+			{{ post.content | html_truncatewords }} <a class="more-link" href="{{ post.url }}">Read More&hellip;</a>
 		</li>
 		{% endfor %}
 	</ul>
