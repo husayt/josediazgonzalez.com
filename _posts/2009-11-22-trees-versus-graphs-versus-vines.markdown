@@ -11,8 +11,6 @@
   layout: post
 ---
 
-# {{ page.title }}
-
 Djabbour: For cake acts as tree (behavior), the tree must only have one parent node?
 
 savant: yes
