@@ -26,9 +26,9 @@ module Liquid
       content_length > actual_length ? doc.truncate(actual_length).inner_html + ellipsis : text.to_s
     end
 
-    def markdown_to_html(input)
-      markdown = RDiscount.new(input)
-      markdown.to_html
+
+    def markdownify(input)
+      RDiscount.new(input).to_html
     end
 
   end
