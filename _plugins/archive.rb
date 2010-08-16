@@ -8,10 +8,9 @@ module Jekyll
       @name = 'index.html'
 
       self.process(@name)
-
       self.read_yaml(File.join(base, '_layouts'), type + '.html')
-
       self.data['collated_posts'] = self.collate(site)
+
       year, month, day = dir.split('/')
       self.data['year'] = year.to_i
       month and self.data['month'] = month.to_i
