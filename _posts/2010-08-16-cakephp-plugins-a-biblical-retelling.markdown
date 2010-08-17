@@ -49,3 +49,13 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Mark Story's DebugKit](http://github.com/cakephp/debug_kit): Honestly, this man is a monster. Not only is he a JS-Ninja and CakePHP-bashing fiend, but he also draws incessantly and has time to hack on the most wonderful tool for debugging your CakePHP application. This is something you need to install NOW. You will love me later.
 - [Joe Beeson's Referee](http://github.com/joebeeson/referee): "A CakePHP 1.3+ plugin for catching errors and exceptions and logging them." I think that's pretty cool, and so should you.
 - [Matt Curry's Interactive](http://github.com/mcurry/interactive): A panel for DebugKit to interact with your app without refreshing the page. A great way to see what a particular query will perform.
+
+# Useful Helpers
+- [Graham Weldon's Gravatar](http://github.com/predominant/CakePHP-Goodies/blob/master/views/helpers/gravatar.php): Include your Gravatar's quickly and easily with this helper. Bakery Article [here](http://bakery.cakephp.org/articles/view/gravatar-helper).
+- [Chris Your's CakeHelper](http://snipt.net/chrisyour/cakephp-content_for-capture-html-block-for-layout/): "Ever wanted a clean way to capture a block of HTML in your CakePHP view and use it later in your layout just like CakePHP uses $content_for_layout?" This helper is an implementation of Rails' content_for in CakePHP. Chawsome.
+- [Joe Beeson's Analogue Helper](http://github.com/joebeeson/analogue): Sometimes you just need your helpers to pretend to be other, core helpers. Why? How the hell would I know! But now you can!
+- [Graham Weldon's Auto-Javascript](http://github.com/predominant/CakePHP-Goodies/blob/master/views/helpers/auto_javascript.php): Graham is still an idiot and refuses to place his code in separate repositories :P . Also known as Predominant, he wrote this little helper to speed up javascript file inclusion within your templates. Bakery Article [here](http://bakery.cakephp.org/articles/view/automatic-javascript-includer-helper).
+
+# Random Awesome-sauce
+- [Carl Sutton's Google Plugin](http://github.com/dogmatic69/cakephp_google_plugin): Someone give this guy an award. Just a metric fuck-ton of Google Integration into CakePHP. You are all welcome.
+- [Joe Beeson's Sassy](http://github.com/joebeeson/sassy): Admit it, you love SASS. Joe rules and built this sick plugin (and released it for you bastards) that integrates SASS into CakePHP.
