@@ -51,3 +51,4 @@ Other:
 * [Flickr site](http://www.flickr.com/photos/cakephp/)
 * [Movie for Ichikaway :)](http://www.youtube.com/watch?v=mfjzpkGASro)
 * [Contact Info if you went to CakeFest](http://fest.cakepackages.com)
+* [Delicious #CakeFest Tag](http://www.delicious.com/andrew_curioso/CakeFest)
