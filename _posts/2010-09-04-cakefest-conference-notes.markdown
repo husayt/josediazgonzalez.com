@@ -26,7 +26,7 @@ Talk slideshows:
 * [Mark Story's CakeTalk: Win at life with Unit testing](http://mark-story.com/downloads/view/win-at-life-with-unit-testing)
 * Erik Peterson's It's easier to ask forgiveness than it is to get ACL permissions!
 * [Andrew Curioso's API Development](http://www.slideshare.net/andrewcurioso/cakefest-2010-api-development) - [Blog Post](http://andrewcurioso.com/2010/06/cakefest-2010/)
-* Andy Gale's CakePHP at massive scale, on a budget
+* [Andy Gale's CakePHP at massive scale, on a budget](http://www.slideshare.net/andygale/cake-php-at-a-massive-scale-on-a-budget) ([Blog](http://andy-gale.com/))
 
 
 Code:
