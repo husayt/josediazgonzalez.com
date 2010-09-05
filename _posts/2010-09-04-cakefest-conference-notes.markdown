@@ -11,10 +11,30 @@
 Talk slideshows:
 
 * [Graham Weldon's (Predominant) Re-imagining CakePHP](http://www.slideshare.net/predominant/reimaginging-cakephp)
-* [Ichikaway's Mongo DB Talk](http://www.slideshare.net/ichikaway/cakefest-ichikawa-upload)
 * [Pierre Martin's (real34) Using and Reusing CakePHP Plugins](http://www.slideshare.net/real34/using-reusingplugins)
+* [Ichikaway's Mongo DB Talk](http://www.slideshare.net/ichikaway/cakefest-ichikawa-upload)
+* [Erik Schaeffer's CakePHP in Hight Education](http://www.slideshare.net/therealphpdiddy/cakefest-higher-education)
+* [Mark Tovey's Plumbing with Cake: Integrating CakePHP and Drupal](http://www.slideshare.net/mtovey/plumbing-w-cake)
+* [Neil Crooke's Presentation on Consuming APIs](http://www.slideshare.net/neilcrookes/designing-cakephp-plugins-for-consuming-apis)
+* [Andrew Curioso's API Development](http://www.slideshare.net/andrewcurioso/cakefest-2010-api-development)
+
+Code:
+
+* [CakeDC's Bitly](http://github.com/neilcrookes/CakePHP-Bit.ly-Plugin)
+* [CakeDC's Problems](http://github.com/CakeDC/problems)
+* [Neil Crookes' GData](http://github.com/neilcrookes/CakePHP-GData-Plugin)
+* [Neil Crookes' Twitter API](http://github.com/neilcrookes/CakePHP-Twitter-API-Plugin)
+
+Pictures:
+
+* [Day 1 Flickr](http://www.flickr.com/photos/cakephp/sets/72157624864884680/)
+* [Day 2 Flickr](http://www.flickr.com/photos/cakephp/sets/72157624873178620/)
+* [Day 3 Flickr](http://www.flickr.com/photos/cakephp/sets/72157624753003887/)
+* [Day 4 Flickr](http://www.flickr.com/photos/cakephp/sets/72157624760906727/)
+* [Damage from a hackfest](http://twitter.com/loadsys/status/23054110578)
 
 Other:
 
 * [Cakefest Tweets uses the MongoDB datasource](http://cakefesttweets.com/)
 * [Flickr site](http://www.flickr.com/photos/cakephp/)
+* [Movie for Ichikaway :)](http://www.youtube.com/watch?v=mfjzpkGASro)
