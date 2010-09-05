@@ -35,6 +35,7 @@ Code:
 * [CakeDC's Problems](http://github.com/CakeDC/problems)
 * [Neil Crookes' GData](http://github.com/neilcrookes/CakePHP-GData-Plugin)
 * [Neil Crookes' Twitter API](http://github.com/neilcrookes/CakePHP-Twitter-API-Plugin)
+* [Andy Gale's Memcache Helper](http://andy-gale.com/cakephp-view-memcache.html)
 
 Pictures:
 
