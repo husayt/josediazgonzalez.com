@@ -23,7 +23,7 @@ Talk slideshows:
 *Day 2*
 
 * Larry Master's CakeTalk: CakePHP Community: The whole is greater than the sum of its parts
-* Mark Story's It's easier to ask forgiveness than it is to get ACL permissions!
+* Mark Story's CakeTalk: Win at life with Unit testing
 * Erik Peterson's It's easier to ask forgiveness than it is to get ACL permissions!
 * [Andrew Curioso's API Development](http://www.slideshare.net/andrewcurioso/cakefest-2010-api-development)
 * Andy Gale's CakePHP at massive scale, on a budget
