@@ -18,7 +18,7 @@ Talk slideshows:
 * [Erik Schaeffer's CakePHP in Higher Education](http://www.slideshare.net/therealphpdiddy/cakefest-higher-education)
 * [Mark Tovey's Plumbing with Cake: Integrating CakePHP and Drupal](http://www.slideshare.net/mtovey/plumbing-w-cake)
 * [Neil Crooke's Presentation on Consuming APIs](http://www.slideshare.net/neilcrookes/designing-cakephp-plugins-for-consuming-apis)
-* Brandon Plaster's Simplifying heavy client side web applications using CakePHP and Adobe Flash Builder 4
+* Brandon Plaster's Simplifying heavy client side web applications using CakePHP and Adobe Flash Builder 4 ([His blog](http://www.slideshare.net/andrewcurioso/cakefest-2010-api-development))
 
 *Day 2*
 
