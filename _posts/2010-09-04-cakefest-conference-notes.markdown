@@ -15,7 +15,7 @@ Talk slideshows:
 * [Graham Weldon's (Predominant) Re-imagining CakePHP](http://www.slideshare.net/predominant/reimaginging-cakephp)
 * [Pierre Martin's (real34) Using and Reusing CakePHP Plugins](http://www.slideshare.net/real34/using-reusingplugins)
 * [Ichikaway's Mongo DB Talk](http://www.slideshare.net/ichikaway/cakefest-ichikawa-upload)
-* [Erik Schaeffer's CakePHP in Hight Education](http://www.slideshare.net/therealphpdiddy/cakefest-higher-education)
+* [Erik Schaeffer's CakePHP in Higher Education](http://www.slideshare.net/therealphpdiddy/cakefest-higher-education)
 * [Mark Tovey's Plumbing with Cake: Integrating CakePHP and Drupal](http://www.slideshare.net/mtovey/plumbing-w-cake)
 * [Neil Crooke's Presentation on Consuming APIs](http://www.slideshare.net/neilcrookes/designing-cakephp-plugins-for-consuming-apis)
 * Brandon Plaster's Simplifying heavy client side web applications using CakePHP and Adobe Flash Builder 4
