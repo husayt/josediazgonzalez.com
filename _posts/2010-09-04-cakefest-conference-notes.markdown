@@ -12,20 +12,20 @@ _*Talk slideshows:*_
 
 *Day 1*
 
-* Graham Weldon's ([@Predominant](http://twitter.com/predominant)) [Re-imagining CakePHP](http://www.slideshare.net/predominant/reimaginging-cakephp)
-* Pierre Martin's ([@real34](http://twitter.com/real34)) [Using and Reusing CakePHP Plugins](http://www.slideshare.net/real34/using-reusingplugins)
-* Ichikaway's ([@ichikaway](http://twitter.com/ichikaway)) [How to use MongoDB with CakePHP](http://www.slideshare.net/ichikaway/cakefest-ichikawa-upload)
-* Erik Schaeffer's ([@phpdiddy](http://twitter.com/phpdiddy)) [CakePHP in Higher Education](http://www.slideshare.net/therealphpdiddy/cakefest-higher-education)
+* Graham Weldon's ([@Predominant](http://twitter.com/predominant)) [Re-imagining CakePHP](http://www.slideshare.net/predominant/reimaginging-cakephp) ([Blog](http://grahamweldon.com/))
+* Pierre Martin's ([@pierremartin](http://twitter.com/pierremartin)) [Using and Reusing CakePHP Plugins](http://www.slideshare.net/real34/using-reusingplugins) ([Blog](http://www.pierre-martin.fr/))
+* Ichikaway's ([@ichikaway](http://twitter.com/ichikaway)) [How to use MongoDB with CakePHP](http://www.slideshare.net/ichikaway/cakefest-ichikawa-upload) ([Blog](http://cake.eizoku.com/blog/))
+* Erik Schaeffer's ([@phpdiddy](http://twitter.com/phpdiddy)) [CakePHP in Higher Education](http://www.slideshare.net/therealphpdiddy/cakefest-higher-education) ([Blog](http://phpdiddy.com/))
 * Mark Tovey's ([@em_tee](http://twitter.com/em_tee)) [Plumbing with Cake: Integrating CakePHP and Drupal](http://www.slideshare.net/mtovey/plumbing-w-cake)
-* Neil Crooke's ([@neilcrookes](http://twitter.com/neilcrookes)) [Presentation on Consuming APIs](http://www.slideshare.net/neilcrookes/designing-cakephp-plugins-for-consuming-apis)
-* Brandon Plaster's Simplifying heavy client side web applications using CakePHP and Adobe Flash Builder 4 ([His blog](http://blog.brandonplasters.com/))
+* Neil Crooke's ([@neilcrookes](http://twitter.com/neilcrookes)) [Presentation on Consuming APIs](http://www.slideshare.net/neilcrookes/designing-cakephp-plugins-for-consuming-apis) ([Blog](http://www.neilcrookes.com/))
+* Brandon Plaster's Simplifying heavy client side web applications using CakePHP and Adobe Flash Builder 4 ([Blog](http://blog.brandonplasters.com/))
 
 *Day 2*
 
 * Larry Master's ([@phpnut](http://twitter.com/phpnut)) CakeTalk: CakePHP Community: The whole is greater than the sum of its parts
-* Mark Story's ([@mark_story](http://twitter.com/mark_story)) [CakeTalk: Win at life with Unit testing](http://mark-story.com/downloads/view/win-at-life-with-unit-testing)
+* Mark Story's ([@mark_story](http://twitter.com/mark_story)) [CakeTalk: Win at life with Unit testing](http://mark-story.com/downloads/view/win-at-life-with-unit-testing) ([Blog](http://mark-story.com/))
 * Erik Peterson's ([@ElctrcPineapple](http://twitter/com/ElctrcPineapple)) It's easier to ask forgiveness than it is to get ACL permissions!
-* Andrew Curioso's ([@andrewcurioso](http://twitter.com/AndrewCurioso)) [API Development](http://www.slideshare.net/andrewcurioso/cakefest-2010-api-development) - [Blog Post](http://andrewcurioso.com/2010/06/cakefest-2010/)
+* Andrew Curioso's ([@andrewcurioso](http://twitter.com/AndrewCurioso)) [API Development](http://www.slideshare.net/andrewcurioso/cakefest-2010-api-development) - [Blog](http://andrewcurioso.com/2010/06/cakefest-2010/)
 * Andy Gale's ([@andygale](http://twitter.com/andygale)) [CakePHP at massive scale, on a budget](http://www.slideshare.net/andygale/cake-php-at-a-massive-scale-on-a-budget) ([Blog](http://andy-gale.com/))
 
 
