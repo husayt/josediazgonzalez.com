@@ -46,7 +46,7 @@ _*Code:*_
 _*Lightning Talks:*_
 
 * Yusuke Ando's ([@yando](http://twitter.com/yando)) [This is our Cake](http://www.slideshare.net/yandod/yando-cakefest)
-* Jose Diaz-Gonzalez's ([@savant](http://twitter.com/savant)) [Mongo DB Is Web Scale](http://www.youtube.com/watch?v=b2F-DItXtZs)
+* Jose Diaz-Gonzalez's ([@savant](http://twitter.com/savant)) [Mongo DB Is Web Scale](http://www.youtube.com/watch?v=b2F-DItXtZs) [Alternate Link](http://www.xtranormal.com/watch/6995033/)
 
 _*Pictures:*_
 
