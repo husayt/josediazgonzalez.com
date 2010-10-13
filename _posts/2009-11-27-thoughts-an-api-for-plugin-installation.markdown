@@ -1,6 +1,6 @@
 ---
   title: Thoughts - An API for Plugin Installation
-  category: Other
+  category: CakePHP
   tags:
     - thoughts
     - cakephp

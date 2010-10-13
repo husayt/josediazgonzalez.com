@@ -1,6 +1,6 @@
 ---
   title: Quick Tip - Bring Out Yer Queries
-  category: Snippets
+  category: Datasources
   tags:
     - cakephp
     - quicktip

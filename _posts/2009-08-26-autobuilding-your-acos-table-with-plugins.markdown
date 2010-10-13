@@ -1,6 +1,6 @@
 ---
   title: Auto-Building your ACOs table with Plugins
-  category: Snippets
+  category: Authorization
   tags:
     - acos
     - cakephp
@@ -10,7 +10,7 @@
   layout: post
 ----
 
-I was fed up with the implementation that is on the Cookbook as far as plugin support goes, so I modified the AuthComponent to recognize things such as controllers/Plugin.Controller/action. Worked well enough, except for the fact that this means that my AuthComponent was simply a patch and therefore unlikely to be merged into the core. I'm also doing a lot of work with making plugin usage in your application seamless, so I guess it was high-time the Cookbook's implementation kicked it up a notch. And since I'm currently idling overnight at JFK (long story :P), here is a present from my delirium to you. It's broken in two parts due to encoding issues, but it should be in the same controller.
+I was fed up with the implementation that is on the Cookbook as far as plugin support goes, so I modified the AuthComponent to recognize things such as controllers/Plugin.Controller/action. Worked well enough, except for the fact that this means that my AuthComponent was simply a patch and therefore unlikely to be merged into the core. I'm also doing a lot of work with making plugin usage in your application seamless, so I guess it was high-time the Cookbook's implementation kicked it up a notch. And since I'm currently idling overnight at JFK (long story :P), here is a present from my delirium to you. 
 
 I personally have a 'Core' plugin that has a 'DashboardsController' where I place this code, but you can place it in your AppController and run it as you wish:
 
@@ -26,7 +26,6 @@ Controller Class:
  * @package app.controllers
  * @author Jose Diaz-Gonzalez
  * @version 0.1
- * @copyright Stoop Dev
  **/
 	
 class DashboardsController extends AppController {

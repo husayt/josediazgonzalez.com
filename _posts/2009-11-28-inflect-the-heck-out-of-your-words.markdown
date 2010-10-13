@@ -1,6 +1,6 @@
 ---
   title: Inflect Shell - Inflect the heck out of your word(s) 
-  category: Code
+  category: Console
   tags:
     - cakephp
     - cakeshell

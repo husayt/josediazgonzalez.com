@@ -1,6 +1,6 @@
 ---
-  title: Hide Plugin Prefixes in Routed URLS
-  category: Snippets
+  title: Hide Plugin Prefixes in Routed Urls
+  category: Routing
   tags:
     - cakephp
     - router

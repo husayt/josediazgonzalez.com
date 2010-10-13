@@ -1,6 +1,6 @@
 ---
   title: Cacheable Behavior
-  category: Code
+  category: Behaviors
   tags:
     - cakephp
     - behaviors

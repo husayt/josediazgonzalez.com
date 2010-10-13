@@ -1,6 +1,6 @@
 ---
   title: Yahoo Maps-based Geocoding
-  category: Snippets
+  category: Models
   tags:
     - cakephp
     - yahoo maps

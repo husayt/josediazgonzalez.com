@@ -1,6 +1,6 @@
 ---
   title: ResourceHelper
-  category: Snippets
+  category: Helpers
   tags:
     - cakephp
     - helpers

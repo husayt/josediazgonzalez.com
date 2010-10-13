@@ -1,6 +1,6 @@
 ---
   title: Trackable Behavior
-  category: Code
+  category: Behaviors
   tags:
     - cakephp
     - trackable

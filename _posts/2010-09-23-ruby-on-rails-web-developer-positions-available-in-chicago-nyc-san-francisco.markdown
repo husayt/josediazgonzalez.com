@@ -1,6 +1,6 @@
 ---
   title: Ruby on Rails Web Developer positions available in Chicago, NYC, San Francisco
-  category: Code
+  category: Other
   tags:
   layout: post
 ---

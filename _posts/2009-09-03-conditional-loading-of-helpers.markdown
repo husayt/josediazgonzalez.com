@@ -1,6 +1,6 @@
 ---
   title: Conditional Loading of Helpers
-  category: Snippets
+  category: Helpers
   tags:
     - cakephp
     - helpers

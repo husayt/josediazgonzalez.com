@@ -1,6 +1,6 @@
 ---
   title: Conditionally Load Javascript
-  category: Snippets
+  category: Views
   tags:
     - cakephp
     - conditional
