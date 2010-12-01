@@ -114,7 +114,7 @@ class CustomBehavior extends ModelBehavior {
 {% highlight php %}
 <?php
 class CustomBehavior extends ModelBehavior {
-    var $mapMethods = array('/_findCustom/' => '_findCustom');
+    var $mapMethods = array('/\b_findCustom\b/' => '_findCustom');
 
     function setup(&$model, $settings = array()) {
         $model->_findMethods['custom'] = true;
@@ -133,4 +133,4 @@ class CustomBehavior extends ModelBehavior {
 
 * Win at life
 
-This method can be used to add as many custom finds as necessary to your models. You will need to be careful that your regex doesn't match incorrectly, as `$mapMethods` uses a case-insensitive `preg_match()` in order to map the method. So just make your custom finds unique and everything should be fine.
+This method can be used to add as many custom finds as necessary to your models. You will need to be careful that your regex doesn't match incorrectly, as `$mapMethods` uses a case-insensitive `preg_match()` in order to map the method. So just make your custom finds unique and everything should be fine. You can also use `\b` in your pattern so that partial matches do not trigger a find incorrectly.
