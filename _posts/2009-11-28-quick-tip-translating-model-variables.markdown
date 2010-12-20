@@ -64,7 +64,6 @@ You forgot to call the parent Model::__construct() function, as well as all the 
 class Category extends AppModel {
 	var $name = 'Category';
 	function __construct($id = false, $table = null, $ds = null) {
-		parent::__construct($id, $table, $ds);
 		$this->validate = array(
 			'title' => array(
 				'notempty' => array(
@@ -78,6 +77,7 @@ class Category extends AppModel {
 			'private' => __('Private', true),
 			'password' => __('Password Protected', true),
 		);
+	    parent::__construct($id, $table, $ds);
 	}
 }
 ?>
