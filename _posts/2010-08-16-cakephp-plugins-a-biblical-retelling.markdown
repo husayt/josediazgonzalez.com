@@ -34,7 +34,6 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 
 # File Uploading:
 - [Vinicius Mendes' MeioUpload](http://github.com/jrbasso/MeioUpload): I've worked on this. The versioning is pretty silly atm, but I still say it's definitely usable.
-- [Debuggable's TransloadIt plugin](http://github.com/felixge/cakephp-transload_it): A really rad way of uploading files to a NodeJs-based webservice that handles encoding, processing, and storage for you via Ajax. It's hot.
 - [Michał Szajbe's UploadPack](http://github.com/szajbus/uploadpack): File Uploading with a Helper to output the stuff for you. It's dope, for damn sure. I actually prefer this over MeioUpload now, and I contribute to both and have been the "Maintainer" of both in some fashion over the past year.
 - [Jose Gonzalez's Upload](http://github.com/josegonzalez/upload): I made an Upload plugin based on my work with MeioUpload and UploadPack. I haven't used it yet, but it's currently ~44% unit tested and once it is at 100%, I'll try it out and let you know ;)
 - [David Perrson's Media](http://github.com/davidpersson/media): The grand-daddy of all CakePHP upload plugins. If this plugin doesn't do what you need it to do, the code hasn't been released as a CakePHP plugin. For advanced users only, but you won't be disappointed.
@@ -45,7 +44,7 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Mark Story's Asset Compress](http://github.com/markstory/asset_compress): Compress your CSS and JS. This plugin rules, and no one other than the current lead developer of CakePHP could have such a gem chilling in his github profile.
 - [Matt Curry's HTML Cache](http://github.com/mcurry/html_cache): Cache your pages to HTML. See a huge speedup. Great for static pages. Also has a Croogo hook, if you happen to be using Croogo CMS.
 - [Matt Curry's URL Cache](http://github.com/mcurry/url_cache): This snarky motherfucker seems to have gems all over his Github profile. Cache your generated html urls to whatever caching system you use. Greatly speeds up requests on pages with a shit-ton of URLs to generate.
-- [Matt Curry's Custom Find Types](http://github.com/mcurry/find): Definitely an easy way to build custom find types for your application, and easily customizable to add stuff like Caching or Filtering.
+- [Matt Curry's Custom Find Types](http://github.com/mcurry/find): Definitely an easy way to build custom find types for your application, and easily customizable to add stuff like Caching or Filtering. DO NOT USE IF YOU WANT REAL CUSTOM FINDS, THIS IS A HACK AND IT WILL BURN DOWN YOUR KITCHEN.
 
 # Debugging
 - [Mark Story's DebugKit](http://github.com/cakephp/debug_kit): Honestly, this man is a monster. Not only is he a JS-Ninja and CakePHP-bashing fiend, but he also draws incessantly and has time to hack on the most wonderful tool for debugging your CakePHP application. This is something you need to install NOW. You will love me later.
@@ -53,10 +52,10 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Matt Curry's Interactive](http://github.com/mcurry/interactive): A panel for DebugKit to interact with your app without refreshing the page. A great way to see what a particular query will perform.
 
 # Useful Helpers
-- [Graham Weldon's Gravatar](http://github.com/predominant/CakePHP-Goodies/blob/master/views/helpers/gravatar.php): Include your Gravatar's quickly and easily with this helper. Bakery Article [here](http://bakery.cakephp.org/articles/view/gravatar-helper).
+- [Graham Weldon's Gravatar](http://github.com/predominant/goodies/blob/master/views/helpers/gravatar.php): Include your Gravatar's quickly and easily with this helper. Bakery Article [here](http://bakery.cakephp.org/articles/view/gravatar-helper).
 - [Chris Your's CakeHelper](http://snipt.net/chrisyour/cakephp-content_for-capture-html-block-for-layout/): "Ever wanted a clean way to capture a block of HTML in your CakePHP view and use it later in your layout just like CakePHP uses $content_for_layout?" This helper is an implementation of Rails' content_for in CakePHP. Chawsome.
 - [Joe Beeson's Analogue Helper](http://github.com/joebeeson/analogue): Sometimes you just need your helpers to pretend to be other, core helpers. Why? How the hell would I know! But now you can!
-- [Graham Weldon's Auto-Javascript](http://github.com/predominant/CakePHP-Goodies/blob/master/views/helpers/auto_javascript.php): Graham is still an idiot and refuses to place his code in separate repositories :P . Also known as Predominant, he wrote this little helper to speed up javascript file inclusion within your templates. Bakery Article [here](http://bakery.cakephp.org/articles/view/automatic-javascript-includer-helper).
+- [Graham Weldon's Auto-Javascript](http://github.com/predominant/goodies/blob/master/views/helpers/auto_javascript.php): Graham is still an idiot and refuses to place his code in separate repositories :P . Also known as Predominant, he wrote this little helper to speed up javascript file inclusion within your templates. Bakery Article [here](http://bakery.cakephp.org/articles/view/automatic-javascript-includer-helper).
 
 # Random Awesome-sauce
 - [Carl Sutton's Google Plugin](http://github.com/dogmatic69/cakephp_google_plugin): Someone give this guy an award. Just a metric fuck-ton of Google Integration into CakePHP. You are all welcome.
