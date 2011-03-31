@@ -3,9 +3,11 @@
   category: Behaviors
   tags:
     - cakephp
+    - github
     - behaviors
     - html purifier
     - licensing
+    - cakephp 1.3
   layout: post
 ---
 
@@ -28,7 +30,7 @@ class Post extends Model {
 	
 	public function saveNewPost() {
 		$record = array(
-			"{$this->alias}" => array(
+			$this->alias => array(
 				'title' => '<h1>sasafras</h1>',
 				'content' => '<br><br><center><font size="2">testing</font></center>')
 		);

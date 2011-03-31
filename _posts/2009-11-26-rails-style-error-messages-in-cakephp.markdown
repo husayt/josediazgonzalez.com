@@ -7,7 +7,8 @@
     - helpers
     - errors
     - errorhelper
-    - snippet
+    - cakephp 1.2
+    - cakephp 1.3
   layout: post
 ---
 
@@ -35,7 +36,7 @@ And presto chango, you are done. NOT. You forgot about actually outputting the e
 
 Anywho, I built an ErrorsHelper months ago that kind of did this in a backwards fashion. It wasn't very automatic though. Had to echo the buggers manually where I needed it, and it also was kinda weird (as in I used it to list flash messages as well... but thats another story).
 
-So today I was building out [Marcy Avenue](http://github.com/josegonzalez/marcyavenue) out a bit, noticed I was at a point where I might want to handle, oh, idk, the error messages, and decided to clean up that piece of my ResourceHelper. It was going well, and I realize that others might want to use it someday, so I have packaged it up a bit.
+So while I was building out a [now defunct cms](http://github.com/josegonzalez/marcyavenue), noticed I was at a point where I might want to handle, oh, idk, the error messages, and decided to clean up that piece of my ResourceHelper. It was going well, and I realize that others might want to use it someday, so I have packaged it up a bit.
 
 Usage is quite simple. Simply add the helper to the controller you need it to be in. In my example, I will attach it to the AppController (I also included the way to add it in one place specifically, such as the Controller::beforeRender() callback):
 
@@ -66,4 +67,4 @@ It works via the Helper::beforeRender() callback. For the moment, it is called a
 It also takes care of echoing Session messages, both the default and the Authentication message. That will also be configurable in the near future. ErrorHelper requires jQuery, which is something I will ALSO make configurable (jeez, seems like I was being lazy, no?). I just wanted to get it out for you people, give me a break. I'll remove these warnings when I get them done...
 
 
-[FYI, you can grab the code by clicking this delicious text. Feel free to "fork" it and make it better.](http://gist.github.com/243248)
+[FYI, you can grab the stylish_errors plugin by clicking this delicious text. Feel free to "fork" it and make it better.](https://github.com/josegonzalez/stylish_errors)

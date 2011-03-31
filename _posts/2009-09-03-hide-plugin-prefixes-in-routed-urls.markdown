@@ -5,6 +5,7 @@
     - cakephp
     - router
     - quicktip
+    - cakephp 1.2
   layout: post
 ---
 

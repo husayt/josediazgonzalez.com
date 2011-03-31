@@ -5,6 +5,7 @@
     - thoughts
     - cakephp
     - plugins
+    - side projects
   layout: post
 ---
 

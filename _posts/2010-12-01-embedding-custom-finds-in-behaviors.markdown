@@ -6,10 +6,13 @@
     - models
     - custom find
     - code
+    - cakephp 1.3
   layout: post
 ---
 
 Today, while outlining a datasource for a CDN, I REALLY needed to add a custom model find from outside of the model. Custom find types would greatly simplify the Model api and give the developer access to exotic types of finds without having to specify ridiculous option keys.
+
+<!-- end_preview -->
 
 By default, adding a custom model find is as follows:
 
@@ -19,8 +22,9 @@ By default, adding a custom model find is as follows:
 <?php
 class Post extends Model {
     function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
         $this->_findMethods['custom'] = true;
+
+        parent::__construct($id, $table, $ds);
     }
 }
 ?>
@@ -32,8 +36,9 @@ class Post extends Model {
 <?php
 class Post extends Model {
     function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
         $this->_findMethods['custom'] = true;
+
+        parent::__construct($id, $table, $ds);
     }
 
     function _findCustom($state, $query, $results = array()) {

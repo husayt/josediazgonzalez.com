@@ -8,6 +8,8 @@
     - helpers
     - fails
     - snippet
+    - cakephp 1.2
+    - cakephp 1.3
   layout: post
 ---
 

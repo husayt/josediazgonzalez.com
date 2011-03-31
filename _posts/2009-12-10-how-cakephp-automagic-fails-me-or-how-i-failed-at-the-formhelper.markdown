@@ -6,20 +6,31 @@
     - cakephp
     - forms
     - automagic
+    - cakephp 1.2
+    - cakephp 1.3
   layout: post
 ---
 
-Okay, so I have a Model::find() that looks like the following:
+Okay, so I have a custom Model::find() that looks like the following:
 
 {% highlight php %}
 <?php
-	function __findEditProfile(){
-		return $this->find('first', array(
-			'conditions' => array("{$this->alias}.{$this->primaryKey}" => User::get('id')),
-			'contain' => false,
-			'fields' => array(
+	function _findEditprofile($state, $query, $results = array()) {
+		if ($state == 'before') {
+			$query['conditions'] = array("{$this->alias}.{$this->primaryKey}" => User::get('id'));
+			$query['contain'] = false;
+			$query['fields'] = array(
 				'id', 'first_name', 'last_name', 'email', 
-				'job_title', 'phone_number', 'photo_file_name')));
+				'job_title', 'phone_number', 'photo_file_name'
+			);
+			$query['limit'] = 1;
+			return $query;
+		} else if ($state == 'after') {
+			if (isset($results[0])) {
+				return $results[0];
+			}
+			return false;
+		}
 	}
 ?>
 {% endhighlight %}
@@ -42,7 +53,7 @@ And I have an action, UsersController::profile(), with the following structure:
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->User->find('edit_profile');
+			$this->data = $this->User->find('editprofile');
 		}
 	}
 ?>
@@ -103,13 +114,25 @@ Because I have configured the FormHelper to submit to default to the `User` mode
 
 {% highlight php %}
 <?php
-	function __findEditProfile(){
-		return $this->find('first', array(
-			'conditions' => array("{$this->alias}.{$this->primaryKey}" => User::get('id')),
-			'contain' => false,
-			'fields' => array(
+	function _findEditprofile($state, $query, $results = array()) {
+		if ($state == 'before') {
+			$query['conditions'] = array("{$this->alias}.{$this->primaryKey}" => User::get('id'));
+			$query['contain'] = false;
+			$query['fields'] = array(
 				'first_name', 'last_name', 'email', 
-				'job_title', 'phone_number', 'photo_file_name')));
+				'job_title', 'phone_number', 'photo_file_name'
+			);
+			$query['limit'] = 1;
+			return $query;
+		} else if ($state == 'after') {
+			if (isset($results[0])) {
+				if (isset($results[0][$this->alias][$this->primaryKey])) {
+					unset($results[0][$this->alias][$this->primaryKey]);
+				}
+				return $results[0];
+			}
+			return false;
+		}
 	}
 ?>
 {% endhighlight %}

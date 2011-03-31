@@ -7,6 +7,7 @@
     - behaviors
     - cakephp bin
     - quicktip
+    - cakephp 1.2
   layout: post
 ---
 
@@ -30,7 +31,6 @@ Cheers if it works for you, and feedback is always welcome!
  * @package app.models.behaviors
  * @author Jose Diaz-Gonzalez
  * @version 1.4.7
- * @copyright Savant Dev
  **/
 class ToggleBehavior extends ModelBehavior {
 /**

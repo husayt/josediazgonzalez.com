@@ -3,7 +3,9 @@
   category: CakePHP
   tags:
     - cakephp
+    - github
     - plugins
+    - useful
   layout: post
 ---
 

@@ -6,6 +6,7 @@
     - behaviors
     - caching
     - quicktip
+    - cakephp 1.2
   layout: post
 ---
 

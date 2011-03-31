@@ -5,6 +5,7 @@
     - install
     - development
     - os x
+    - useful
   layout: post
 ---
 
@@ -26,7 +27,7 @@ First thing is first, install all my applications (as dictated by my current /Ap
 - [Firefox](http://www.mozilla.com/en-US/firefox/firefox.html)
   - /Users/user/Library/Application Support/Firefox
 - [Gitnub](http://wiki.github.com/Caged/gitnub/)
-- [Gitx](http://gitx.frim.nl/)
+- [Gitx](https://github.com/brotherbard/gitx/downloads)
 - [Gmail Notifr](http://ashchan.com/projects/gmail-notifr)
 - [Hex Color Picker](http://wafflesoftware.net/hexpicker/)
 - iLife

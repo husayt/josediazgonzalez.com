@@ -7,10 +7,9 @@
     - behaviors
     - github
     - quicktip
+    - cakephp 1.2
   layout: post
 ---
-
-UPDATE: Now at [http://github.com/josegonzalez/cakephp-commentable-behavior](http://github.com/josegonzalez/cakephp-commentable-behavior)
 
 The following should get you up and running with Commentable Behavior. Note that I've only tested it with a "Post" model, but it should work fine otherwise.
 

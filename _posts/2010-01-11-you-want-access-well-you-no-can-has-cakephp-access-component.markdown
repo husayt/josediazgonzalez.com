@@ -4,8 +4,10 @@
   tags:
     - access
     - cakephp
+    - github
     - authsome plugin
     - component
+    - cakephp 1.3
   layout: post
 ---
 

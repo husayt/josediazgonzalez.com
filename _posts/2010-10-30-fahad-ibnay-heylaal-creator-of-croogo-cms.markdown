@@ -5,6 +5,7 @@
     - cakephp
     - croogo
     - cms
+    - cakephp 1.3
   layout: post
 ---
 

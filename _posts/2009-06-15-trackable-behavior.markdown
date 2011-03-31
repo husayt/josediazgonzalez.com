@@ -7,10 +7,11 @@
     - behaviors
     - github
     - quicktip
+    - cakephp 1.2
+    - cakephp 1.3
   layout: post
 ---
 
-## UPDATE: Code at [github](http://github.com/josegonzalez/cakephp-trackable-behavior)
 
 As always, I like taking code and trying to improve it. It's an exercise for me, sort of like dissecting a pig in high school. I try to understand what it is I am working with as much as I can before actually using it.
 

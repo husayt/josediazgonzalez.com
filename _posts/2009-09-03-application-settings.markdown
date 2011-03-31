@@ -6,6 +6,8 @@
     - helpers
     - settings
     - quicktip
+    - cakephp 1.2
+    - cakephp 1.3
   layout: post
 ---
 

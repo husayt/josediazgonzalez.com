@@ -6,6 +6,7 @@
     - helpers
     - overload
     - quicktip
+    - cakephp 1.2
   layout: post
 ---
 

@@ -3,6 +3,8 @@
   category: CakePHP
   tags:
     - cakephp
+    - github
+    - side projects
   layout: post
 ---
 

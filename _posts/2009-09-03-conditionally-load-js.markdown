@@ -6,6 +6,7 @@
     - conditional
     - javascript
     - quicktip
+    - cakephp 1.2
   layout: post
 ---
 

@@ -5,6 +5,7 @@
     - cakephp
     - yahoo maps
     - geocoding
+    - cakephp 1.2
   layout: post
 ---
 

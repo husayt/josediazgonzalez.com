@@ -6,6 +6,7 @@
     - code
     - model
     - loadmodel
+    - cakephp 1.3
   layout: post
 ---
 
@@ -17,7 +18,62 @@ In the Model, however, the answer has been to use `ClassRegistry::init()` to loa
 
 Last night, someone asked about what they should use in a Model, so instead of repeating the same tired answers, I came up with a `Model::loadModel()` method of my own.
 
-<script src="http://gist.github.com/611033.js?file=app_model.php"></script>
+{% highlight php %}
+<?php
+class AppModel extends Model {
+
+/**
+ * Loads and instantiates models.
+ * If the model is non existent, it will throw a missing database table error, as Cake generates
+ * dynamic models for the time being.
+ *
+ * Will clear the model's internal state using Model::create()
+ *
+ * @param string $modelName Name of model class to load
+ * @param mixed $options array|string
+ *              id      Initial ID the instanced model class should have
+ *              alias   Variable alias to write the model to
+ * @return mixed true when single model found and instance created, error returned if model not found.
+ * @access public
+ */
+    function loadModel($modelName, $options = array()) {
+        if (is_string($options)) $options = array('alias' => $options);
+        $options = array_merge(array(
+            'datasource'  => 'default',
+            'alias'       => false,
+            'id'          => false,
+        ), $options);
+
+        list($plugin, $className) = pluginSplit($modelName, true, null);
+        if (empty($options['alias'])) $options['alias'] = $className;
+
+        if (!isset($this->{$options['alias']}) || $this->{$options['alias']}->name !== $className) {
+            if (!class_exists($className)) {
+                if ($plugin) $plugin = "{$plugin}.";
+                App::import('Model', "{$plugin}{$modelClass}");
+            }
+            $table = Inflector::tableize($className);
+
+            if (PHP5) {
+                $this->{$options['alias']} = new $className($options['id'], $table, $options['datasource']);
+            } else {
+                $this->{$options['alias']} =& new $className($options['id'], $table, $options['datasource']);
+            }
+            if (!$this->{$options['alias']}) {
+                return $this->cakeError('missingModel', array(array(
+                    'className' => $className, 'code' => 500
+                )));
+            }
+            $this->{$options['alias']}->alias = $options['alias'];
+        }
+
+        $this->{$options['alias']}->create();
+        return true;
+    }
+
+}
+?>
+{% endhighlight %}
 
 I think it's pretty nifty. Usage is simple:
 

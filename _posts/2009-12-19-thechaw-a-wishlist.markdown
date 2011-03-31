@@ -6,6 +6,7 @@
     - thechaw
     - project management
     - wishlist
+    - side projects
   layout: post
 ---
 

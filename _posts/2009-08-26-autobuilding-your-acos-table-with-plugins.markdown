@@ -7,6 +7,7 @@
     - plugins
     - book
     - snippet
+    - cakephp 1.2
   layout: post
 ----
 
