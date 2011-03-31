@@ -41,7 +41,7 @@
 	</div><!-- end: #header-wrapper-->
 	<div id="content-wrapper">
 		<div id="breadcrumb">
-			<a href="/">Home</a> &not; {% if page.category != null %}<a href="/categories/{{ page.category }}">{{ page.category }}</a> &not; {% endif %}
+			<a href="{{ site.baseurl }}/">Home</a> &not; {% if page.category != null %}<a href="{{ site.baseurl }}/categories/{{ page.category | replace:' ', '-' | downcase }}">{{ page.category }}</a> &not; {% endif %}
 		</div>
 		<div id="main-container" class="clearfix">
 			{{ content }}

@@ -56,6 +56,7 @@ module Jekyll
       archive = ArchiveIndex.new(site, site.source, dir, type)
       archive.render(site.layouts, site.site_payload)
       archive.write(site.dest)
+      site.static_files << archive
     end
 
     def collate(site)

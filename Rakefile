@@ -3,6 +3,9 @@ require "bundler"
 require "date"
 
 site_url    = "http://josediazgonzalez.com"   # deployed site url for sitemap.xml generator
+deploy_host = "josediazgonzalez.com"
+deploy_path = "/apps/production/josediazgonzalez.com/default/public/_site"
+deploy_user = "deploy"
 port        = "4000"
 site        = "_site"
 editor      = "mate"
@@ -22,7 +25,7 @@ end
 desc 'Run Jekyll to generate the site'
 task :build do
   puts '* Generating static site with Jekyll'
-  puts `ejekyll`
+  puts `jekyll`
 end
 
 desc 'Push source code to Github'
@@ -34,7 +37,7 @@ end
 desc 'rsync the contents of ./_site to the server'
 task :sync do
   puts '* Publishing files to live server'
-  puts `rsync -avz "_site/" jose@josediazgonzalez.com:~/public_html/josediazgonzalez.com/default/public`
+  puts `rsync -avz "_site/" #{deploy_user}@#{deploy_host}:#{deploy_path}`
 end
 
 desc "Build an XML sitemap of all html files."
@@ -96,7 +99,7 @@ end
 desc 'Run Jekyll in development mode'
 task :dev do
   puts '* Running Jekyll with auto-generation and server'
-  puts `ejekyll --auto --server --lsi`
+  puts `jekyll --auto --server --lsi`
 end
 
 desc "remove files in output directory"

@@ -16,6 +16,19 @@ module Jekyll
     end
   end
 
+  class CategoryList < Page
+    def initialize(site,  base, dir, categories)
+      @site = site
+      @base = base
+      @dir = dir
+      @name = 'index.html'
+
+      self.process(@name)
+      self.read_yaml(File.join(base, '_layouts'), 'category_list.html')
+      self.data['categories'] = categories
+    end
+  end
+
   class CategoryGenerator < Generator
     safe true
     
@@ -23,8 +36,13 @@ module Jekyll
       if site.layouts.key? 'category_index'
         dir = site.config['category_dir'] || 'categories'
         site.categories.keys.each do |category|
-          write_category_index(site, File.join(dir, category), category)
+          write_category_index(site, File.join(dir, category.gsub(/\s/, "-").gsub(/[^\w-]/, '').downcase), category)
         end
+      end
+
+      if site.layouts.key? 'category_list'
+        dir = site.config['category_dir'] || 'categories'
+        write_category_list(site, dir, site.categories.keys.sort)
       end
     end
   
@@ -32,6 +50,14 @@ module Jekyll
       index = CategoryIndex.new(site, site.source, dir, category)
       index.render(site.layouts, site.site_payload)
       index.write(site.dest)
+      site.static_files << index
+    end
+
+    def write_category_list(site, dir, categories)
+      index = CategoryList.new(site, site.source, dir, categories)
+      index.render(site.layouts, site.site_payload)
+      index.write(site.dest)
+      site.static_files << index
     end
   end
 
