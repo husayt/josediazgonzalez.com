@@ -296,6 +296,16 @@ body.home #main-container {border-top:0;}
 	.post blockquote {color:#606060; font-style:italic; padding:30px;}
 	.post .pullquote {background:url(/images/quotes_left.gif) left 20px no-repeat; width:220px; padding:20px 0 20px 30px; margin:10px 20px 10px 0; border-top:1px solid #ddd; border-bottom:1px solid #ddd; float:left;}
 	.post .pullquote p {/* background:url(/images/right_quote.gif) right bottom no-repeat; */ font-size:16px; font-style:italic; padding:0 20px 0 0;}
+	.post blockquote {
+  background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAQCAYAAAD52jQlAAAACXBIWXMAAAsTAAALEwEAmpwYAAABnklEQVQ4EZWToZLCQAyGw85NMdR0MK2hCtUqFCgUmPICfTsEb1CFAoVCFQOKGjCAAQOG65+77Cy0ywwR3W3ybTbZJI1nKWSR6/VK6/WaDocDpWlqof7Up9OJVqsVua5LPzYyz3N2+Hg8GIHjIAgq+P1+Z26z2bDteDxWnQKaz+cEI6TValGv16t1iOjA3m43Zj3Po8Fg8OoUUJZlJNFFUcQOm80mHzI/2+2W0wXrOA5zcRwzotM3HQIaDocUhqHpR+/3+z0tl0v+Ryaj0Yja7ba2s1NJWSJMkuQF0nS5weWLxYJVuHwymXBxTEbhB5C8S7/ftzoUVi5HhKj2uyhUtSgK1iMVeZd3EP94x8vlwibf92uLB6Pa7XYM4WN7QwHQZiKfLm/MZrOnpC4HsCIS8ynw7tPp1ET0vtvtMitdouocgkafYkJEzuezbCsrsjVZLlSF+lfIANjsph4jLfLRqUDfrgq9ZpNOp6NNda2jjeUGNRBRtorjMsyxCJyaB0WPFTNvdoNChVE9U9CvmKr36NDsZvQ4g4vG4zFJ5aH7BYMAsaH2qs0LAAAAAElFTkSuQmCC) 0 0 no-repeat;
+  background-size: 1.3125em 1em;
+  color: /*#888*/#606060;
+  margin: 3em 0 1.5em;
+  padding: 0 0 0 2.0625em
+  }
+  .ielt8 .post blockquote {/* Strange bug in IE 7 means a background-color MUST be set for this image to appear ... ? */background-color:#FFF;
+/*  background-image: url(assets/img/bg-blockquote.png)*/
+  }
 	.post .darkblock {font-style:italic; color:#fff; background:#282828; width: 200px; padding:30px 30px 2px 30px;}
 	.post img.alignleft {padding:5px 5px 5px 0; margin:0 16px 8px 0; float:left;}
 	.post img.alignright {padding:5px 0 5px 5px; margin:0 0 8px 16px; float:right;}
