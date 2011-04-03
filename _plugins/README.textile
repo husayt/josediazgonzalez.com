@@ -8,5 +8,6 @@ Here's a quick explanation of each extension:
 * *category*: allows you to automatically generate category pages for each tag using files in <em>_layouts</em> to specify what each page will look like. <em>e.g. "CakePHP":http://josediazgonzalez.com/categories/cakephp</em>. Also creates a listing of all category. <em>e.g. "Categories":http://josediazgonzalez.com/categories</em>.
 * *iterator*: allows you to iterate over all tags/categories and then iterate over the posts in those tags/categories. You can use this to automatically generate a tag cloud and a category page listing. <em>e.g. "Tag Cloud on Sidebar":http://josediazgonzalez.com/categories/cakephp</em>
 * *helpers*: A bunch of random Liquid Filters I created for use on my blog
+* *blockquote*: Allows the usage of blockquotes with attribution within your application by doing @{% blockquote John Hancock %} Content {% endblockquote %}@. Also adds support for pullquotes: @{% pullquote John Hancock %} Content {% endpullquote %}@.
 
 All plugins reside locally, in the _plugins folder, and in theory would be safe to run on Github. They may not be the best of Ruby code, since I am still but a Ruby apprentice, but they work fine for me :)
