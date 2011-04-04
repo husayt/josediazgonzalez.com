@@ -2,6 +2,8 @@ markdown: rdiscount
 pygments: true
 permalink: /:year/:month/:day/:title
 regeneration: true
-lsi: false
+lsi: true
 exclude: README.textile Rakefile
 tag_title_prefix: 'Tag: '
+base_url: http://josediazgonzalez.com
+title: Jose Diaz-Gonzalez

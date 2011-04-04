@@ -11,3 +11,5 @@ Here's a quick explanation of each extension:
 * *blockquote*: Allows the usage of blockquotes with attribution within your application by doing @{% blockquote John Hancock %} Content {% endblockquote %}@. Also adds support for pullquotes: @{% pullquote John Hancock %} Content {% endpullquote %}@.
 
 All plugins reside locally, in the _plugins folder, and in theory would be safe to run on Github. They may not be the best of Ruby code, since I am still but a Ruby apprentice, but they work fine for me :)
+
+Any undocumented plugins are not of my own creation. Please refer to their docblocks for more information.
