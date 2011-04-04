@@ -11,9 +11,10 @@
     - homepage.jpg
     - lightbox.jpg
     - backend.jpg
-  category: Design
+  type: Design
   published: true
   layout: portfolio_index
+  description: Design Conception and Integration for an NYC-based model
 ---
 
 Model Heide Lindgren gave me the opportunity to design and build a website to her exacting specifications. The entire site was built custom from the ground up, and supports posting via-email, posting various types of content, and has a custom lightbox implementation. The entire site was built in [Lithium](http://lithify.me/), a new PHP 5.3-only framework, with some help from the Zend libraries.

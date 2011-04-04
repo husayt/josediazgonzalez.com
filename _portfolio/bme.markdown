@@ -10,9 +10,10 @@
   images:
     - homepage.jpg
     - lightbox.jpg
-  category: Design
+  type: Design
   published: true
   layout: portfolio_index
+  description: Redesign of existing, bland website for Senior Design
 ---
 
 I was contacted to revamp the existing Senior Design Site for the NCSU School of BME, and after carefully considering all facets of the content-laden site, came up with the following design. I've centralized all the links, providing access to more information via lightbox popups where necessary.

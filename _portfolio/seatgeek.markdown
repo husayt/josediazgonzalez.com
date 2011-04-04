@@ -13,9 +13,10 @@
     - homepage.jpg
     - matchups.jpg
     - sportsmeta.jpg
-  category: Development
+  type: Development
   published: true
   layout: portfolio_index
+  description: Product development for a growing NYC startup
 ---
 
 I worked at SeatGeek as a contractor for about a year, both full and part-time as my schedule would allow. In that time, I've worked on integrating with partner APIs, internal background tasks and utilities, integrating the PHPUnit Testing Framework with our existing application, as well as the occasional HTML/CSS/JS task. For my work, SeatGeek has graciously given me a job offer I've accepted, as well as the title of "Git Guru".
