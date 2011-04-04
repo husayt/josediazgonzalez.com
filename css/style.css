@@ -448,7 +448,7 @@ body.portfolio #content { width:705px; float:left; }
 	.thumbs .project p {display:none;}
 	.thumbs .project a.hover {width:235px; height:235px;}
 	.thumbs .project:hover .caption {filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;}
-#sidebar #sliding-container {width:175px; padding-bottom:30px; height:auto;}
+#sidebar #sliding-container {width:175px; padding-top:20px; height:auto;}
 #sidebar #portfolio-cats ul li a.selected { color:#fff; line-height:1; background-color:#DA1A0B; padding:3px 5px; -moz-border-radius: 3px; -webkit-border-radius:3px; border-radius:3px; display:inline-block;}
 	.fixed {position:fixed; top:0;}
 	.pinned {position:absolute; right:0; bottom:0;}
