@@ -30,6 +30,8 @@ end
 
 desc 'Push source code to Github'
 task :push do
+  puts '* Committing regenerated site'
+  puts `git add _site && git commit -m 'Regenerating Site'`
   puts '* Pushing to Github'
   puts `git push origin master`
 end
