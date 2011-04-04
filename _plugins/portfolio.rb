@@ -10,13 +10,14 @@ module Jekyll
     #   +source+ is the String path to the <source>
     #   +dir+ is the relative path from the base directory to the portfolio folder.
     #   +name+ is the name of the portfolio to process.
-    def initialize(site, source, dir, name, name_noext)
+    def initialize(site, source, dir, name, slug)
       @site = site
       @base = source
       @dir = dir
 
       self.read_yaml(@base, name)
-      self.data['asset_folder'] = name_noext
+      self.data['slug'] = slug
+      self.data['is_portfolio'] = true
 
       if self.data.has_key?('date')
         # ensure Time via to_s and reparse
@@ -44,22 +45,46 @@ module Jekyll
     end
   end
 
+  class PortfolioList < Page
+    def initialize(site,  base, dir, portfolios)
+      @site = site
+      @base = base
+      @dir = dir
+      @name = 'index.html'
+
+      self.process(@name)
+      self.read_yaml(File.join(base, '_layouts'), 'portfolio_list.html')
+      self.data['portfolios'] = portfolios
+      self.data['is_portfolio'] = true
+    end
+  end
+
   # Jekyll hook - the generate method is called by jekyll, and generates all the portfolio pages.
   class PortfolioGenerator < Generator
     safe true
     priority :low
 
     def generate(site)
+      portfolio_list = []
+      dir = site.config['portfolio_dir'] || 'portfolio'
+
       if site.layouts.key? 'portfolio_index'
-        dir = site.config['portfolio_dir'] || 'portfolio'
         folder = site.config['portfolio_folder'] || '_portfolio'
 
         portfolios = self.get_files(folder)
-        portfolios.each do |portfolio|
-          portfolio_name = portfolio.sub(/^#{folder}\//, '\1')
-          portfolio_dir = portfolio.sub(/^#{folder}\/([^\.]+)\..*/, '\1')
-          write_portfolio_index(site, File.join(site.source, folder), dir, portfolio_name, portfolio_dir)
+        portfolios.each do |portfolio_path|
+          portfolio_name = portfolio_path.sub(/^#{folder}\//, '\1')
+          portfolio_dir = portfolio_path.sub(/^#{folder}\/([^\.]+)\..*/, '\1')
+
+          portfolio = write_portfolio_index(site, File.join(site.source, folder), dir, portfolio_name, portfolio_dir)
+          unless portfolio.nil?
+            portfolio_list << portfolio
+          end
         end
+      end
+      
+      if portfolio_list.size > 1 and site.layouts.key? 'portfolio_list'
+        write_portfolio_list(site, dir, portfolio_list)
       end
     end
     
@@ -69,7 +94,16 @@ module Jekyll
         index.render(site.layouts, site.site_payload)
         index.write(site.dest)
         site.static_files << index
+        return index
       end
+      return nil
+    end
+    
+    def write_portfolio_list(site, dir, portfolios)
+      index = PortfolioList.new(site, site.source, dir, portfolios)
+      index.render(site.layouts, site.site_payload)
+      index.write(site.dest)
+      site.static_files << index
     end
     
     # Gets a list of files in the _portfolio folder with a .yml extension.
