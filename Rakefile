@@ -13,7 +13,7 @@ editor      = "mate"
 task :default => :dev
 
 desc 'Generate and publish the entire site, and send out pings'
-task :publish => [:generate_sitemap, :build, :push, :sync, :sitemap, :ping] do
+task :publish => [:build, :push, :sync, :sitemap, :ping] do
 end
 
 desc "list tasks"
@@ -38,39 +38,6 @@ desc 'rsync the contents of ./_site to the server'
 task :sync do
   puts '* Publishing files to live server'
   puts `rsync -avz "_site/" #{deploy_user}@#{deploy_host}:#{deploy_path}`
-end
-
-desc "Build an XML sitemap of all html files."
-task :generate_sitemap do
-  html_files = FileList.new("#{site}/**/*.html").map{|f| f[("#{site}".size)..-1]}.map do |f|
-    if f.ends_with?("index.html")
-      f[0..(-("index.html".size + 1))]
-    else
-      f
-    end
-  end.sort_by{|f| f.size}
-  open("#{site}/sitemap.xml", 'w') do |sitemap|
-    sitemap.puts %Q{<?xml version="1.0" encoding="UTF-8"?>}
-    sitemap.puts %Q{<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">}
-    html_files.each do |f|
-      priority = case f
-      when %r{^/$}
-        1.0
-      when %r{^/articles}
-        0.9
-      else
-        0.8
-      end
-      sitemap.puts %Q{  <url>}
-      sitemap.puts %Q{    <loc>#{site_url}#{f}</loc>}
-      sitemap.puts %Q{    <lastmod>#{Time.now.strftime('%Y-%m-%d')}</lastmod>}
-      sitemap.puts %Q{    <changefreq>weekly</changefreq>}
-      sitemap.puts %Q{    <priority>#{priority}</priority>}
-      sitemap.puts %Q{  </url>}
-    end
-    sitemap.puts %Q{</urlset>}
-    puts "Created #{site}/sitemap.xml"
-  end
 end
 
 desc 'Notify Google of the new sitemap'
