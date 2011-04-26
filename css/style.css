@@ -491,3 +491,20 @@ div.success p {line-height:24px; padding:0; margin-left:36px; }
 	#contact-form textarea {height:170px;}
 
 /* End of CSS */
+
+#dsq-new-post h3, #dsq-comments-title h3 { display: none !important; }
+#dsq-content .dsq-options { margin-top: 1em  !important; }
+#dsq-content .dsq-moderator .dsq-comment-header { background: none !important; border: none  !important;}
+#dsq-content .dsq-comment-cite { display: block !important; }
+#dsq-content .dsq-comment-cite a { font-family: Georgia, 'Times New Roman', serif  !important; font-size: 16px !important; font-style: italic !important; }
+#dsq-content .dsq-comment-cite a:after { content: ' said:'  !important; color: #000 !important; font-style: normal !important; font-weight: normal !important; }
+#dsq-content .dsq-moderator-star { display: none !important; }
+#dsq-content .dsq-comment-header-time { padding: 0 !important; }
+#dsq-content .dsq-comment-header-time a { color: #909090  !important; font-size: 12px  !important; font-family: Helvetica, Arial, sans-serif  !important; }
+#dsq-content .dsq-attach-media { float: right !important; }
+#dsq-content .dsq-post-footer .dsq-button { float: left !important; margin-left: 0 !important; }
+#dsq-content .dsq-comment.child .dsq-full-comment { background-color: #F9F9F9 !important; border: 1px dotted #BBB !important; padding: 20px 20px 0 20px !important; margin-bottom: 20px !important; }
+#dsq-content .dsq-comment-is-parent .dsq-comment-footer,
+#dsq-content .dsq-comment.child .dsq-full-comment .dsq-comment-footer {border-bottom: none !important; }
+#dsq-content .dsq-comment-text { font-size: 14px !important; line-height: 1.6 !important; padding: 0 0 20px 8px !important; }
+#dsq-content .dsq-comment-footer { border-bottom: 1px dotted #BBB !important; padding-bottom: 15px !important ;}

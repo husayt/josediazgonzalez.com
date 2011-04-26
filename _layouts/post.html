@@ -6,9 +6,10 @@ body: blog single-post
 	<div class="post">
 		<div class="post-meta">
 			<span class="date"><img src="/images/icons/ico_calendar.png" alt="" />{{ page.date | date_to_string }} | </span>
+			<span class="num-comments"><img src="/images/icons/ico_comments_sm.png" alt=""><a href="#comments">(<span class="responses-number">0</span>)</a> | </span>
 			<span class="categories"><img src="/images/icons/ico_drawer.png" alt="" />
 				Category: <a href="/categories/{{ page.category | replace:' ', '-' | downcase  }}">{{ page.category }}</a>
-			</span> 
+			</span>
 		</div>
 		<h1 class="post-title"><a href="#">{{ page.title }}</a></h1>
 		{{ content }}
@@ -25,6 +26,14 @@ body: blog single-post
 			{% endfor %}
 		</ol>
 	</div><!-- end: related-posts -->
+	<div id="comments" class="section">
+		<div id="num-responses"><img src="/images/icons/ico_comments.png" alt=""><span class="responses-number">0</span> Responses. <a href="#comments">Add Yours!</a></div>
+		<h3>Discussion</h3>
+		<div id="disqus_thread" name="#comments">
+		</div>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+	</div>
 </div><!-- end: #content-->
 <div id="sidebar">
 	{% include intro.markdown %}
