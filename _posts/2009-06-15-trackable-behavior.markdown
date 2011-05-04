@@ -28,4 +28,4 @@ Remember to implement Matt Curry's User::get() syntax, or this won't work. It's 
 
 Enhancements, Bug Fixes, Questions and Comments are welcome.
 
-[http://github.com/josegonzalez/cakephp-trackable-behavior/tree/master](http://github.com/josegonzalez/cakephp-trackable-behavior/tree/master)
+[http://github.com/josegonzalez/trackable-behavior](http://github.com/josegonzalez/trackable-behavior)
