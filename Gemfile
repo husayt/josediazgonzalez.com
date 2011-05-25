@@ -1,0 +1,5 @@
+source "http://rubygems.org"
+gem "jekyll"
+gem "fssm"
+gem "nokogiri"
+gem "rdiscount"
