@@ -1,5 +1,5 @@
 ---
-  title: Daily Dev Log 1
+  title: The Daily Dev Log - 1
   category: Dev Log
   tags:
     - javascript
