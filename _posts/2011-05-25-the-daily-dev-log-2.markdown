@@ -1,6 +1,6 @@
 ---
   title: The Daily Dev Log 2
-  category: Code
+  category: Dev Log
   tags:
   layout: post
 ---
