@@ -35,9 +35,9 @@ module Jekyll
 
   # Outputs a string with a given attribution as a pullquote
   #
-  #   {% blockquote John Paul Jones %}
+  #   {% pullquote John Paul Jones %}
   #     Monkeys!
-  #   {% endblockquote %}
+  #   {% pullquote %}
   #   ...
   #   <blockquote class="pullquote">
   #     Monkeys!
