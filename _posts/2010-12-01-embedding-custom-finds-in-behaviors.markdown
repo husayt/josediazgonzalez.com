@@ -147,7 +147,7 @@ class CustomBehavior extends ModelBehavior {
         $model->_findMethods['custom'] = true;
     }
 
-    function _findCustom($model, $functionCall, $state, $query, $results = array()) {
+    function _findCustom(&$model, $functionCall, $state, $query, $results = array()) {
         if ($state == 'before') {
             $this->log('using custom find method');
             return $query;
