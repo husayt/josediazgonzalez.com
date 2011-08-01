@@ -13,7 +13,7 @@
 	<div id="ui-tabs-2" class="tab-content">
 		<ul>
 			{% for topic in site.iterable.categories %}
-				<li><a href="/categories/{{ topic.name }}">{{ topic.name }}</a></li>
+				<li><a href="/categories/{{ topic.name | replace:' ', '-' | downcase }}">{{ topic.name }}</a></li>
 			{% endfor %}
 		</ul>
 	</div>
