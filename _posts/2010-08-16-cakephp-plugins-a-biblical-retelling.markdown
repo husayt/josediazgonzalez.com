@@ -9,7 +9,7 @@
   layout: post
 ---
 
-I'm just going to list a few plugins I use and abuse on a daily basis, as well as things I've discovered but haven't found a use for but seem to be cool. YMMV, but things should mostly work in CakePHP 1.3
+I'm just going to list a few plugins I use and abuse on a daily basis, as well as things I've discovered but haven't found a use for but seem to be cool. YMMV, but things should mostly work in CakePHP 1.3 unless my description says otherwise.
 
 # Authentication and Authorization:
 - [Debuggable's Authsome](https://github.com/felixge/cakephp-authsome): A no-nonsense replacement for AuthComponent. It doesn't handle redirection, just authentication to your app. On the plus side, it has `Authsome::get('fieldName')`, so retrieving logged-in user data anywhere is a breeze.
@@ -41,7 +41,7 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Mark Story's Asset Compress](https://github.com/markstory/asset_compress): Compress your CSS and JS. This plugin rules, and no one other than the current lead developer of CakePHP could have such a gem chilling in his github profile.
 - [Matt Curry's HTML Cache](https://github.com/mcurry/html_cache): Cache your pages to HTML. See a huge speedup. Great for static pages. Also has a Croogo hook, if you happen to be using Croogo CMS.
 - [Matt Curry's URL Cache](https://github.com/mcurry/url_cache): This snarky guy seems to have gems all over his Github profile. Cache your generated html urls to whatever caching system you use. Greatly speeds up requests on pages with a fuck-ton of URLs to generate.
-- [Matt Curry's Custom Find Types](https://github.com/mcurry/find): Definitely an easy way to build custom find types for your application, and easily customizable to add stuff like Caching or Filtering. DO NOT USE IF YOU WANT REAL CUSTOM FINDS, THIS IS A HACK AND IT WILL BURN DOWN YOUR KITCHEN.
+- [Matt Curry's Custom Find Types](https://github.com/mcurry/find): Definitely an easy way to build custom find types for your application, and easily customizable to add stuff like Caching or Filtering. DO NOT USE IF YOU WANT REAL CUSTOM FINDS, THIS IS A HACK AND IT WILL BURN DOWN YOUR KITCHEN. [USE THIS INSTEAD](https://github.com/josegonzalez/documentation/blob/master/03-good-cake/01-models.textile)
 
 # Debugging
 - [Mark Story's DebugKit](https://github.com/cakephp/debug_kit): Honestly, this man is a monster. Not only is he a JS-Ninja and CakePHP-bashing fiend, but he also draws incessantly and has time to hack on the most wonderful tool for debugging your CakePHP application. This is something you need to install NOW. You will love me later.
@@ -52,7 +52,7 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Jose Gonzalez's CakeDjjob](https://github.com/josegonzalez/cake_djjob): A wrapper around a port of delayed_job to PHP. Pretty dope, and works well with your existing database
 - [Mike Smullin's Reque Plugin](https://github.com/mikesmullin/CakePHP-PHP-Resque-Plugin): Delayed jobs on the server persisting via Redis is cool too.
 - [Pettey Gordon's code_check](https://github.com/petteyg/code_check): Verify that your codebase follows CakePHP standards and correct it on the fly. I use it on any existing codebases that come my way.
-- [Douchenozzle McVanderPoop Jr's clear_cache](https://github.com/ceeram/clear_cache): A shell that will aggressively clear your cache
+- [Douchenozzle McVanderPoop Jr's clear_cache](https://github.com/ceeram/clear_cache): A lib that will aggressively clear your cache. Can be used pretty much anywhere
 
 # Useful Helpers
 - [Graham Weldon's Gravatar](https://github.com/predominant/goodies/blob/master/views/helpers/gravatar.php): Include your Gravatar's quickly and easily with this helper. Bakery Article [here](http://bakery.cakephp.org/articles/view/gravatar-helper).
@@ -65,4 +65,4 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Joe Beeson's Sassy](https://github.com/joebeeson/sassy): Admit it, you love SASS. Joe rules and built this sick plugin (and released it for you bastards) that integrates SASS into CakePHP.
 - [Jose Diaz-Gonzalez's CakeAdmin](https://github.com/josegonzalez/cake_admin): Quickly build an admin dashboard for your entire app based on a single class per model. Looks pretty too.
 - [Miles Johnson's CakeForum](https://github.com/milesj/cake-forum): Likely the best CakePHP forum, and the only one I'd trust to start with. Heavily updated too.
-- [Neil Crookes' Blog Plugin](https://github.com/neilcrookes/CakePHP-Blog-Plugin): The be-all, end-all blog plugin. Give it a whirl, you won't be  let down.
+- [Neil Crookes' Blog Plugin](https://github.com/neilcrookes/CakePHP-Blog-Plugin): The be-all, end-all blog plugin. Give it a whirl, you won't be  let down. 2.0+ only.
