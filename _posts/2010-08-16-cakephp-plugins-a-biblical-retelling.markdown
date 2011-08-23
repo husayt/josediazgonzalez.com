@@ -52,6 +52,7 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Jose Gonzalez's CakeDjjob](https://github.com/josegonzalez/cake_djjob): A wrapper around a port of delayed_job to PHP. Pretty dope, and works well with your existing database
 - [Mike Smullin's Reque Plugin](https://github.com/mikesmullin/CakePHP-PHP-Resque-Plugin): Delayed jobs on the server persisting via Redis is cool too.
 - [Pettey Gordon's code_check](https://github.com/petteyg/code_check): Verify that your codebase follows CakePHP standards and correct it on the fly. I use it on any existing codebases that come my way.
+- [Douchenozzle McVanderPoop Jr's clear_cache](https://github.com/ceeram/clear_cache): A shell that will aggressively clear your cache
 
 # Useful Helpers
 - [Graham Weldon's Gravatar](https://github.com/predominant/goodies/blob/master/views/helpers/gravatar.php): Include your Gravatar's quickly and easily with this helper. Bakery Article [here](http://bakery.cakephp.org/articles/view/gravatar-helper).
