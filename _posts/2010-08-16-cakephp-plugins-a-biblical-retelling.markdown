@@ -64,3 +64,5 @@ I'm just going to list a few plugins I use and abuse on a daily basis, as well a
 - [Carl Sutton's Google Plugin](https://github.com/dogmatic69/cakephp_google_plugin): Someone give this guy an award. Just a metric fuck-ton of Google Integration into CakePHP. You are all welcome.
 - [Joe Beeson's Sassy](https://github.com/joebeeson/sassy): Admit it, you love SASS. Joe rules and built this sick plugin (and released it for you bastards) that integrates SASS into CakePHP.
 - [Jose Diaz-Gonzalez's CakeAdmin](https://github.com/josegonzalez/cake_admin): Quickly build an admin dashboard for your entire app based on a single class per model. Looks pretty too.
+- [Miles Johnson's CakeForum](https://github.com/milesj/cake-forum): Likely the best CakePHP forum, and the only one I'd trust to start with. Heavily updated too.
+- [Neil Crookes' Blog Plugin](https://github.com/neilcrookes/CakePHP-Blog-Plugin): The be-all, end-all blog plugin. Give it a whirl, you won't be  let down.
