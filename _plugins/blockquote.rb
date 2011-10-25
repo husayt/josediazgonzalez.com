@@ -9,15 +9,27 @@ module Jekyll
   #   <blockquote>
   #     Monkeys!
   #     <br />
-  #     John Paul Jones
+  #     <strong>John Paul Jones</strong>
   #   </blockquote>
   #
   class Blockquote < Liquid::Block
-    Syntax = /([\w\s]+)/
+    TitledCitation = /(\S.*)\s+(https?:\/\/)(\S+)\s+(.+)/i
+    Citation = /(\S.*)\s+(https?:\/\/)(\S+)/i
+    Author = /([\w\s]+)/
 
     def initialize(tag_name, markup, tokens)
+      @class = ''
       @by = nil
-      if markup =~ Syntax
+      @source = nil
+      @title = nil
+      if markup =~ TitledCitation
+        @by = $1
+        @source = $2 + $3
+        @title = $4
+      elsif markup =~ Citation
+        @by = $1
+        @source = $2 + $3
+      elsif markup =~ Author
         @by = $1
       end
       super
@@ -25,11 +37,22 @@ module Jekyll
 
     def render(context)
       output = super
-      if @by.nil?
-        '<blockquote>' + output.join + '</blockquote>'
-      else
-        '<blockquote>' + output.join + '<br />' + @by + '</blockquote>'
+      parts = ['<blockquote' + @class + '>', output.join]
+      parts << "<strong>#{@by}</strong>" if @by
+      if @source.nil? && @title.nil?
+        parts << '</blockquote>'
+        return parts.join("\n")
       end
+
+      if !@source.nil?
+        cite = "<cite><a href='#{@source}'>#{(@title || source)}</a></cite>"
+      elsif !@title.nil?
+        cite = "<cite>#{@title}</cite>"
+      end
+
+      parts << cite if cite
+      parts << '</blockquote>'
+      parts
     end
   end
 
@@ -37,32 +60,18 @@ module Jekyll
   #
   #   {% pullquote John Paul Jones %}
   #     Monkeys!
-  #   {% pullquote %}
+  #   {% endpullquote %}
   #   ...
   #   <blockquote class="pullquote">
   #     Monkeys!
   #     <br />
-  #     John Paul Jones
+  #     <strong>John Paul Jones</strong>
   #   </blockquote>
   #
-  class Pullquote < Liquid::Block
-    Syntax = /([\w\s]+)/
-
-    def initialize(tag_name, markup, tokens)
-      @by = nil
-      if markup =~ Syntax
-        @by = $1
-      end
-      super
-    end
-
+  class Pullquote < Blockquote
     def render(context)
-      output = super
-      if @by.nil?
-        '<blockquote class="pullquote">' + output.join + '</blockquote>'
-      else
-        '<blockquote class="pullquote">' + output.join + '<br />' + @by + '</blockquote>'
-      end
+      @class = ' class="pullquote"'
+      super(context)
     end
   end
 end
