@@ -265,7 +265,7 @@ body.home #main-container {border-top:0;}
 /* 5. BLOG / PAGES
 ------------------------------------- */
 
-#blog-top {font-size: 14px; height:24px; line-height: 24px; font-style: italic;  margin: 30px 30px 0 30px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 6px 0; overflow: hidden;}
+#blog-top {font-size: 14px; height:24px; line-height: 24px; font-style: italic;  margin: 20px 20px 0 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 6px 0; overflow: hidden;}
 #blog-top p { padding: 0; }
 #blog-top .pagination a.next, #blog-top .pagination a.prev { display:inline-block; padding:0 10px;}
 #blog-top .pagination a.prev {padding-left:0;}
@@ -275,7 +275,7 @@ body.home #main-container {border-top:0;}
 #change-view #grid-view:hover {background-position:left bottom;}
 #change-view #list-view {background-position:-24px top;}
 #change-view #list-view:hover {background-position: -24px bottom;}
-#blog-posts {padding:30px; background:none;}
+#blog-posts {padding:20px; background:none;}
 #blog-posts .first {padding-top:0; border-top:0;}
 #blog-posts .post p:last-of-type {padding-bottom:0;}
 .post {padding:20px; overflow:hidden; }
@@ -313,7 +313,7 @@ body.home #main-container {border-top:0;}
 	.post .darkblock {font-style:italic; color:#fff; background:#282828; width: 200px; padding:30px 30px 2px 30px;}
 	.post img.alignleft {padding:5px 5px 5px 0; margin:0 16px 8px 0; float:left;}
 	.post img.alignright {padding:5px 0 5px 5px; margin:0 0 8px 16px; float:right;}
-	body.single-post .post h1.post-title {font-size:42px;padding-bottom:24px;}
+	body.single-post .post h1.post-title {padding-bottom:24px;}
 	body.page .post h1.post-title {font-size:42px; padding-bottom:20px;}
 	body.archive .post {border-top:4px solid #f4f4f4; padding:20px 0;}
 	body.archive .list .post {padding:15px 0; border-top:1px dotted #bbb;}
