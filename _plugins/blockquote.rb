@@ -37,7 +37,7 @@ module Jekyll
 
     def render(context)
       output = super
-      parts = ['<blockquote' + @class + '>', output.join]
+      parts = ['<blockquote' + @class + '>', output]
       parts << "<strong>#{@by}</strong>" if @by
       if @source.nil? && @title.nil?
         parts << '</blockquote>'
