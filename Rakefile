@@ -138,15 +138,17 @@ end
 
 desc "Watch the site and regenerate when it changes"
 task :watch do
-  require 'fssm'
-  puts ">>> Watching for Changes <<<"
-  FSSM.monitor do
-    path "#{File.dirname(__FILE__)}" do
-      update {|base, relative| rebuild_site(relative)}
-      delete {|base, relative| rebuild_site(relative)}
-      create {|base, relative| rebuild_site(relative)}
-    end
-  end
+  require 'em-dir-watcher'
+  exclusions = ['_cache', '_site', 'Gemfile']
+
+  EM.run {
+      dw = EMDirWatcher.watch '.', :exclude => exclusions do |paths|
+          paths.each do |path|
+              rebuild_site(relative)
+          end
+      end
+      puts ">>> Watching for Changes <<<"
+  }
 end
 
 def ok_failed(condition)

@@ -1,11 +1,29 @@
-markdown: rdiscount
-pygments: true
-permalink: /:year/:month/:day/:title
-regeneration: true
-lsi: true
-exclude: README.textile Rakefile
-tag_title_prefix: 'Tag: '
-base_url: http://josediazgonzalez.com
-title: Jose Diaz-Gonzalez
+# Main
+url:                http://josediazgonzalez.com
+title:              Jose Diaz-Gonzalez
+author:             Jose Diaz-Gonzalez
+
+# Jekyll Config
+# root:         /
+permalink:          /:year/:month/:day/:title/
+markdown:           rdiscount
+pygments:           false
+exclude:            README.textile Rakefile
+regeneration:       true
+lsi:                true
+
+# Custom
+related_limit:      5
+excerpt_link:       "Read More&hellip;"
+
+# Plugins
+tag_title_prefix:   'Tag: '
+disqus_short_name:  josediazgonzalez
+ga_tracking_id:     'UA-8668344-3'
+category_dir:       categories
+code_dir:           code
 post_types:
   - portfolio
+index_pages:
+  - category
+  - tag: true
