@@ -1,3 +1,4 @@
+require 'inflection'
 require 'fileutils'
 require 'find'
 
@@ -59,7 +60,7 @@ module Jekyll
 
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), layout + '.html')
-      self.data[post_type + 's'] = posts
+      self.data[::Inflection.plural(post_type)] = posts
       self.data['is_' + post_type] = true
     end
   end
@@ -78,7 +79,7 @@ module Jekyll
         post_type_list = []
 
         folder_key       = post_type + '_folder'
-        default_folder   = '_' + post_type + 's'
+        default_folder   = '_' + ::Inflection.plural(post_type)
         dir_key          = post_type + '_dir'
 
         layout_index = site.config[post_type + '_index_layout'] || post_type + '_index'
