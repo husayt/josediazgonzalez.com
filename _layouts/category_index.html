@@ -6,6 +6,7 @@ body: blog archive
 	<div id="blog-top">
 		<div id="change-view">Change view: <a id="list-view" href="#">List</a><a id="grid-view" href="#">Grid</a></div>
 	</div>
+
 	<div id="blog-posts">
 		{% for post in site.categories[page.category] %}
 		<div class="post{% if forloop.first %} first{% endif %}">
@@ -17,14 +18,15 @@ body: blog archive
 					Tags: {% for tag in post.tags limit: 3 %}<a href="/tags/{{ tag | replace:' ', '-' | downcase }}">{{ tag }}{% if forloop.last == false %}, {%endif %}</a> {% endfor %}
 				</span>
 			</div>
-			{{ post.content | markdownify | html_truncatewords }} <a class="more-link" href="{{ post.url }}">Read More&hellip;</a>
-		</div><!-- end: .post -->
+			<p>{{ post.description }}</p>
+			<a class="more-link" href="{{ post.url }}">{{ site.excerpt_link }}</a>
+		</div>
 		{% endfor %}
 	</div>
 </div>
-<!-- begin: #sidebar -->
+
 <div id="sidebar">
 	{% include intro.markdown %}
 	{% include sidebar_tabs.markdown %}
 	{% include tags.markdown %}
-</div><!-- end: #sidebar-->
+</div>
