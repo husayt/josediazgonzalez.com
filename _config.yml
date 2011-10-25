@@ -8,7 +8,7 @@ author:             Jose Diaz-Gonzalez
 permalink:          /:year/:month/:day/:title/
 markdown:           rdiscount
 pygments:           false
-exclude:            README.textile Rakefile
+exclude:            README.textile Rakefile Gemfile Gemfile.lock
 regeneration:       true
 lsi:                true
 
