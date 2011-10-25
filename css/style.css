@@ -44,7 +44,7 @@ p {padding-bottom:24px;}
 figure.code {margin:0;padding: 0;}
 figure.code table {width:100%;}
 figure.code td.gutter {width:40px;overflow-x:scroll}
-figure.code td.code {overflow-x: scroll;overflow-y: hidden;width: 580px;}
+figure.code td.code pre {overflow-x: scroll;overflow-y: hidden;width: 496px;}
 figure.code .line-numbers {border-right:none;font-size:14px;padding:21px 0;text-align:center;width:40px}
 code, pre {color:#606060; font-family:Monaco,Consolas,"Courier New",monospace; background-color:#F1F1F1;}
 pre { background-image: url(/images/pre_bg.gif); padding: 21px; margin-bottom:24px; border: 1px solid #bbb;}
@@ -292,6 +292,7 @@ body.home #main-container {border-top:0;}
 	.post ol li,.post ul li {padding:5px;}
 	.post ol {margin-left:20px; padding-bottom:20px;}
 	.post ol li {list-style-type:decimal; list-style-position:outside;}
+	.post ol ul li {list-style-type:none;}
 	.post ol ol,.post ul ul {padding:5px 0 0; margin-bottom:-5px;}
 	.post ol ol li {list-style-type:lower-alpha;}
 	.post ol ol ol li {list-style-type:lower-roman;}

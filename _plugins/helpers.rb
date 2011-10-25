@@ -1,6 +1,5 @@
 require 'hpricot'
 require 'nokogiri'
-require 'rdiscount'
 
 module Liquid
   
@@ -35,7 +34,7 @@ module Liquid
     end
 
     def markdownify(input)
-      RDiscount.new(input).to_html
+      Markdown.new(input)
     end
 
   end

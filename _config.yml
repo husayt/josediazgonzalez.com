@@ -6,7 +6,7 @@ author:             Jose Diaz-Gonzalez
 # Jekyll Config
 # root:         /
 permalink:          /:year/:month/:day/:title/
-markdown:           rdiscount
+markdown:           redcarpet
 pygments:           false
 exclude:            README.textile Rakefile Gemfile Gemfile.lock
 regeneration:       true
