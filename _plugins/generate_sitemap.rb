@@ -82,11 +82,12 @@ module Jekyll
     def generate_content(site)
       result   = ''
 
-      base_url = site.config['base_url'] || BASE_URL
+      base_url = site.config['url'] || BASE_URL
 
       # First, try to find any stand-alone pages.
       site.pages.each{ |page|
         path     = page.subfolder + '/' + page.name
+        next unless File.exists?(site.source + path)
         mod_date = File.mtime(site.source + path)
 
         # Remove the trailing 'index.html' if there is one, and just output the folder name.
