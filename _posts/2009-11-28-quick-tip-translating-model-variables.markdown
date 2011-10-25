@@ -10,6 +10,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: Translating CakePHP Model variables and validation rules isn't straight-forward to new developers. However, it is possible through the use of the class constructor.
 ---
 
 While working on a now [defunct cms](http://github.com/josegonzalez/marcyavenue/), I was attempting to internationalize model validation messages. I thought I had a pretty good idea as to how to internationalize those messages. Usually, you do the following to any string in CakePHP:

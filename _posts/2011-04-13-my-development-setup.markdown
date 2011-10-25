@@ -3,6 +3,7 @@
   category: Other
   tags:
   layout: post
+  description: For the purposes of archiving how I like to develop, I'll chronicle a few things here.
 ---
 
 For the purposes of archiving how I like to develop, I'll chronicle a few things here.

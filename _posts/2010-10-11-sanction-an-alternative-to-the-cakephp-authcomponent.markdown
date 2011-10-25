@@ -4,5 +4,6 @@
   tags:
   layout: post
   published: false
+  description: A tutorial for Sanction Plugin, an authorization alternative to AuthComponent.
 ---
 

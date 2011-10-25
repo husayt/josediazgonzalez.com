@@ -5,6 +5,7 @@
     - thoughts
     - life
   layout: post
+  description: Wherein I complain loudly about being used.
 ---
 
 **Feel free to skip this post, I just need to get some thoughts out there.**

@@ -6,13 +6,14 @@
     - jquery
     - history.js
   layout: post
+  description: I spent around 7 hours putzing with History.js in cake_admin. While History.js should auto-ajax any web application, it doesn't quite play nice with CakePHP.
 ---
 
 I spent around 7 hours putzing with [History.js](https://github.com/balupton/history.js) in [cake_admin](https://github.com/josegonzalez/cake_admin). History.js is a Javascript library-agnostic wrapper around the HTML5 History Api, which gives a way for ajax requests to manipulate the state of the browser.
 
 For example, say I enable History.js for all my pagination links, but nothing more. I click a link and the following javascript is performed:
 
-{% highlight javascript %}
+{% highlight lang:js %}
 <script type="text/javascript">
 (function(window, undefined) {
 	// Prepare
@@ -54,7 +55,7 @@ What that does is prevents the link from firing it's normal event and _changes_ 
 
 The problem occurs when you request a non-ajax link. This does a full-page reload of the new page (cool), but selecting the `back-button` or pushing the `backspace` will cause the browser to load only the contents served via that previous ajax request (not so cool). Since it was only the inner contents, it was both unexpected and unstyled. Going back was broken in general, regardless of whether the current page was an ajax request or not, so I modified the above to read as follows:
 
-{% highlight javascript %}
+{% highlight lang:js %}
 <script type="text/javascript">
 (function(window, undefined) {
 	// Prepare

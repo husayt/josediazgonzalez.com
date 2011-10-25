@@ -7,13 +7,14 @@
     - geocoding
     - cakephp 1.2
   layout: post
+  description: Very crude integration of Yahoo Maps and CakePHP using CURL
 ---
 
 I recently had to create online maps for an art gallery, specifically for their exhibits. So I decided to use the Yahoo API to grab the coordinates based upon the data that was being sent to the model and save this to the database. Here's how I did it.
 
 First, the model has to be aware of the Yahoo AppID. I set this as a variable within the model itself, but you can set it in the url.
 
-{% highlight php %}
+{% highlight exhibit.php %}
 <?php
 class Exhibit extends AppModel {
 
@@ -25,7 +26,7 @@ class Exhibit extends AppModel {
 
 Next we should probably actually get the Latitude and Longitude for the data. I am assuming you have the correct fields defined in your exhibits table. The `CREATE TABLE` query is shown below
 
-{% highlight sql %}
+{% highlight exhibits.sql %}
 CREATE TABLE `exhibits` (
   `id` int(11) unsigned NOT NULL auto_increment
   `address` varchar(50) default NULL,
@@ -40,7 +41,7 @@ CREATE TABLE `exhibits` (
 
 Now that you have the proper fields, we'll REALLY get the Latitude and Longitude. Below is the entire Model class relating to Exhibits:
 
-{% highlight php %}
+{% highlight exhibit.php %}
 <?php
 class Exhibit extends AppModel {
 
@@ -90,7 +91,7 @@ I have allowed you to use either cURL or fopen. For cURL, you need to have that 
 
 You'll notice that when I get the State for this location, I initialize the model via `ClassRegistry`. Just out of habit. I also don't have a relationship to the State in my model, which is why I did this. Read about `Containable` (and `BindModel` for extra points!) for more information. The code for that call in the State model is as follows:
 
-{% highlight php %}
+{% highlight state.php %}
 <?php
 class State extends AppModel{
 	var $name = 'State';
@@ -109,7 +110,6 @@ class State extends AppModel{
 }
 ?>
 {% endhighlight %}
-
 
 So lets review:
 

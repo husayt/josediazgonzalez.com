@@ -7,6 +7,7 @@
     - apache
     - quicktip
   layout: post
+  description: Example .htaccess file for allowing custom subdirectories in your CakePHP application under Apache
 ---
 
 {% highlight apache %}

@@ -6,6 +6,7 @@
     - conference
     - cakefest
   layout: post
+  description: CakeFest 2010 Conference notes and links
 ---
 
 _*Talk slideshows:*_

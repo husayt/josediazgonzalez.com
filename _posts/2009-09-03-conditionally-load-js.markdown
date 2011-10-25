@@ -8,6 +8,7 @@
     - quicktip
     - cakephp 1.2
   layout: post
+  description: Example of loading javascript files in 1.2 based on the current controller/action path
 ---
 
 {% highlight php %}

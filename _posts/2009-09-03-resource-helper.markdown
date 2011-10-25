@@ -8,6 +8,7 @@
     - quicktip
     - cakephp 1.2
   layout: post
+  description: A general purpose helper to support random functionality that need not be in it's own helper. Has BlueprintCSS support, jQuert ASM HABTM, File displaying, jQuery Error displaying and Google Maps support.
 ---
 
 {% highlight php %}

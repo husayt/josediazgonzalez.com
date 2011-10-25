@@ -6,6 +6,7 @@
     - github
     - cakephp
   layout: post
+  description: Please stop using jank readmes for your CakePHP plugins, and use something like this instead.
 ---
 
 I just noticed that a lot of people have trouble filling out a readme, so I came up with one that can be used to fill-in the blanks. I added the MIT license at the bottom to make the license explicit, and I may update the entire license in the future, but you're free to use it as necessary.

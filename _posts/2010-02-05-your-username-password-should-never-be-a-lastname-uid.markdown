@@ -5,6 +5,7 @@
     - passwords
     - authentication
   layout: post
+  description: I'm developing an application where the client wants the username and password combination to be a lastname and member ID number. This is quite stupid.
 ---
 
 I'm developing an application where the client wants the username and password combination to be a lastname and member ID number.

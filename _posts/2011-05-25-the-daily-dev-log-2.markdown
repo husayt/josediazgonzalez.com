@@ -3,6 +3,7 @@
   category: Dev Log
   tags:
   layout: post
+  description: Always remember to include the host in the protocol when using the EmailComponent
 ---
 
 When using the `EmailComponent` in `CakePHP`, the host should always include the protocol. In the case of accessing GMail's smtp support, you may want to use `ssl://smtp.gmail.com` as the host. Just FYI, that will save a ton of time.

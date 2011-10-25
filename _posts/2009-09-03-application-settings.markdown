@@ -9,6 +9,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: Snippet of code to load application-level settings from the database
 ---
 
 {% highlight php %}

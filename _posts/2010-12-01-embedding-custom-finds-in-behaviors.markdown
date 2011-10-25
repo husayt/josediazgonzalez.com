@@ -8,6 +8,7 @@
     - code
     - cakephp 1.3
   layout: post
+  description: Embedding custom finds in behaviors is extremely useful, but not the most straight-forward thing to do. Here's how.
 ---
 
 Today, while outlining a datasource for a CDN, I REALLY needed to add a custom model find from outside of the model. Custom find types would greatly simplify the Model api and give the developer access to exotic types of finds without having to specify ridiculous option keys.
@@ -18,7 +19,7 @@ By default, adding a custom model find is as follows:
 
 * Add the find to the `$_findMethods` model property:
 
-{% highlight php %}
+{% highlight post.php %}
 <?php
 class Post extends Model {
     function __construct($id = false, $table = null, $ds = null) {
@@ -32,7 +33,7 @@ class Post extends Model {
 
 * Define the method
 
-{% highlight php %}
+{% highlight post.php %}
 <?php
 class Post extends Model {
     function __construct($id = false, $table = null, $ds = null) {
@@ -60,7 +61,7 @@ Unfortunately, this doesn't quite work as I thought it would by doing similarly 
 
 So a work-around is to use the oft-forgotten `$mapMethods` method. Lets define a simple behavior:
 
-{% highlight php %}
+{% highlight custom.php %}
 <?php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array();
@@ -73,7 +74,7 @@ class CustomBehavior extends ModelBehavior {
 
 * Define the custom find method:
 
-{% highlight php %}
+{% highlight custom.php %}
 <?php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array();
@@ -94,7 +95,7 @@ class CustomBehavior extends ModelBehavior {
 
 * Add the custom find to the available custom finds for the Model:
 
-{% highlight php %}
+{% highlight custom.php %}
 <?php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array();
@@ -116,7 +117,7 @@ class CustomBehavior extends ModelBehavior {
 
 * Add the appropriate `$mapMethods` regex:
 
-{% highlight php %}
+{% highlight custom.php %}
 <?php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array('/\b_findCustom\b/' => '_findCustom');
@@ -138,7 +139,7 @@ class CustomBehavior extends ModelBehavior {
 
 * Ensure that the arguments in your `_findCustom()` method don't overlap with how `ModelBehavior::dispatchMethod()` works:
 
-{% highlight php %}
+{% highlight custom.php %}
 <?php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array('/\b_findCustom\b/' => '_findCustom');

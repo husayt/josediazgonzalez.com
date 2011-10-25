@@ -3,6 +3,7 @@
   category: Other
   tags:
   layout: post
+  description: Clearly this person doesn't even know what I do. Also, grammar matters?
 ---
 
 Clearly this person doesn't even know what I do. Also, grammar matters?

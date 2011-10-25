@@ -9,6 +9,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: Example of conditionally loading helpers in a view
 ---
 
 {% highlight php %}

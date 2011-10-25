@@ -11,6 +11,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: A short tutorial on adding behaviors/components/helpers to your application in a dynamic fashion
 ---
 
 Since I am on #cakephp at irc.freenode.org, I noticed a question about using a component in only one controller action.
@@ -19,7 +20,7 @@ I previously had a similar question about a helper and it was pointed out that t
 
 Controller Class:
 
-{% highlight php %}
+{% highlight posts_controller.php %}
 <?php
 class PostsController extends Appcontroller {
 	var $name = 'Posts';
@@ -40,7 +41,7 @@ In the above example, the TextHelper can be used everywhere. Note that the FormH
 Behaviors are a bit trickier. You need to attach it to the Model's BehaviorCollection
 Model Class:
 
-{% highlight php %}
+{% highlight post.php %}
 <?php
 class Post extends AppModel {
 	var $name = 'Post';
@@ -55,7 +56,7 @@ class Post extends AppModel {
 
 Controller Class:
 
-{% highlight php %}
+{% highlight posts_controller.php %}
 <?php
 class PostsController extends Appcontroller {
 	var $name = 'Pages';
@@ -77,21 +78,34 @@ In the above example, I use my custom CacheableBehavior (might be on my http://g
 
 For Components, we are in a whole other ballgame. We could try the same trick as the one used for Helpers, but that will give you an error
 
-{% highlight php %}
+{% highlight posts_controller.php %}
 <?php
-$this->components[] = 'Email';
-// Some email-fu here
-$this->Post->Email->send();
-Call to undefined method stdClass::send()
+class PostsController extends AppController {
+
+	function mail() {
+		$this->components[] = 'Email';
+		// Some email-fu here
+		$this->Post->Email->send();
+		# Call to undefined method stdClass::send()
+	}
+}
 ?>
 {% endhighlight %}
 
 FAIL
 There is no ComponentCollection, so don't even think of attempting the following:
 
-{% highlight php %}
+{% highlight posts_controller.php %}
 <?php
-	$this->Post->Components->attach('Email');
+class PostsController extends AppController {
+
+	function mail() {
+		$this->Post->Components->attach('Email');
+		// Some email-fu here
+		$this->Post->Email->send();
+		# Call to undefined method stdClass::send()
+	}
+}
 ?>
 {% endhighlight %}
 
@@ -102,7 +116,7 @@ Basically, since Components are loaded at startup (or at least before the Contro
 Below is the Component attached to that particular ticket in it's entirety. I'd probably add it to my AppController and then use it wherever I need a component. But that's just me :P
 Component Class:
 
-{% highlight php %}
+{% highlight component_loader.php %}
 <?php
 //loads a component on the fly from within the controller
 class ComponentLoaderComponent extends Object {

@@ -7,6 +7,7 @@
     - os x
     - useful
   layout: post
+  description: A list of things I install and do on my mac whenever I re-install or update it.
 ---
 
 When I install, make the user `jose`, NOT some pseudonym. Will help later when ssh'ing into a box...
@@ -68,7 +69,7 @@ First thing is first, install all my applications (as dictated by my current /Ap
 - WBFS for MacOS X
 
 Update ruby
-{% highlight bash %}
+{% highlight lang:bash %}
 sudo gem install rvm
 rvm-install
 rvm install ree
@@ -77,7 +78,7 @@ gem update
 {% endhighlight %}
 
 Install homebrew and related tools
-{% highlight bash %}
+{% highlight lang:bash %}
 Install XCode+X11 https://connect.apple.com
 curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
 brew update
@@ -93,7 +94,7 @@ brew install subversion
 
 Setup CakePHP in ~/Sites:
 
-{% highlight bash %}
+{% highlight lang:bash %}
 cd ~/Sites
 git clone git://github.com/cakephp/cakephp1x.git cakephp1.2 -b 1.2
 git clone git://github.com/cakephp/cakephp1x.git cakephp1.3 -b 1.3

@@ -7,6 +7,7 @@
     - plugins
     - useful
   layout: post
+  description: A list of CakePHP plugins I use and abuse on a daily basis, as well as things I've discovered but haven't found a use for but seem to be cool.
 ---
 
 I'm just going to list a few plugins I use and abuse on a daily basis, as well as things I've discovered but haven't found a use for but seem to be cool. YMMV, but things should mostly work in CakePHP 1.3 unless my description says otherwise.

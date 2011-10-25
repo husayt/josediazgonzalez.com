@@ -9,6 +9,7 @@
     - component
     - cakephp 1.3
   layout: post
+  description: One of the things I am working on is Authentication and Access Control. While Authsome Component takes care of authentication, we still need something more.
 ---
 
 My latest side-project is an app for managing file uploads - you might even be able to guess what it is by checking my latest updates on Github - which has some pretty specific requirements. It therefore has some functionality that might be pretty useful in other applications, so over the next few days I'll be releasing some of the more interesting ones as gists (and forking existing projects where necessary).
@@ -17,7 +18,7 @@ One of the things I am working on is Authentication and Access Control. The [Cak
 
 To setup AuthComponent, you might do something similar to the following:
 
-{% highlight php %}
+{% highlight users_controler.php %}
 <?php
 class UsersController extends AppController {
 	public $name = 'Users';
@@ -41,7 +42,7 @@ class UsersController extends AppController {
 
 This is pretty self-explanatory, but it takes a bit of thinking to setup. Since this is a fairly simple application - or at least I don't want to make stuff like Authentication and Authorization complex - I went with the  [Authsome Plugin](http://github.com/felixge/cakephp-authsome) instead though. Here it is, pretending to emulate the AuthComponent as best it can:
 
-{% highlight php %}
+{% highlight app_controller.php %}
 <?php
 class AppController extends Controller {
 	public $components = array(
@@ -68,7 +69,7 @@ At the moment, I only have those 4 requirements - although the first should real
 
 It's pretty simple, am I right? It will likely be refactored in the coming days to support access by group, but the API isn't terrible at the moment. Here it is in use:
 
-{% highlight php %}
+{% highlight moderations_controller.php %}
 <?php
 class ModerationsController extends AppController {
 	public $name = 'Moderations';
@@ -83,7 +84,7 @@ class ModerationsController extends AppController {
 
 You need admin access to get at anything in the above controller :)
 
-{% highlight php %}
+{% highlight mails_controller.php %}
 <?php
 class MailsController extends AppController {
 	public $name = 'Mails';
@@ -97,7 +98,7 @@ class MailsController extends AppController {
 
 You no can has access! This is actually a utility Controller I use to hack my way around using the SwiftMailerComponent in a Model :P . Yes, I feel naughty.
 
-{% highlight php %}
+{% highlight users_controller.php %}
 <?php
 class UsersController extends AppController{
 	public $name = 'Users';

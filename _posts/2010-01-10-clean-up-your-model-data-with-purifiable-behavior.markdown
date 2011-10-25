@@ -9,6 +9,7 @@
     - licensing
     - cakephp 1.3
   layout: post
+  description: Sanitizing saved data when rendering the view is stupid, and it should be done when creating/updating records.
 ---
 
 Someone on #cakephp had an issue with PHP timing out. Normally, I'd say it was just bad coding, but it's probably just a bad practice on their part. The issue they had is with HTML Purifier.

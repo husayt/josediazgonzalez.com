@@ -7,6 +7,7 @@
     - quicktip
     - cakephp 1.2
   layout: post
+  description: Hack on the CakePHP Router to hide the plugin prefix in connected routes
 ---
 
 {% highlight php %}

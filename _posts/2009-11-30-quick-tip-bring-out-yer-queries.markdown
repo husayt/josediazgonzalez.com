@@ -12,6 +12,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: Log your queries to find out what CakePHP is doing when it has 9 million blobs or is taking 34234 years to process.
 ---
 
 When I was a lad... jk

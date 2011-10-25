@@ -9,6 +9,7 @@
     - quicktip
     - cakephp 1.2
   layout: post
+  description: Toggle CakePHP Behavior for toggling boolean model fields in CakePHP
 ---
 
 ## UPDATE: Fixed link to latest revision of ToggleBehavior
@@ -20,7 +21,7 @@ Cheers if it works for you, and feedback is always welcome!
 
 [Original Bin](http://bin.cakephp.org/saved/49042)
 
-{% highlight php %}
+{% highlight toggle.php %}
 <?php
 /**
  * Toggle Model Behavior

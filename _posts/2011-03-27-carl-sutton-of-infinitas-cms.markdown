@@ -7,6 +7,7 @@
     - cms
     - cakephp 1.3
   layout: post
+  description: Infinitas CMS is a pretty well-built and performant CMS, and Carl Sutton has a few thoughts to share on CakePHP in general.
 ---
 
 I'd like to take a few posts to highlight those non-CakeDC and non-Core developers I feel have done a major service to the community in some fashion. If you fit the bill - I've yet to contact more than a handful of people - feel free to send me a message via twitter, github, email etc.

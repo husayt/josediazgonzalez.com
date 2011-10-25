@@ -7,6 +7,7 @@
     - models
     - snippet
   layout: post
+  description: A very small example on when to use Model::save() versus Model::saveAll()
 ---
 
 Saving multiple records that are related to a primary record?

@@ -9,6 +9,7 @@
     - snippet
     - cakephp 1.2
   layout: post
+  descrption: Snippet of code that can automatically build CakePHP ACL ACOs for plugins
 ----
 
 I was fed up with the implementation that is on the Cookbook as far as plugin support goes, so I modified the AuthComponent to recognize things such as controllers/Plugin.Controller/action. Worked well enough, except for the fact that this means that my AuthComponent was simply a patch and therefore unlikely to be merged into the core. I'm also doing a lot of work with making plugin usage in your application seamless, so I guess it was high-time the Cookbook's implementation kicked it up a notch. And since I'm currently idling overnight at JFK (long story :P), here is a present from my delirium to you. 
@@ -17,7 +18,7 @@ I personally have a 'Core' plugin that has a 'DashboardsController' where I plac
 
 Controller Class:
 
-{% highlight php %}
+{% highlight dashboards_controller.php %}
 <?php
 /**
  * DashboardsController

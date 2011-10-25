@@ -3,13 +3,14 @@
   category: Dev Log
   tags:
   layout: post
+  description: On the subject of updating urls in a web framework that gives you access to a router, it's important to have flexibility in writing those routes.
 ---
 
 On the subject of updating urls in a web framework that gives you access to a router, it's important to have flexibility in writing those routes.
 
 In CakePHP, the following is possible:
 
-{% highlight php %}
+{% highlight routes.php %}
 <?php
 Router::connect('/:date/:category/:id-:slug',
     array('controller' => 'posts', 'action' => 'view'),
@@ -22,7 +23,7 @@ It's pretty easy to constrain each section as necessary using regular expression
 
 In Symfony, most routes are defined in a yml file:
 
-{% highlight yml %}
+{% highlight routes.yml %}
 post_view_seo:
   url:   /:date/:category/:id/:slug/
   param: { module: posts, action: view }

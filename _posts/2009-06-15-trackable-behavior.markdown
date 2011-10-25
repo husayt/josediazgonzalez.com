@@ -10,6 +10,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: Trackable Behavior for CakePHP 1.2/1.3
 ---
 
 
@@ -24,7 +25,7 @@ So at the end of the day, I decided to combine the two and produce this (hopeful
 - Uses Yummy Syntax
 - Does not make me type more in the tracked model
 
-Remember to implement Matt Curry's User::get() syntax, or this won't work. It's in his eBook, which I highly recommend.
+Remember to implement Matt Curry's `User::get()` syntax, or this won't work. It's in his eBook, which I highly recommend.
 
 Enhancements, Bug Fixes, Questions and Comments are welcome.
 

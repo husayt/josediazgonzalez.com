@@ -10,6 +10,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: A simple CakePHP helper for outputting grouped error messages as in the Ruby on Rails framework.
 ---
 
 I've had a bit of code tucked away in various files for a while. It was code to deal with error messages.

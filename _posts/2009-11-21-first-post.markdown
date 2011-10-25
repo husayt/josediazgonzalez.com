@@ -8,6 +8,7 @@
     - blog
     - cakephp
   layout: post
+  description: my first post
 ---
 
 Finally decided to get something back up in terms of a blog. Currently using Jekyll, as my own clone of Jekyll in PHP doesn't work quite as well as I want it to yet (I actually implemented it all as a CakePHP shell, but thats for another blog post).

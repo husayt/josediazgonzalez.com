@@ -9,6 +9,7 @@
     - quicktip
     - cakephp 1.2
   layout: post
+  description: Commentable Behavior for CakePHP 1.2
 ---
 
 The following should get you up and running with Commentable Behavior. Note that I've only tested it with a "Post" model, but it should work fine otherwise.
@@ -20,7 +21,7 @@ Follow the instructions at the following repo and you'll be up and running in no
 To use the behavior, include it in your model. Please note that if it is not using the standard "Post" model, then you'll have to configure the options array. Take a look at the behavior above for the types of options it will take.
 Model Class:
 
-{% highlight php %}
+{% highlight post.php %}
 <?php
 class Post extends AppModel {
 	var $name = 'Post';
@@ -34,7 +35,7 @@ You don't need to create a model for 'Comment', unless you plan on doing somethi
 You'll also need a SQL table to store all your comments. The following will work with the defaults:
 SQL:
 
-{% highlight sql %}
+{% highlight comments.sql %}
 CREATE TABLE `comments` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`model_name` varchar(128) NOT NULL,
@@ -51,7 +52,7 @@ CREATE TABLE `comments` (
 You'll need a controller action such as the following:
 Controller Class:
 
-{% highlight php %}
+{% highlight posts_controller.php %}
 <?php
 class PostsController extends AppController {
 	var $name = 'Posts';
@@ -81,7 +82,7 @@ class PostsController extends AppController {
 And this view will work wonders when posting to the preceding action
 View file:
 
-{% highlight php %}
+{% highlight post.ctp lang:php %}
 <h2><?php __('Post a Comment');?></h2>
 <?php echo $form->create('Post', array('url' => $this->here));?>
 	<fieldset>

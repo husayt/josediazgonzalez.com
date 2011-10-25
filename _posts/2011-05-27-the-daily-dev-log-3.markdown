@@ -3,11 +3,12 @@
   category: Dev Log
   tags:
   layout: post
+  description: Defining joins in CakePHP finds is simple, but can result in weird sql statements if used in conjunction with Containable.
 ---
 
 For those that didn't know, you can specify a custom join in CakePHP by doing the following:
 
-{% highlight php %}
+{% highlight lang:php %}
 <?php
 $this->Category->find('list', array(
      'fields' => array('id', 'name'),
@@ -25,7 +26,7 @@ $this->Category->find('list', array(
 
 You can also specify the `contains` to use:
 
-{% highlight php %}
+{% highlight lang:php %}
 <?php
 $this->Category->find('list', array(
      'fields' => array('id', 'name'),
@@ -37,7 +38,7 @@ $this->Category->find('list', array(
 What you cannot do is use them in conjunction, as the `contain` key is evaluated before the `joins` key. That breaks the following type of code:
 
 
-{% highlight php %}
+{% highlight item.php %}
 <?php
 class Item extends AppModel {
 

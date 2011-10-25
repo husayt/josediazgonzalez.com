@@ -9,6 +9,7 @@
     - cakephp 1.2
     - cakephp 1.3
   layout: post
+  description: Getting CakePHP form urls to generate correctly might be difficult if you don't know how the default url is created.
 ---
 
 Okay, so I have a custom Model::find() that looks like the following:

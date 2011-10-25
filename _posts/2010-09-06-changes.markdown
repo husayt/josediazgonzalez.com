@@ -5,6 +5,7 @@
     - thoughts
     - life
   layout: post
+  description: Wherein I am emo again.
 ---
 
 For anyone wondering why I was such an ass at CakeFest, don't worry, life comes crashing down around me otherwise.

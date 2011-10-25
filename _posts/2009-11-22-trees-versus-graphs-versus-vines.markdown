@@ -5,20 +5,32 @@
     - trees
     - graphs
     - vines
-    - vines
     - tree behavior
     - graph behavior
   layout: post
+  description: Trees Versus Graphs versus Vines
 ---
 
-Djabbour: For cake acts as tree (behavior), the tree must only have one parent node?
+{% blockquote Djabbour %}
+For cake acts as tree (behavior), the tree must only have one parent node?
+{% endblockquote %}
 
-savant: yes
+{% blockquote savant %}
+yes
+{% endblockquote %}
 
-savant: that is a tree
+{% blockquote savant %}
+that is a tree
+{% endblockquote %}
 
-savant: otherwise it would be a graph
+{% blockquote savant %}
+otherwise it would be a graph
+{% endblockquote %}
 
-markstory: or a vine
+{% blockquote markstory %}
+or a vine
+{% endblockquote %}
 
-markstory: but not a tree
+{% blockquote markstory %}
+but not a tree
+{% endblockquote %}

@@ -8,6 +8,7 @@
     - loadmodel
     - cakephp 1.3
   layout: post
+  description: How do you use loadModel() in the CakePHP Model? Hint, you don't. There are other ways though.
 ---
 
 In IRC, a frequently asked question is how to use unrelated models in both controllers and models.
@@ -18,7 +19,7 @@ In the Model, however, the answer has been to use `ClassRegistry::init()` to loa
 
 Last night, someone asked about what they should use in a Model, so instead of repeating the same tired answers, I came up with a `Model::loadModel()` method of my own.
 
-{% highlight php %}
+{% highlight app_model.php %}
 <?php
 class AppModel extends Model {
 
@@ -77,7 +78,7 @@ class AppModel extends Model {
 
 I think it's pretty nifty. Usage is simple:
 
-{% highlight php %}
+{% highlight user.php %}
 <?php
 class User extends AppModel {
     

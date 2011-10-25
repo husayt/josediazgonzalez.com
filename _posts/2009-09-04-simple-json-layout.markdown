@@ -8,6 +8,7 @@
     - json
     - quicktip
   layout: post
+  description: Extremely simple JSON Layout for your application
 ---
 
 {% highlight php %}

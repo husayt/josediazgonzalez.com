@@ -7,6 +7,8 @@
     - plugins
     - side projects
   layout: post
+  description: One of my current projects is a CakePHP plugin server. The existing sample was created by John David Anderson of http://www.thoughtglade.com. It is neat and all, and one of the first things I came across when looking at CakePHP 11 months ago.
+  
 ---
 
 One of my current projects is a CakePHP plugin server. [The existing sample](http://www.thoughtglade.com/posts/plugin-server) was created by John David Anderson of [http://www.thoughtglade.com](http://www.thoughtglade.com/posts/plugin-server). It is neat and all, and one of the first things I came across when looking at CakePHP 11 months ago.

@@ -8,6 +8,7 @@
     - join tables
     - counterCache
   layout: post
+  description: A slightly misguided post on CakePHP HABTM relationships
 ---
 
 I'm working with a startup at the moment and am attempting to add a simple counterCache to a [http://book.cakephp.org/view/83/hasAndBelongsToMany-HABTM](hasAndBelongsToMany) (HABTM) relationship. Let me briefly define the HABTM relationship before I move on and go insane...

@@ -8,6 +8,7 @@
     - quicktip
     - cakephp 1.2
   layout: post
+  description: Cacheable Model behavior caches views pertaining to model records to the disk via a RequestAction hack.
 ---
 
 {% highlight php %}
