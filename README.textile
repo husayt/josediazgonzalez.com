@@ -15,7 +15,7 @@ h1. Todo
 * Update all posts to keep them current
 * Fix the selected work in @_includes/portfolio.markdown@
 * Nicer method of including keywords in the layout
-* CSS/JS to fix codeblocks in posts
+* -CSS/JS to fix codeblocks in posts-
 * Hide the sidebar, or at least minimize it, when not in use
 * JSON Search index?
 
