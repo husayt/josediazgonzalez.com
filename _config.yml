@@ -10,7 +10,7 @@ markdown:           redcarpet
 pygments:           false
 exclude:            README.textile Rakefile Gemfile Gemfile.lock
 regeneration:       true
-lsi:                false
+lsi:                true
 
 # Custom
 related_limit:      5
