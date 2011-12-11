@@ -10,14 +10,14 @@ markdown:           redcarpet
 pygments:           false
 exclude:            README.textile Rakefile Gemfile Gemfile.lock
 regeneration:       true
-lsi:                true
+lsi:                false
 
 # Custom
 related_limit:      5
 excerpt_link:       "Read More&hellip;"
 
 # Plugins
-disqus_short_name:  josediazgonzalez
+disqus_shortname:  josediazgonzalez
 ga_tracking_id:     'UA-8668344-3'
 category_dir:       categories
 code_dir:           code
