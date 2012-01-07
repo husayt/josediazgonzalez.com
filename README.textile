@@ -10,7 +10,7 @@ h1. Todo
 * Convert to Textile. Pipe-dream, since everyone else has a hard-on for markdown.
 * Don't regenerate the atom.xml file if no content has changed
 * Sticky Footer, preferably in CSS
-* Keep the hire-me page up to date
+* -Keep the hire-me page up to date- Not looking for work
 * Calendar view of posts? Maybe when I post daily
 * Update all posts to keep them current
 * Fix the selected work in @_includes/portfolio.markdown@
