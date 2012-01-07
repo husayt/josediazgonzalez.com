@@ -3,7 +3,7 @@
   category: Deployment
   tags:
     - deployment
-    - capistrano
+    - chef
     - cakephp
   layout: post
   description: What goes in a Chef Recipe, and how much do I really need to know about resources?
