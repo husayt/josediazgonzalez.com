@@ -99,7 +99,7 @@ So we iterate over some configuration. Cool. But whats the stuff inside the loop
 
 ## Built-in Resources
 
-There are quite a few built-in resources in Chef. The ones I use most often are `Directory`, `Git`, and `Template`, and some of these are actually in my example above
+There are quite a few built-in resources in Chef. The ones I use most often are `Directory`, `Git`, and `Template`, and some of these are actually in my example above (not template).
 
 The `Directory` resource merely creates a directory in a desired path with the desired config, such as directory owner and permissions.
 
