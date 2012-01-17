@@ -69,7 +69,7 @@ end
 
 If you'll notice, I'm referencing `node` quite a few times. `node` is a reference to the configuration in your `DNA` file. I normally use `json` files, so `node[:static_applications]` is simply a key in that json file. In this case, I'm iterating over all the `:static_applications` which is a set of hostnames mapping to site configurations. Each one of these is actually a base path mapping to some configuration info as follows:
 
-{% highlight dna.json %}
+{% highlight This should be dna.json (dna.js) %}
 {
   "static_applications": {
     "josediazgonzalez.com": {
