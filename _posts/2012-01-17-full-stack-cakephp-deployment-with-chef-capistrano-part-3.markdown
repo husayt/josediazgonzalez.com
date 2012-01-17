@@ -7,7 +7,6 @@
     - cakephp
   layout: post
   description: Templating, Custom Resources, and Cookbook creation for the Chef Deployment Tool
-  published: false
 ---
 
 {% blockquote %}
@@ -95,9 +94,88 @@ If you find that you're constantly setting the same settings in your `DNA` file,
 
 # Custom Resources
 
+We're going to fake out Custom Resources because the real way is a definite PITA. You can read about it in the Chef docs if you want.
+
+Definitions are the <del>poor</del> smart mans way of creating resources. Definitions are cool because you can import them across projects, and are very simple to understand by all. I would create a definition when you have a large amount of code you are executing multiple times, maybe in a loop, that really only varies by two or three variables.
+
+A good candidate is bringing up a new virtualhost for nginx.
+
+{% highlight cookbooks/nginx/definitions/nginx_up.rb (nginx_up.rb) %}
+# Definition
+define :nginx_up, :enable => true do
+
+  name = "#{node[:nginx][:dir]}/sites-available/#{params[:name]}"
+
+  template name do
+    source "html.erb"
+    owner "deploy"
+    group "deploy"
+    mode 0644
+    variables(params[:variables])
+  end
+
+  nginx_site params[:hostname] do
+    action :enable
+  end
+end
+{% endhighlight %}
+
+The above definition creates a templated virtualhost file and then enables it using nginx. While it is simple, it only displays a small portion of what you can do with definitions. You could simply bring up a virtualhost, or automatically create EBS-mounted volumes with 2 partitions, each having certain folders. That's merely up to your imagination. Personally, I like the beauty of typing the following into my cookbooks:
+
+{% highlight nginx_cakephp.rb %}
+# info is an array of data
+
+nginx_up "#{info[:hostname]}.#{info[:base]}" do
+  hostname "#{info[:hostname]}.#{info[:base]}"
+  variables(info[:variables])
+end
+{% endhighlight %}
+
+Instead of the alternative. But thats just me.
+
 # Dependency Management
 
+This one is simple. Sometimes you need to have another cookbook loaded for your current cookbook/recipe to work. For example, CakePHP applications depend upon `php` being installed, and thus they depend upon the `php` recipe.
+
+We can specify that an entire cookbook depends upon another cookbook (or recipe) in the metadata file (json or ruby, I prefer ruby):
+
+{% highlight php/metadata.rb metadata.rb %}
+maintainer        "Jose Diaz-Gonzalez"
+maintainer_email  "support@savant.be"
+license           "MIT"
+description       "Installs and maintains php and php modules"
+
+depends           "nginx"
+depends           "mysql::client"
+{% endhighlight %}
+
+If we conditionally need it for a particular recipe/definition, we just include the recipe as follows:
+
+{% highlight php/definitions/pear.rb pear.rb %}
+
+define :pear_module, :module => nil, :enable => true do
+  
+  include_recipe "php::pear"
+  
+  if params[:enable]
+    execute "/usr/bin/pear install -a #{params[:module]}" do
+      only_if "/bin/sh -c '! /usr/bin/pear info #{params[:module]} 2>&1 1>/dev/null"
+    end
+  end
+  
+end
+
+{% endhighlight %}
+
+By default, `php` maps to `php::default`, where `default.rb` is the `default` recipe for a cookbook. Please keep this in mind.
+
 # Cookbook Creation
+
+Cookbooks are an amalgamation of recipes, definitions, templates, files etc. You should always have a `metadata.rb` or `metadata.json` file, which contains metadata about the file. If it is a complicated cookbook, feel free to include a `README` as well, in your preferred markup language (`markdown` is winning, fyi). You'll also have one of several other filetypes, usually a recipe and a template, although they are all optional.
+
+Once you've put together a template, it's usually quite easy to integrate it with your other cookbooks. Just name the cookbook `lower_under_score` and shove it in your `cookbooks` directory. If you are feeling especially helpful, you can also upload it to the [Opscore Community Site](http://community.opscode.com/). Please run your cookbook before sharing, and also clearly state what other cookbooks they depend upon.
+
+One last consideration is to make sure as much of your cookbook is configurable as possible, but with sane defaults. In this way, you'll please the most users, while also encouraging "best" practices.
 
 # Recap
 
@@ -105,9 +183,9 @@ We now have a pretty awesome `nginx_up` resource that can be used across multipl
 
 So what's next? Well, we have yet to deploy an entire server, and there is still the matter of what a `DNA` file actually is. As well, it would be useful to know how to actually push all of these files onto the server, and maintain the server as we move ahead. So the next post will cover the following:
 
+- Create a full-fledged cookbook
 - `DNA` files, how do they work?
-- Syncing cookbooks and server dna to machines
-- Actual machine deployment
 
+We'll get to the rest at a later date.
 
 **To Be Continued**
