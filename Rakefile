@@ -1,3 +1,4 @@
+require "rake"
 require "rubygems"
 require "bundler"
 require "date"
@@ -8,7 +9,7 @@ deploy_path = "/apps/production/josediazgonzalez.com/default/public/_site"
 deploy_user = "deploy"
 port        = "4000"
 site        = "_site"
-editor      = "mate"
+editor      = "subl"
 
 task :default => :dev
 
@@ -94,11 +95,17 @@ task :tag do
 end
 
 desc 'create a new draft post'
-task :post do
-  title, slug = get_title
+task :post, :title do |t, args|
+  unless ARGV.length > 1
+    puts "USAGE: rake post 'the post title'"
+    exit(1)
+  end
+
+  slug = "#{Date.today}-#{ARGV[1].downcase.gsub(/[^\w]+/, '-')}"
   file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
-  create_blank_post(file, title)
+  create_blank_post(file, ARGV[1])
   open_in_editor(file, editor)
+  exit(0) # Hack so that we don't have to worry about rake trying any funny business
 end
 
 desc 'List all draft posts'
