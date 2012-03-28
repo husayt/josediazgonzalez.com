@@ -8,34 +8,92 @@
 
 For the purposes of archiving how I like to develop, I'll chronicle a few things here.
 
-As far as base things that need to get done, I typically install the [Homebrew package manager](http://github.com/mxcl/homebrew) right off the bat. This requires Xcode - you can get this by having a developer account or having an install CD from a Macbook Pro - to be installed, but then it's basically just a terminal installation. One thing that would be nice to see is a Formular browser, but for now I'm pretty content with how homebrew has turned out.
+First things first. You'll want to ensure that your login/non-login terminal sessions have the same environment. On OS X, non-login sessions use the `~/.bashrc`, while login sessions use `~/.bash_profile`. Most terminal emulators follow this rule, but lets ensure this is always the case by modifying our non-existent `~/.bash_profile` as follows:
 
-Next I install [RVM](https://rvm.beginrescueend.com/rvm/install/), a Ruby version manager, and get Ruby 1.8.7, Ruby 1.9.x, and REE installed. I'd like to get into Macruby/Jruby, but for now these are enough. [Ruby on Rails](http://rubyonrails.org/) typically gets installed, since every now and again I use it for something small, as does [Phusion Passenger](http://www.modrails.com/), since I am not as baller as all those who use [Unicorn](http://unicorn.bogomips.org/) and [Nginx](http://nginx.org/) on their macs. I also make sure to install [Jekyll](https://github.com/mojombo/jekyll), a ruby static site generator, which is how I install my blog. Running LSI to figure out related content means installing [Ruby-GSL](http://rb-gsl.rubyforge.org/), and then issuing `brew install gsl`. Homebrew comes in handy.
+    if [ -f ~/.bashrc ]; then
+       source ~/.bashrc
+    fi
 
-After that, I make sure to brew install a couple things:
+Whenever something asks you to modify your `~/.bash_profile`, ensure that the modification is in your `~/.bashrc` instead. This will help debugging down the road.
 
-- `brew install git`
-- `brew install svn`
-- `brew install bazaar`
-- `brew install bazaar`
-- `brew install mysql`
-- `brew install mongodb`
-- `brew install ack`
-- `brew install python`
-- `brew install pip`
-- `brew install growlnotify`
+Install XCode. For Lion/Mountain Lion, it is important that you also install the `Command Line Tools`, as the version of `gcc` that is included with XCode 4.3 is incompatible with certain build tools.
 
-I also install the [PHP Homebrew Alternative](https://github.com/adamv/homebrew-alt/blob/master/duplicates/php.rb) formula, after which I install either xdebug, as well as apc, memcache, or xcache, through Homebrew. Clutch.
+XCode 4.2 users - that means anyone on Snow Leopard - should install the [osx gcc installer](https://github.com/kennethreitz/osx-gcc-installer), as installing a proper gcc is pretty much impossible otherwise.
+
+Once that is complete, install homebrew - the proper way, to `/usr/local/`, with no sudo enabled:
+
+    /usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+    brew update
+    brew install bash-completion
+
+Then you'll want to have RVM installed:
+
+    bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+
+The following will ensure `rvm` is always loaded. And add the following to the bottom of your `.bashrc`:
+
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM
+
+Then source your `~/.bash_profile`
+
+    source ~/.bash_profile
+
+Be sure to run the following and follow any instructions:
+
+    rvm requirements
+
+Then install the desired rubies. I leave `1.9.2` as default, which is usually safe now:
+
+    rvm install 1.8.7
+    rvm install 1.9.2
+    rvm install 1.9.3
+    rvm install ree
+    rvm use --default 1.9.2
+
+You can now install any gems you typically use. I would recommend leaving this to `bundler`, and using a proper `Gemfile` in all your projects, however small they may be. You can use rvm to manage gemsets if necessary. Please read [the documentation on that](https://rvm.beginrescueend.com/gemsets/).
+
+I usually install the following brews - follow all their individual installation instructions! - at this point:
+
+    brew install git subversion bazaar mercurial mysql mongodb redis elasticsearch ack python npm imagemagick
+
+Sometimes `subversion` installation freezes - haven't investigated this yet - so you can either install it separately, skip it, or just rerun the command. I generally kill it if it's been running for what seems to be 45 minutes.
+
+I personally also `brew install gsl`, so I can use `LSI` to generate related posts within [Jekyll](https://github.com/mojombo/jekyll) in conjunction with [Ruby-GSL](http://rb-gsl.rubyforge.org/). Homebrew comes in handy.
+
+If you've installed `python` using homebrew, I suggest doing the following so that installing python packages uses the right python:
+
+    # install pip
+    /usr/local/share/python/easy_install pip
+
+    # modify PATH in ~/.bashrc to have the following
+    export PATH="$(brew --prefix python)/bin:$PATH"
+    export PATH="/usr/local/share/python:$PATH"
+
+
+Next comes the customization of PHP. I use PHP for most of my development - well, anything that has nothing to do with DevOps at least - so it's very useful to have an up to date version with a few different extensions. I've recently begun managing [Homebrew-PHP](https://github.com/josegonzalez/homebrew-php/), so I have the process down pat - again, follow any instructions for each brew, like enabling the homebrew `php` in Apache:
+
+    brew tap josegonzalez/homebrew-php
+    brew install php --with-mysql
+    brew install apc-php
+    brew install mongo-php
+    brew install redis-php
+    brew install xdebug-php
+
 
 Now I need to ensure I have all my ducks in a row, and I sync in my home directory scripts. My [gitconfig](https://gist.github.com/565837), my ssh keys, all sorts of yummy stuff.
 
-[Textmate](http://macromates.com/) is the text editor I use, and I make sure to setup the [Git-Bundle](https://github.com/jcf/git-tmbundle) to my liking, including the hotkeys. The [CakePHP bundle](https://github.com/cakephp/cakephp-tmbundle) is up next, as is the [GitHub bundle](https://github.com/drnic/github-tmbundle). I use [PeepOpen](http://peepcode.com/products/peepopen) to find files in my projects - supports regular expression lookups - which is developed by the awesome guys at PeepCode.
+For the record, my `~/.bashrc` ends up looking [a bit like this](https://gist.github.com/2223297). Feel free to modify that at will. Note that it currently does not show branches/tags/bookmarks for `bazaar` or `mercurial`. Patches welcome :)
 
-I'll then make sure all my projects are installed in their proper directories (under ~/Sites). Once that is through, I'll install [VirtualHostX](http://clickontyler.com/virtualhostx/), which I use to configure Apache VirtualHosts. At this point, I enable the PHP module in my apache conf, and once the default Apache setup is enabled in the `Sharing` panel of `System Preferences`, I have all my sites ready and rearing to go (assuming I've imported a backup of my virtualhosts).
+I no longer use [Textmate](http://macromates.com/) religiously. I recommend using [Sublime Text 2](http://www.sublimetext.com/2) with whatever your favorite setup is. Someday I shall post mine. I did run the following command to make it easier to call `Sublime Text` from the terminal:
+
+    ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" $(brew --prefix)/bin/subl
+
+
+For those still using Textmate, I recommend installing the [Git-Bundle](https://github.com/jcf/git-tmbundle), and customizing the hotkeys. The [CakePHP bundle](https://github.com/cakephp/cakephp-tmbundle) is up next, as is the [GitHub bundle](https://github.com/drnic/github-tmbundle). I use [PeepOpen](http://peepcode.com/products/peepopen) to find files in my projects - supports regular expression lookups - which is developed by the awesome guys at PeepCode.
+
+I'll then make sure all my projects are installed in their proper directories (under ~/Sites). Once that is through, I'll install [VirtualHostX](http://clickontyler.com/virtualhostx/), which I use to configure Apache VirtualHosts. At this point, once the default Apache setup is enabled in the `Sharing` panel of `System Preferences`, I have all my sites ready and rearing to go (assuming I've imported a backup of my virtualhosts).
 
 Now I need all the browsers ever. Install the latest versions of [Chrome](http://www.google.com/chrome/), [Firefox](http://www.mozilla.com/en-US/firefox/new/), Safari, [Opera](http://www.opera.com/). Get [iPhoney](http://www.marketcircle.com/iphoney/), which lets you test mobile sites on an iPhone-like browser. My [Parallels](http://www.parallels.com/products/desktop/) vms get rsync'ed over, and I go through a very painful install of Parallels (gotta download their app from their panel). Test to ensure that all my vhosts are getting passed into my VMs, and then onto the next step.
-
-Python should be setup via Homebrew, refer to the docs for that (I do that before setting up PHP). I don't normally use Python, but every once in a while a tool I use will require it.
 
 [Skype](http://www.skype.com) and Adium are a must for chatting. Everyone has a different Adium setup - just copy your old profile for that ;) - but for Skype I use [version 2.8](http://www.skype.com/intl/en/get-skype/on-your-computer/macosx/2-8/). [Tweetie](http://www.atebits.com/tweetie-mac/) also deserves a mention here. The new Twitter for Mac is lame in that it follows me on every single workspace, but they may have fixed that since I last checked.
 
