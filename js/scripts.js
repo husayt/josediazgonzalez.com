@@ -239,7 +239,7 @@ $(function () {
 				opacity: '0.5'
 			}, 200);
 
-			//AJAX Submit				
+			//AJAX Submit
 			$.ajax({
 				url: $(this).attr('action'),
 				type: 'post',
@@ -328,4 +328,4 @@ var jqueryslidemenu = {
 }
 
 //build menu with ID="myslidemenu" on page:
-jqueryslidemenu.buildmenu("nav");
+// jqueryslidemenu.buildmenu("nav");
