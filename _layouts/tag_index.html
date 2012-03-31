@@ -2,6 +2,7 @@
 layout: default
 body: blog archive
 ---
+{% include intro_responsive.markdown %}
 <div id="content">
 	<div id="blog-top">
 		<div id="change-view">Change view: <a id="list-view" href="#">List</a><a id="grid-view" href="#">Grid</a></div>
@@ -27,7 +28,7 @@ body: blog archive
 <div id="sidebar">
 	{% include intro.markdown %}
 	{% include sidebar_tabs.markdown %}
-	<div id="popular-tags" class="section">	
+	<div id="popular-tags" class="section">
 		<h2 class="section-title">Related Tags</h2>
 		<ul>
 			{% for tag in page.related %}

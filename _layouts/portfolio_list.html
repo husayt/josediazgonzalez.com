@@ -3,11 +3,12 @@ layout: default
 body: portfolio
 title: Portfolio
 ---
+{% include intro_responsive.markdown %}
 <div id="content">
 	<div id="project-list">
 		{% for portfolio in page.portfolios %}
 		<div class="project">
-			<img src="/images/portfolio/{{ portfolio.slug }}/small.jpg" alt="{{ portfolio.title }}" title="{{ portfolio.title }}">
+			<img src="/images/portfolio/{{ portfolio.slug }}/small.jpg" alt="{{ portfolio.title }}" title="{{ portfolio.title }}" class="portfolio-image">
 			<div class="caption">
 				<span>{{ portfolio.type }}</span>
 				<h3>{{ portfolio.title }}</h3>

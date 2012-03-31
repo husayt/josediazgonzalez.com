@@ -6,7 +6,7 @@
 	{% for post in site.categories.[portfolio] limit: 4 %}
 		<li class="{% cycle 'odd', 'even' %}">
 			<a href="#">
-				<img src="/resources/{{ post.image }}" alt="" title="{{ post.title }}"/>
+				<img src="/resources/{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}"/>
 				<span>{{ post.title }}</span>
 			</a>
 		</li>
