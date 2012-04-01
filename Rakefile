@@ -19,7 +19,7 @@ end
 
 desc "list tasks"
 task :list do
-  puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).to_sentence}"
+  puts "Tasks: #{Rake::Task.tasks.to_sentence}"
   puts "(type rake -T for more detail)\n\n"
 end
 
