@@ -21,6 +21,12 @@ end
 
 desc 'Run Jekyll to generate the site'
 task :build do
+  # Move the stashed blog posts back to the posts directory
+  FileUtils.mkdir(rake_config["stash_dir"]) unless File.exist?(rake_config["stash_dir"])
+  Dir.glob("%s/*.*" % [ rake_config["stash_dir"] ]) do |post|
+    FileUtils.mv post, "_posts"
+  end
+
   puts '* Generating static site with Jekyll'
   puts `jekyll`
 end
@@ -102,6 +108,31 @@ task :post, :title do |t, args|
   file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
   create_blank_post(file, ARGV[1])
   open_in_editor(file, rake_config["editor"])
+  exit(0) # Hack so that we don't have to worry about rake trying any funny business
+end
+
+desc "Generate a single, or set, of blog posts containing certain words in the filename"
+task :generate, :filename do |t, args|
+  unless ARGV.length > 1
+    puts "USAGE: rake generate 'the-post-title'"
+    exit(1)
+  end
+
+  puts '* Moving posts to stash dir'
+
+  FileUtils.mkdir(rake_config["stash_dir"]) unless File.exist?(rake_config["stash_dir"])
+  Dir.glob("_posts/*.*") do |post|
+    FileUtils.mv post, rake_config["stash_dir"] unless post.include?(ARGV[1])
+  end
+
+  puts '* Regenerating blog'
+  puts `jekyll`
+
+  puts '* Moving posts from %s/ directory to _posts/ directory'
+  # Move the stashed blog posts back to the posts directory
+  Dir.glob("%s/*.*" % [ rake_config["stash_dir"] ]) do |post|
+    FileUtils.mv post, "_posts"
+  end
   exit(0) # Hack so that we don't have to worry about rake trying any funny business
 end
 
