@@ -1,7 +1,7 @@
 <div id="side-intro" class="section mobile-show">
   <div id="side-description">
-    <p><strong>Jose Diaz-Gonzalez</strong> has worked on various bits of code over the years. He specializes in building <strong>CakePHP-based</strong> applications and <strong>API</strong> hackery.</p>
-  <a class="button" href="/about">About</a>
+    <p><strong>Jose Diaz-Gonzalez</strong> is a developer living in New York City. He currently works at <a href="http://seatgeek.com">SeatGeek</a></p>
+    <a class="button" href="/about">About</a>
   </div>
   <div id="update-icons">
     <ul>

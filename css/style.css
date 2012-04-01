@@ -663,7 +663,7 @@ div.success p {line-height:24px; padding:0; margin-left:36px; }
 	body.single-project .project-content { width: 325px; }
 	.mobile-hide { display: none; }
 	.mobile-show { display: block; }
-	.mobile-show #update-icons {position:absolute; right:30px; top:140px; padding:5px; background:#e2e5eb; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; border:1px solid #ccc;}
+	.mobile-show #update-icons {position:absolute; right:30px; top:116px; padding:5px; background:#e2e5eb; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; border:1px solid #ccc;}
 	.mobile-show #update-icons:hover {border-color:#aaa;}
 	.mobile-show #update-icons li:first-child {border:0;}
 	.mobile-show #update-icons li:last-child {padding:0;}
