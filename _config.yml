@@ -12,6 +12,18 @@ exclude:            README.textile Rakefile Gemfile Gemfile.lock requirements.tx
 regeneration:       true
 lsi:                true
 
+# Rakefile
+# deployed site url for sitemap.xml generator
+rakefile:
+  site_url:           http://josediazgonzalez.com
+  deploy_host:        josediazgonzalez.com
+  deploy_path:        /apps/production/josediazgonzalez.com/default/public/_site
+  deploy_user:        deploy
+  port:               4000
+  site:               _site
+  editor:             subl
+
+
 # Custom
 related_limit:      5
 excerpt_link:       "Read More&hellip;"

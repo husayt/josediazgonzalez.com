@@ -2,14 +2,10 @@ require "rake"
 require "rubygems"
 require "bundler"
 require "date"
+require 'yaml'
 
-site_url    = "http://josediazgonzalez.com"   # deployed site url for sitemap.xml generator
-deploy_host = "josediazgonzalez.com"
-deploy_path = "/apps/production/josediazgonzalez.com/default/public/_site"
-deploy_user = "deploy"
-port        = "4000"
-site        = "_site"
-editor      = "subl"
+config = YAML.load_file("_config.yml")
+rake_config = config["rakefile"]
 
 task :default => :dev
 
@@ -39,8 +35,9 @@ end
 
 desc 'rsync the contents of ./_site to the server'
 task :sync do
+  cmd = "rsync -avz '_site/' %s@%s:%s" % [ rake_config["deploy_user"], rake_config["deploy_host"], rake_config["deploy_path"] ]
   puts '* Publishing files to live server'
-  puts `rsync -avz "_site/" #{deploy_user}@#{deploy_host}:#{deploy_path}`
+  puts `#{cmd}`
 end
 
 desc 'Notify Google of the new sitemap'
@@ -49,7 +46,7 @@ task :sitemap do
     require 'net/http'
     require 'uri'
     puts '* Pinging Google about our sitemap'
-    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape("#{site_url}/sitemap.xml"))
+    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape("%s/sitemap.xml" % [ rake_config["site_url"] ]))
   rescue LoadError
     puts '! Could not ping Google about our sitemap, because Net::HTTP or URI could not be found.'
   end
@@ -60,7 +57,7 @@ task :ping do
   begin
     require 'xmlrpc/client'
     puts '* Pinging ping-o-matic'
-    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , "#{site_url}", "#{site_url}/atom.xml")
+    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , rake_config["site_url"], "%s/atom.xml" % [ rake_config["site_url"] ])
   rescue LoadError
     puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
   end
@@ -104,7 +101,7 @@ task :post, :title do |t, args|
   slug = "#{Date.today}-#{ARGV[1].downcase.gsub(/[^\w]+/, '-')}"
   file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
   create_blank_post(file, ARGV[1])
-  open_in_editor(file, editor)
+  open_in_editor(file, rake_config["editor"])
   exit(0) # Hack so that we don't have to worry about rake trying any funny business
 end
 
@@ -115,15 +112,16 @@ end
 
 desc "start up an instance of serve on the output files"
 task :start_serve => :stop_serve do
-  cd "#{site}" do
+  cd rake_config["site"] do
     print "Starting serve..."
-    ok_failed system("serve #{port} > /dev/null 2>&1 &")
+    ok_failed system("serve % > /dev/null 2>&1 &" [ rake_config["port"] ])
   end
 end
 
 desc "stop all instances of serve"
 task :stop_serve do
-  pid = `ps auxw | awk '/bin\\/serve\\ #{port}/ { print $2 }'`.strip
+  cmd = "ps auxw | awk '/bin\\/serve\\ %s/ { print $2 }'" % [ rake_config["port"] ]
+  pid = `#{cmd}`.strip
   if pid.empty?
     puts "Serve is not running"
   else
@@ -134,7 +132,7 @@ end
 
 desc "preview the site in a web browser"
 multitask :preview => [:start_serve] do
-  system "open http://localhost:#{port}"
+  system "open http://localhost:%s" %  [ rake_config["port"] ]
 end
 
 def rebuild_site(relative)
