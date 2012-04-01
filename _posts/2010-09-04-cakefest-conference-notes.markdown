@@ -9,9 +9,9 @@
   description: CakeFest 2010 Conference notes and links
 ---
 
-_*Talk slideshows:*_
+## Talk slideshows
 
-*Day 1*
+### Day 1
 
 * Graham Weldon's ([@Predominant](http://twitter.com/predominant)) [Re-imagining CakePHP](http://www.slideshare.net/predominant/reimaginging-cakephp) ([Blog](http://grahamweldon.com/))
 * Pierre Martin's ([@pierremartin](http://twitter.com/pierremartin)) [Using and Reusing CakePHP Plugins](http://www.slideshare.net/real34/using-reusingplugins) ([Blog](http://www.pierre-martin.fr/))
@@ -21,7 +21,7 @@ _*Talk slideshows:*_
 * Neil Crooke's ([@neilcrookes](http://twitter.com/neilcrookes)) [Presentation on Consuming APIs](http://www.slideshare.net/neilcrookes/designing-cakephp-plugins-for-consuming-apis) ([Blog](http://www.neilcrookes.com/))
 * Brandon Plaster's Simplifying heavy client side web applications using CakePHP and Adobe Flash Builder 4 ([Blog](http://blog.brandonplasters.com/))
 
-*Day 2*
+### Day 2
 
 * Larry Master's ([@phpnut](http://twitter.com/phpnut)) CakeTalk: CakePHP Community: The whole is greater than the sum of its parts
 * Mark Story's ([@mark_story](http://twitter.com/mark_story)) [CakeTalk: Win at life with Unit testing](http://mark-story.com/downloads/view/win-at-life-with-unit-testing) ([Blog](http://mark-story.com/))
@@ -30,13 +30,13 @@ _*Talk slideshows:*_
 * Andy Gale's ([@andygale](http://twitter.com/andygale)) [CakePHP at massive scale, on a budget](http://www.slideshare.net/andygale/cake-php-at-a-massive-scale-on-a-budget) ([Blog](http://andy-gale.com/))
 
 
-_*Talk videos:*_
+## Talk videos
 
-*Day 1*
+### Day 1
 
 * Ichikaway's ([@ichikaway](http://twitter.com/ichikaway)) How to use MongoDB with CakePHP: [Part 1](http://www.youtube.com/watch?v=IEg5zTCXc0Q) [Part 2](http://www.youtube.com/watch?v=H12wQehWh1E&feature=related)
 
-_*Code:*_
+## Code
 
 * [CakeDC's Bitly](http://github.com/neilcrookes/CakePHP-Bit.ly-Plugin)
 * [CakeDC's Problems](http://github.com/CakeDC/problems)
@@ -44,12 +44,12 @@ _*Code:*_
 * [Neil Crookes' Twitter API](http://github.com/neilcrookes/CakePHP-Twitter-API-Plugin)
 * [Andy Gale's Memcache Helper](http://andy-gale.com/cakephp-view-memcache.html)
 
-_*Lightning Talks:*_
+## Lightning Talks
 
 * Yusuke Ando's ([@yando](http://twitter.com/yando)) [This is our Cake](http://www.slideshare.net/yandod/yando-cakefest)
 * Jose Diaz-Gonzalez's ([@savant](http://twitter.com/savant)) [Mongo DB Is Web Scale](http://www.youtube.com/watch?v=b2F-DItXtZs) ([Alternate Link](http://www.xtranormal.com/watch/6995033/))
 
-_*Pictures:*_
+## Pictures
 
 * [Day 1 Flickr](http://www.flickr.com/photos/cakephp/sets/72157624864884680/)
 * [Day 2 Flickr](http://www.flickr.com/photos/cakephp/sets/72157624873178620/)
@@ -65,7 +65,7 @@ _*Pictures:*_
 * [Josh Holmes, Microsoft Representative, eating the cake!](http://www.flickr.com/photos/cakephp/4960925289/)
 * [Attending CakePHP Core Developers](http://twitpic.com/2lm4bw)
 
-_*Sponsors:*_
+## Sponsors
 
 * [CakeDC (Diamond Sponsor) http://cakedc.com](http://cakedc.com)
 * [Microsoft (Gold Sponsor) http://microsoft.com](http://microsoft.com)
@@ -79,7 +79,7 @@ _*Sponsors:*_
 * [Traffic Travis (Supporter) http://traffictravis.com](http://traffictravis.com)
 * [Guestlist (Supporter) http://guestlistapp.com](http://guestlistapp.com)
 
-_*Other:*_
+## Other
 
 * [CakePackages plugin index was mentioned during Pierre's talk](http://cakepackages.com)
 * [Cakefest Tweets uses the MongoDB datasource](http://cakefesttweets.com/)

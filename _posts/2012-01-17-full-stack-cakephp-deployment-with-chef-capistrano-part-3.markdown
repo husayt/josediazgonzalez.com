@@ -13,7 +13,7 @@
 This text is the third in a long series to correct an extremely disastrous talk at CakeFest 2011. It will also hopefully apply to more than CakePHP.
 {% endblockquote %}
 
-# Templates
+## Templates
 
 Templating in Chef is much like templating in any other framework. Chef templates use ERB - eRuby - which is a templating system that embeds Ruby into a document. If you know any Ruby, this should be a fairly trivial thing to learn. For CakePHP developers, think `ctp` files :)
 
@@ -52,7 +52,7 @@ In the above example, we are creating the file `/path/to/where/template/should/b
 
 Pretty straight-forward I think.
 
-# Attributes
+## Attributes
 
 Attributes are fairly straight-forward. They allow you to set defaults for a particular cookbook by setting/modifying the variables in your `DNA` config.
 
@@ -92,7 +92,7 @@ Attributes are a good way of providing simple, cross-platform compatible default
 
 If you find that you're constantly setting the same settings in your `DNA` file, feel free to modify the defaults to keep your setups DRY.
 
-# Custom Resources
+## Custom Resources
 
 We're going to fake out Custom Resources because the real way is a definite PITA. You can read about it in the Chef docs if you want.
 
@@ -133,7 +133,7 @@ end
 
 Instead of the alternative. But thats just me.
 
-# Dependency Management
+## Dependency Management
 
 This one is simple. Sometimes you need to have another cookbook loaded for your current cookbook/recipe to work. For example, CakePHP applications depend upon `php` being installed, and thus they depend upon the `php` recipe.
 
@@ -154,22 +154,22 @@ If we conditionally need it for a particular recipe/definition, we just include 
 {% highlight php/definitions/pear.rb pear.rb %}
 
 define :pear_module, :module => nil, :enable => true do
-  
+
   include_recipe "php::pear"
-  
+
   if params[:enable]
     execute "/usr/bin/pear install -a #{params[:module]}" do
       only_if "/bin/sh -c '! /usr/bin/pear info #{params[:module]} 2>&1 1>/dev/null"
     end
   end
-  
+
 end
 
 {% endhighlight %}
 
 By default, `php` maps to `php::default`, where `default.rb` is the `default` recipe for a cookbook. Please keep this in mind.
 
-# Cookbook Creation
+## Cookbook Creation
 
 Cookbooks are an amalgamation of recipes, definitions, templates, files etc. You should always have a `metadata.rb` or `metadata.json` file, which contains metadata about the file. If it is a complicated cookbook, feel free to include a `README` as well, in your preferred markup language (`markdown` is winning, fyi). You'll also have one of several other filetypes, usually a recipe and a template, although they are all optional.
 
@@ -177,7 +177,7 @@ Once you've put together a template, it's usually quite easy to integrate it wit
 
 One last consideration is to make sure as much of your cookbook is configurable as possible, but with sane defaults. In this way, you'll please the most users, while also encouraging "best" practices.
 
-# Recap
+## Recap
 
 We now have a pretty awesome `nginx_up` resource that can be used across multiple cookbooks. We could go further and make an abstracted `server_up` resource, but I'm pretty happy with our progress for now.
 

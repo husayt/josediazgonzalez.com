@@ -13,6 +13,7 @@
 Looking at thechaw.com to handle my project management needs (on a related note, I'll be doing less of this although its still a problem I want to look at. Anyone need a developer in the NYC area? I work for chump-change!) Regardless, here is a list of things I'd like to see happen, and my thoughts on the whole matter (ignore any stupidities herein). I'm probably going to go through and do one or two of these myself as plugins, but ymmv everyone.
 
 ## Tickets
+
  - One should be able to define what a ticket means for a project/installation. So if we need more or less fields, we can define this per installation and refine it per project as the definition cascades down
    - Because of this, maybe it would be best to use something like MongoDB or CouchDB in order to store data. Or as an alternative to MySQL
  - Searching tickets should be either the ticker block that exists, or a search text box that takes a search syntax.

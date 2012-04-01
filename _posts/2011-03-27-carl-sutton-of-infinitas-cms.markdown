@@ -12,11 +12,11 @@
 
 I'd like to take a few posts to highlight those non-CakeDC and non-Core developers I feel have done a major service to the community in some fashion. If you fit the bill - I've yet to contact more than a handful of people - feel free to send me a message via twitter, github, email etc.
 
-### What is Infinitas?
+## What is Infinitas?
 
 [Infinitas](https://github.com/infinitas/infinitas) is an open source content management system that was developed using the CakePHP v1.3 framework. Amongst other things, its a blog, cms, newsletter emailing system and on-line shopping cart. Carl Sutton and Walther Lalk are the developers of this CMS, which has been gaining some steam in recent months and is now in beta. It's a great alternative to Wordpress for developers that aren't as comfortable building out complex logic and want things built into the cms.
 
-### The Interview
+## The Interview
 
 1. **Why yet another CMS? Other than there not being one in CakePHP.**
     {% blockquote %}When I started using cake (around 1.2b) there was almost nothing like this available.  most of the behaviours and components were for 1.1 which made them not all that easy to use for a noob. After getting into cake and having built a number of sites i found my self writing the same code over and over again. Using the bits of code in many apps was a problem as they were not "general" enough so I began building a few plug-ins that were much easier to drop into any site. This was still not the answer as there was always some code needed to tie the plug-ins into the app, like loading components and views and slowly Infinitas started taking shape.{% endblockquote %}
@@ -33,7 +33,7 @@ I'd like to take a few posts to highlight those non-CakeDC and non-Core develope
 7. **Why is Dakota so handsome?**
     {% blockquote %}Must be all the pizza, late nights and lack of sun... same reason all developers are so handsome.{% endblockquote %}
 
-### Notes
+## Notes
 
 Where does Infinitas fit into your development cycle? If you need a full-stack, easy to use CMS, then Infinitas might be a good fit. The developers are open to comments and contributions, and are frequent contributors themselves to both the CakePHP Core and support in IRC. It's definitely something to keep your eye on.
 

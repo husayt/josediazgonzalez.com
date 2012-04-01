@@ -12,11 +12,11 @@
 
 I'd like to take a few posts to highlight those non-CakeDC and non-Core developers I feel have done a major service to the community in some fashion. If you fit the bill - I've yet to contact more than a handful of people - feel free to send me a message via twitter, github, email etc.
 
-### What is Croogo?
+## What is Croogo?
 
 [Croogo](http://croogo.org/) is an open-source, CakePHP 1.3-based content management system. After about a year of development, it already has quite a following, with [Google Groups](http://groups.google.com/group/croogo), an _extremely_ active [Lighthouse Account](http://croogo.lighthouseapp.com/dashboard), and many, many, many outside developers contributing back to it's core. If you want to liken it to anything, it's the WordPress of CakePHP, without the oddball plugins, weird code snippets, and - necessary - hacks.
 
-### The Interview
+## The Interview
 
 1. **The name? Where did that come from?**
     {% blockquote %}The name came from a book in Bengali written by [Muhammed Zafar Iqbal](http://en.wikipedia.org/wiki/Muhammed_Zafar_Iqbal) called Krugo. It was about a robot. I had to read that book a few years ago for a school assignment and used it as the name of the project when I couldn't find anything else to name it. It was his third [science fiction](http://en.wikipedia.org/wiki/Muhammed_Zafar_Iqbal#Science_Fiction). I changed the spelling though, and luckily the domain names were available.{% endblockquote %}
@@ -34,8 +34,8 @@ I'd like to take a few posts to highlight those non-CakeDC and non-Core develope
     {% blockquote %}Go stable for sure, and may be it will be migrated to CakePHP2.0 by then. It has been only one year this month since its first release. I will just focus on development for now and try to grow a decent community around it over time.{% endblockquote %}
 8. **Name one thing that CakePHP could build into the core that would make a product like Croogo infinitely more easy to create.**
     {% blockquote %}Plugins with their own bootstrap and routes. I had to develop something new in Croogo so plugins can have them. But if CakePHP handles this itself, it would be more better and easier I guess. If I am correct, Lithium does something like this for their libraries (plugins).{% endblockquote %}
-    
-### Notes
+
+## Notes
 
 Why in the hell would you use Croogo? As a CakePHP developer, it is always difficult to find the _good_ plugins and applications that exist for usage. I would think that the fact that he is still developing Croogo after a year is a good indicator, and his community, and openness, concerning all matters Croogo should give it a good boost.
 

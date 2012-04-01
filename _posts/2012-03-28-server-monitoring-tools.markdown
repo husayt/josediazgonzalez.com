@@ -21,9 +21,9 @@ I've been recently doing a bit of devops work at SeatGeek, and it strikes me tha
 
 Here, let me show you them:
 
-# Existing Tools
+## Existing Tools
 
-## Cacti
+### Cacti
 
 Cacti is cool. It's supposed to be a real simple way of aggregating statistics about your installations. It uses RRDTool to store data - which is apparently super compressed and efficient at making graphs - with a periodic cron triggered to collect said data. It sucks for the following reasons:
 
@@ -37,7 +37,7 @@ Cacti is cool. It's supposed to be a real simple way of aggregating statistics a
 
 You get the picture. It's a cool tool, and I totally respect what the folks behind Cacti are doing, but it's definitely not a tool I want to use going forward.
 
-## Nagios
+### Nagios
 
 Nagios is supposed to be enterprise. Super-duper enterprise. In fact, it's so enterprise that:
 
@@ -47,18 +47,18 @@ Nagios is supposed to be enterprise. Super-duper enterprise. In fact, it's so en
 
 I'd love for someone to prove me wrong, but I have a limited amount of time in the week to implement this stuff.
 
-## Ganglia
+### Ganglia
 
 Looks like a glorified Cacti. Without something to grab stats. Woot.
 
-## All Paid Services
+### All Paid Services
 
 - I hate paying over nine thousand dollars to get/store useful metrics.
 - If your service gets bought, then I'm SOL if I cannot pay whatever the new rate will be
 - Featureset/UI out of my control. Usually not a big deal, except when there is a small bug I can fix in 5 seconds/4 lines of javascript but can't because I don't have commit access
 - If your repository for installing your code goes away, that breaks my chef cookbooks. Awesome.
 
-# What I'd like
+## What I'd like
 
 Ideally the tool is easy to install and doesn't require a specific version of a language/library. This rules out `Python`/`Ruby` tools because they will either be built specifically for Ruby `1.8.7` or `1.9.2`, and my machine is not running that. As much as I'd love to use them, they are out simply because of deployment issues.
 
@@ -93,7 +93,7 @@ A recap?
 - Graphing/UI should be fairly generic, and easy to move to another framework as necessary
 
 
-# Some thoughts
+## Some thoughts
 
 I don't have any goals for introducing logs into this. Would be nice to be able to overlay a graph onto a series of logs from instances.
 

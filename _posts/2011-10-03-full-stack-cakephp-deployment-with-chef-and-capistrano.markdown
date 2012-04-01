@@ -22,7 +22,7 @@ So I set about looking at automating the entire process. My first pass was using
 
 So I decided to look for existing tooling - fuck yeah open source - that would perhaps help me improve my workflow.
 
-# Chef
+## Chef
 
 {% blockquote %}
 Chef is an open-source systems integration framework built specifically for automating the cloud.
@@ -39,7 +39,7 @@ If you're a web developer like me, you can think of Chef as a framework. It prov
 
 And allows you to build resources on top of it's base to fully customize your setup. Let's go over some Chef vocabulary:
 
-# Commonly Used Terms
+## Commonly Used Terms
 
 Please note that there are other terms to get used to, but these will suffice for now
 
@@ -49,7 +49,7 @@ Please note that there are other terms to get used to, but these will suffice fo
 - Resource: A cross-platform abstraction of a common server task such as package installation or version control interaction. For example, CentOS uses `yum` to install packages while Ubuntu uses `apt`, but you can refer to both of these using
 - Templates: Files that are filled in by variables. These are usually `ERB` files, but if you've ever used a templating language, it's not that different (`PHP` counts!)
 
-# How Chef Works
+## How Chef Works
 
 This is the general workflow:
 
@@ -61,7 +61,7 @@ This is the general workflow:
 3. ???
 4. Profit
 
-# Steps Three
+## Steps Three
 
 I sort of left step three out on purpose. What actually happens is a bit more complicated:
 

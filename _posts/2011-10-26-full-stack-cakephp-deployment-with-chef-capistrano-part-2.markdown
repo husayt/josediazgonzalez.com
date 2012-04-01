@@ -13,12 +13,12 @@
 This text is the second in a long series to correct an extremely disastrous talk at CakeFest 2011. It will also hopefully apply to more than CakePHP.
 {% endblockquote %}
 
-# Chef Cookbooks
+## Chef Cookbooks
 
 What is a Cookbook really?
 
 {% blockquote %}
-Cookbooks are the fundamental units of distribution in Chef. 
+Cookbooks are the fundamental units of distribution in Chef.
 {% endblockquote %}
 
 Yes, I had a blank face when I read this as well. A Cookbook can be thought of as a set of bundled files that do a particular task, like install/setup Apache, or install the proper iptables etc. Cookbooks can be thought of as plugins, and can be reused across multiple server setups.
@@ -35,7 +35,7 @@ Cookbooks have the following:
 
 The most interesting of these is the Recipe, for obvious reasons
 
-# A Simple Recipe
+## A Simple Recipe
 
 The following is a very simple recipe meant to show off a few things in Chef.
 
@@ -97,7 +97,7 @@ If you'll notice, I'm referencing `node` quite a few times. `node` is a referenc
 
 So we iterate over some configuration. Cool. But whats the stuff inside the loops do?
 
-## Built-in Resources
+### Built-in Resources
 
 There are quite a few built-in resources in Chef. The ones I use most often are `Directory`, `Git`, and `Template`, and some of these are actually in my example above (not template).
 
@@ -107,11 +107,11 @@ The `Git` resource is interesting because it's actually a provider of the `SCM` 
 
 The `Template` resource allows you to template out files by passing it variables.
 
-## Back to the Loops
+### Back to the Loops
 
 So in my loop, I do the following:
 
-### Create a directory in the servers production directory for the given static_app
+#### Create a directory in the servers production directory for the given static_app
 
 {% highlight ruby %}
 directory "#{node[:server][:production][:dir]}/#{hostname}/#{base}" do
@@ -122,7 +122,7 @@ directory "#{node[:server][:production][:dir]}/#{hostname}/#{base}" do
 end
 {% endhighlight %}
 
-### Clone the application from github to the aforementioned directory
+#### Clone the application from github to the aforementioned directory
 
 {% highlight ruby %}
 git "#{node[:server][:production][:dir]}/#{hostname}/#{base}/public" do
@@ -132,7 +132,7 @@ git "#{node[:server][:production][:dir]}/#{hostname}/#{base}/public" do
 end
 {% endhighlight %}
 
-### Use a custom defined Resource to tell nginx to turn on this static_app
+#### Use a custom defined Resource to tell nginx to turn on this static_app
 
 {% highlight ruby %}
 nginx_up "#{node[:nginx][:dir]}/sites-available/#{hostname}.#{base}" do
@@ -141,7 +141,7 @@ nginx_up "#{node[:nginx][:dir]}/sites-available/#{hostname}.#{base}" do
 end
 {% endhighlight %}
 
-# Recap
+## Recap
 
 That may have seemed like a lot of information, but it should set the stage for pulling cookbooks together to build cogent deployments. We defined a short recipe, combined a few built-in resources with a custom resource, and configured the whole thing in our `dna.json`. If we had run this, assuming `nginx` and `git` were installed on the server, we would have three static applications deployed on our instance.
 
