@@ -42,6 +42,8 @@ Be sure to run the following and follow any instructions:
 
     rvm requirements
 
+If you are running a version of `rvm` less than `1.12` on Lion/Mountain Lion, you will need to install the [osx gcc installer](https://github.com/kennethreitz/osx-gcc-installer) due to a bug in `rvm` itself. It should be fixed in `1.12`.
+
 Then install the desired rubies. I leave `1.9.2` as default, which is usually safe now:
 
     rvm install 1.8.7
@@ -54,11 +56,23 @@ You can now install any gems you typically use. I would recommend leaving this t
 
 I usually install the following brews - follow all their individual installation instructions! - at this point:
 
-    brew install git subversion bazaar mercurial mysql mongodb redis elasticsearch ack python npm imagemagick
+    brew install bash-completion git subversion bazaar mercurial mysql mongodb redis elasticsearch ack python nodejs imagemagick
 
 Sometimes `subversion` installation freezes - haven't investigated this yet - so you can either install it separately, skip it, or just rerun the command. I generally kill it if it's been running for what seems to be 45 minutes.
 
-I personally also `brew install gsl`, so I can use `LSI` to generate related posts within [Jekyll](https://github.com/mojombo/jekyll) in conjunction with [Ruby-GSL](http://rb-gsl.rubyforge.org/). Homebrew comes in handy.
+I personally install `gsl`, so I can use `LSI` to generate related posts within [Jekyll](https://github.com/mojombo/jekyll) in conjunction with [Ruby-GSL](http://rb-gsl.rubyforge.org/). Homebrew comes in handy.
+
+    brew install gsl
+
+If you get issues doing `gem install rb-gsl`, you probably want to install an older version of `gsl`, version 1.14:
+
+    brew remove gsl
+    brew install https://raw.github.com/mxcl/homebrew/83ed49411f076e30ced04c2cbebb054b2645a431/Library/Formula/gsl.rb
+
+If you are using nodejs, you'll also want to install `npm`:
+
+  curl http://npmjs.org/install.sh | sh
+
 
 If you've installed `python` using homebrew, I suggest doing the following so that installing python packages uses the right python:
 
@@ -87,7 +101,6 @@ For the record, my `~/.bashrc` ends up looking [a bit like this](https://gist.gi
 I no longer use [Textmate](http://macromates.com/) religiously. I recommend using [Sublime Text 2](http://www.sublimetext.com/2) with whatever your favorite setup is. Someday I shall post mine. I did run the following command to make it easier to call `Sublime Text` from the terminal:
 
     ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" $(brew --prefix)/bin/subl
-
 
 For those still using Textmate, I recommend installing the [Git-Bundle](https://github.com/jcf/git-tmbundle), and customizing the hotkeys. The [CakePHP bundle](https://github.com/cakephp/cakephp-tmbundle) is up next, as is the [GitHub bundle](https://github.com/drnic/github-tmbundle). I use [PeepOpen](http://peepcode.com/products/peepopen) to find files in my projects - supports regular expression lookups - which is developed by the awesome guys at PeepCode.
 
