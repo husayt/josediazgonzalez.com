@@ -41,8 +41,8 @@
 # <pre><code>&lt;sarcasm> Ooooh, sarcasm... How original!&lt;/sarcasm></code></pre>
 # </figure>
 #
-require './_plugins/pygments_code'
-require './_plugins/raw'
+require './_plugins/utilities/pygments_code'
+require './_plugins/utilities/template_wrapper'
 
 module Jekyll
 
@@ -89,6 +89,7 @@ module Jekyll
       source = safe_wrap(source)
       source = context['pygments_prefix'] + source if context['pygments_prefix']
       source = source + context['pygments_suffix'] if context['pygments_suffix']
+      source
     end
   end
 end
