@@ -19,6 +19,34 @@ h1. Todo
 * Hide the sidebar, or at least minimize it, when not in use
 * JSON Search index?
 
+h1. Features
+
+* Pimped out Rakefile
+  - rake build               # Run Jekyll to generate the site
+  - rake clean               # remove files in output directory
+  - rake dev                 # Run Jekyll in development mode
+  - rake drafts              # List all draft posts
+  - rake generate[filename]  # Generate a single, or set, of blog posts containing certain words in the filename. Stashes all other posts for the duration of the generation
+  - rake list                # list tasks
+  - rake ping                # Ping pingomatic
+  - rake post "title"        # create a new post, either opening the post in your editor or copying the path to clipboard
+  - rake preview             # preview the site in a web browser
+  - rake publish             # Generate and publish the entire site, and send out pings
+  - rake push                # Push source code to Github
+  - rake sitemap             # Notify Google of the new sitemap
+  - rake start_serve         # start up an instance of serve on the output files
+  - rake stop_serve          # stop all instances of serve
+  - rake sync                # rsync the contents of ./_site to the server
+  - rake tag                 # Create and push a tag
+  - rake watch               # Watch the site and regenerate when it changes
+* Lots of useful plugins for a full-featured site
+  - Archives
+  - Tags
+  - Categories
+  - Custom pages
+  - Sitemap
+  - Custom tags
+
 h1. License
 
 The following directories and their contents are Copyright Jose Diaz-Gonzalez. You may not reuse anything therein without my permission:
