@@ -10,7 +10,7 @@ config = YAML.load_file("_config.yml")
 rake_config = config["rakefile"]
 
 # Ensure all directories exist
-[ "_cache", "_stashes" ].each do |dir|
+[ "_cache", "_cache/pygments_code", "_stashes" ].each do |dir|
   FileUtils.mkdir_p(File.expand_path('../' + dir, __FILE__))
 end
 
@@ -103,7 +103,7 @@ task :tag do
   puts `git push origin master --tags`
 end
 
-desc 'create a new draft post'
+desc 'create a new post'
 task :post, :title do |t, args|
   unless ARGV.length > 1
     puts "USAGE: rake post 'the post title'"
