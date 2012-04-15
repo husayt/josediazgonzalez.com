@@ -8,7 +8,7 @@ config = YAML.load_file("_config.yml")
 rake_config = config["rakefile"]
 
 # Ensure all directories exist
-[ '_cache', rake_config['stash_dir'] ].each do |dir|
+[ "_cache", "_stashes" ].each do |dir|
   FileUtils.mkdir_p(File.expand_path('../' + dir, __FILE__))
 end
 
@@ -27,7 +27,7 @@ end
 desc 'Run Jekyll to generate the site'
 task :build do
   # Move the stashed blog posts back to the posts directory
-  Dir.glob("%s/*.*" % [ rake_config["stash_dir"] ]) do |post|
+  Dir.glob("%s/*.*" % [ "_stashes" ]) do |post|
     FileUtils.mv post, "_posts"
   end
 
@@ -125,15 +125,15 @@ task :generate, :filename do |t, args|
   puts '* Moving posts to stash dir'
 
   Dir.glob("_posts/*.*") do |post|
-    FileUtils.mv post, rake_config["stash_dir"] unless post.include?(ARGV[1])
+    FileUtils.mv post, "_stashes" unless post.include?(ARGV[1])
   end
 
   puts '* Regenerating blog'
   puts `jekyll`
 
-  puts '* Moving posts from %s/ directory to _posts/ directory'
+  puts '* Moving posts from _stashes/ directory to _posts/ directory'
   # Move the stashed blog posts back to the posts directory
-  Dir.glob("%s/*.*" % [ rake_config["stash_dir"] ]) do |post|
+  Dir.glob("_stashes/*.*") do |post|
     FileUtils.mv post, "_posts"
   end
   exit(0) # Hack so that we don't have to worry about rake trying any funny business

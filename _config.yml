@@ -22,7 +22,6 @@ rakefile:
   port:               4000
   site:               _site
   editor:             subl
-  stash_dir:          _stashes
 
 
 # Custom
