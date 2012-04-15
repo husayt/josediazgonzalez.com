@@ -203,13 +203,6 @@ end
 #
 # If there is a title given, then this method will return it and a escaped
 # version suitable for filenames.
-def get_title
-  unless title = ENV['TITLE']
-    puts "USAGE: rake post TITLE='the post title'"
-    exit(1)
-  end
-  return [title, "#{Date.today}-#{title.downcase.gsub(/[^\w]+/, '-')}"]
-end
 
 # Helper method for :draft and :post, that will create a file at a given
 # location and fill it with an empty post.
