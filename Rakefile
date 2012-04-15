@@ -2,8 +2,10 @@ require "rake"
 require "rubygems"
 require "bundler"
 require "date"
-require 'yaml'
+require "yaml"
+require "clipboard"
 
+# Get rake configuration
 config = YAML.load_file("_config.yml")
 rake_config = config["rakefile"]
 
@@ -111,7 +113,15 @@ task :post, :title do |t, args|
   slug = "#{Date.today}-#{ARGV[1].downcase.gsub(/[^\w]+/, '-')}"
   file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
   create_blank_post(file, ARGV[1])
-  open_in_editor(file, rake_config["editor"])
+
+  if rake_config["editor"]
+    system "#{rake_config["editor"]} file"
+    puts "Opening file in editor using %s" % [ rake_config["editor"] ]
+  else
+    Clipboard.copy file
+    puts "Copied path to clipboard"
+  end
+
   exit(0) # Hack so that we don't have to worry about rake trying any funny business
 end
 
@@ -222,11 +232,6 @@ def create_blank_post(path, title)
 
     EOS
   end
-end
-
-# Helper method to open a file in the default text editor.
-def open_in_editor(file, editor)
-  system ("#{editor} #{file}")
 end
 
 class Array
