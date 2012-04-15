@@ -42,3 +42,5 @@ index_pages:
   tag:
     do_related:     true
     title_prefix:   'Tag: '
+backtick:
+  tag: rainbow
