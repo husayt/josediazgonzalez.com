@@ -7,6 +7,11 @@ require 'yaml'
 config = YAML.load_file("_config.yml")
 rake_config = config["rakefile"]
 
+# Ensure all directories exist
+[ '_cache', rake_config['stash_dir'] ].each do |dir|
+  FileUtils.mkdir_p(File.expand_path('../' + dir, __FILE__))
+end
+
 task :default => :dev
 
 desc 'Generate and publish the entire site, and send out pings'
@@ -22,7 +27,6 @@ end
 desc 'Run Jekyll to generate the site'
 task :build do
   # Move the stashed blog posts back to the posts directory
-  FileUtils.mkdir(rake_config["stash_dir"]) unless File.exist?(rake_config["stash_dir"])
   Dir.glob("%s/*.*" % [ rake_config["stash_dir"] ]) do |post|
     FileUtils.mv post, "_posts"
   end
@@ -120,7 +124,6 @@ task :generate, :filename do |t, args|
 
   puts '* Moving posts to stash dir'
 
-  FileUtils.mkdir(rake_config["stash_dir"]) unless File.exist?(rake_config["stash_dir"])
   Dir.glob("_posts/*.*") do |post|
     FileUtils.mv post, rake_config["stash_dir"] unless post.include?(ARGV[1])
   end
