@@ -12,7 +12,7 @@ module Jekyll
       @name = 'index.html'
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), "#{config['index_page']}.html")
+      self.read_yaml(File.join(base, '_layouts'), "#{config['index_layout']}.html")
       self.data[@page_type] = page
 
       if config['do_related']
@@ -42,7 +42,7 @@ module Jekyll
       @name = 'index.html'
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), "#{config['list_page']}.html")
+      self.read_yaml(File.join(base, '_layouts'), "#{config['list_layout']}.html")
       self.data[::Inflection.plural(@page_type)] = pages
     end
   end
@@ -66,23 +66,23 @@ module Jekyll
         config = config.merge!({
           'do_related'  => false,
           'page_title'  => page_type.capitalize + ': ',
-          'index_page'  => "#{page_type}_index",
-          'list_page'   => "#{page_type}_list",
-          'page_dir'    => "#{page_type}_dir",
+          'index_layout'=> "generic/#{page_type}/index",
+          'list_layout' => "generic/#{page_type}/list",
+          'page_dir'    => nil,
           'related_key' => "related"
         }){ |key, v1, v2| v1 }
 
-        dir = site.config[config['page_dir']] || ::Inflection.plural(page_type)
+        dir = config['page_dir'] || ::Inflection.plural(page_type)
 
         page_types = site.send ::Inflection.plural(page_type)
 
-        if page_types && site.layouts.key?(config['index_page'])
+        if page_types && site.layouts.key?(config['index_layout'])
           page_types.keys.each do |page|
             write_index(site, File.join(dir, page.gsub(/\s/, "-").gsub(/[^\w-]/, '').downcase), page, page_type, config)
           end
         end
 
-        if page_types && site.layouts.key?(config['list_page'])
+        if page_types && site.layouts.key?(config['list_layout'])
           write_list(site, dir, page_types.keys.sort, page_type, config)
         end
       end

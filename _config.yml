@@ -31,7 +31,6 @@ excerpt_link:       "Read More&hellip;"
 # Plugins
 disqus_shortname:  josediazgonzalez
 ga_tracking_id:     'UA-8668344-3'
-category_dir:       categories
 code_dir:           code
 post_types:
   - portfolio
