@@ -4,6 +4,7 @@ GEM
     blankslate (2.1.2.4)
     classifier (1.3.3)
       fast-stemmer (>= 1.0.0)
+    clipboard (1.0.1)
     directory_watcher (1.4.0)
     em-dir-watcher (0.9.4)
     fast-stemmer (1.0.0)
@@ -26,6 +27,7 @@ GEM
       rubypython (>= 0.5.1)
     redcarpet (1.17.2)
     rmagick (2.13.1)
+    rubypants (0.2.0)
     rubypython (0.5.3)
       blankslate (>= 2.1.2.3)
       ffi (~> 1.0.7)
@@ -35,6 +37,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  clipboard
   em-dir-watcher
   gsl
   hpricot
@@ -44,3 +47,4 @@ DEPENDENCIES
   pygments.rb
   redcarpet
   rmagick
+  rubypants
