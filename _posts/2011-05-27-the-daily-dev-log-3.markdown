@@ -8,8 +8,7 @@
 
 For those that didn't know, you can specify a custom join in CakePHP by doing the following:
 
-{% highlight lang:php %}
-<?php
+``` lang:php
 $this->Category->find('list', array(
      'fields' => array('id', 'name'),
      'joins' => array(array(
@@ -21,25 +20,21 @@ $this->Category->find('list', array(
              )
      ))
 ));
-?>
-{% endhighlight %}
+```
 
 You can also specify the `contains` to use:
 
-{% highlight lang:php %}
-<?php
+``` lang:php
 $this->Category->find('list', array(
      'fields' => array('id', 'name'),
      'contain' => array('FooterCategory')
 ));
-?>
-{% endhighlight %}
+```
 
 What you cannot do is use them in conjunction, as the `contain` key is evaluated before the `joins` key. That breaks the following type of code:
 
 
-{% highlight item.php %}
-<?php
+``` lang:php item.php
 class Item extends AppModel {
 
     public $hasOne = array(
@@ -101,7 +96,6 @@ class Item extends AppModel {
         }
     }
 }
-?>
-{% endhighlight %}
+```
 
 That breaks hysterically, since the query produced throws the following error in MySQL: `Unknown column 'SearchItemTag.tag_id' in 'on clause'`. Rewriting the query such that the `SearchItemTag` join comes before the one specified in `joins` fixes the issue, so you'll either need to specify that `join` as a relation or specify the `contain` as a `join`. Just a quick tip, in case anyone was wondering why this occurs.
