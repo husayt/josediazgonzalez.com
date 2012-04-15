@@ -12,7 +12,6 @@
     - lightbox.jpg
   type: Design
   published: true
-  layout: portfolio_index
   description: Redesign of existing, bland website for Senior Design
 ---
 

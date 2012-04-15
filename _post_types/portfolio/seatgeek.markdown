@@ -15,7 +15,6 @@
     - sportsmeta.jpg
   type: Development
   published: true
-  layout: portfolio_index
   description: Product development for a growing NYC startup
 ---
 

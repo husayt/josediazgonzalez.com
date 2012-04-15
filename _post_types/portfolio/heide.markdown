@@ -13,7 +13,6 @@
     - backend.jpg
   type: Design
   published: true
-  layout: portfolio_index
   description: Design Conception and Integration for an NYC-based model
 ---
 
