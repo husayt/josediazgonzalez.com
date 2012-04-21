@@ -93,6 +93,7 @@ Next comes the customization of PHP. I use PHP for most of my development - well
     brew install redis-php
     brew install xdebug-php
 
+Configure `IPv6` to be `Link-local only` in `Network -> Advanced` on all interfaces you use on a regular basis. This will prevent Apache from being confused about your IP address and potentially borking any Geolocation code. You can leave this enabled if your Geolocation code takes `IPv6` into account.
 
 Now I need to ensure I have all my ducks in a row, and I sync in my home directory scripts. My [gitconfig](https://gist.github.com/565837), my ssh keys, all sorts of yummy stuff.
 
