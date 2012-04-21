@@ -8,6 +8,7 @@ I've created a bunch of plugins based on those included in [jekyll_ext](https://
 - `liquid_exception_handler`: When creating there is a liquid exception, this will suppress the exception during jekyll's generation step. DANGEROUS
 - `recursive_layouts`: Gives Jekyll the ability to support layouts inside of `_layouts` subdirectories. Required for generator plugins
 - `post_filter`: Allows adding a `pre` and `post` filter step to post contents
+- `themes`: Themes. For Jekyll.
 
 ## Filters
 
