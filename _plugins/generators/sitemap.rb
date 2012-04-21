@@ -40,7 +40,7 @@ module Jekyll
     def payload
       pages = []
 
-      @site.pages.each{ |page|
+      @site.pages.each do |page|
         path     = page.subfolder + '/' + page.name
         next unless File.exists?(@site.source + path)
         mod_date = File.mtime(@site.source + path)
@@ -51,7 +51,7 @@ module Jekyll
         path = path.gsub(/\.(markdown|textile)$/i, '.html')
 
         pages << { 'url' => path, 'date' => mod_date.strftime("%Y-%m-%d")} unless path =~/error/
-      }
+      end
 
       @site.site_payload['site']['posts'].each do |post|
         pages << { 'url' => post.url, 'date' => post.date.strftime("%Y-%m-%d")}
