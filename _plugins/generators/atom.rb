@@ -60,8 +60,8 @@ module Jekyll
 
     def generate_info(site)
       config = {}
-      config.merge(site.config['atom']) if site.config.key?('atom')
-      config.merge(site.config)
+      config = config.merge(site.config['atom']) if site.config.key?('atom')
+      config = site.config.merge(config)
       xmlschema = site.time.xmlschema
 
       "
