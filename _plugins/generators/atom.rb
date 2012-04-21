@@ -1,5 +1,6 @@
-module Jekyll
+require 'pathname'
 
+module Jekyll
   class AtomIndex < Page
     alias_method :orig_write, :write
 
@@ -9,26 +10,18 @@ module Jekyll
       @dir  = dir
       @name = 'atom.xml'
 
-      self.process(@name)
       self.read_yaml(File.join(base, '_layouts', 'atom'), @name)
+      self.process(@name)
     end
   end
 
-  # Generates a atom.xml file containing URLs of all pages and posts.
   class AtomGenerator < Generator
     safe true
     priority :low
 
-    # Generates the atom.xml file.
-    #
-    #  +site+ is the global Site object.
     def generate(site)
-      # Create the destination folder if necessary.
       site_folder = site.config['destination']
-      unless File.directory?(site_folder)
-        p = Pathname.new(site_folder)
-        p.mkdir
-      end
+      Pathname.new(site_folder).mkdir unless File.directory?(site_folder)
 
       atom = AtomIndex.new(site, site.source, '/')
       atom.render(site.layouts, site.site_payload)
