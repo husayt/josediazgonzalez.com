@@ -1,20 +1,44 @@
-# Main
-url:                http://josediazgonzalez.com
-title:              Jose Diaz-Gonzalez
-author:             Jose Diaz-Gonzalez
-email:              support@savant.be
+# Site-level configuration. Plugin which require extra
+# data should have that in plugin-specific configuration
+title:            Jose Diaz-Gonzalez
+author:           Jose Diaz-Gonzalez
+email:            support@savant.be
 
 # Jekyll Config
-# root:         /
-permalink:          /:year/:month/:day/:title/
-markdown:           redcarpet
-pygments:           false
-exclude:            README.textile Rakefile Gemfile Gemfile.lock requirements.txt
+# Set this to true to disable plugins
+safe:               false
+# Enables or disables Jekyll from recreating the site when files are modified.
 regeneration:       true
+# Fires up a server that will host your _site directory
+server:             false
+# Changes the port that the Jekyll server will run on
+server_port:        4000
+# Serve website from a given base URL
+baseurl:            /
+# Sets site.url, useful for environment switching
+url:                http://josediazgonzalez.com
+
+# Changes the directory where Jekyll will look to transform files
+source:      .
+# Changes the directory where Jekyll will write files to
+destination: ./_site
+# Changes the directory where Jekyll will look for plugins
+plugins:     ./_plugins
+
+# Inclusion/exclusion of future dated posts
+future:             true
+# Produces an index for related posts. Install rb-gsl and libgsl to speed this up
 lsi:                true
+# Built-in Code highlighting with Pygments. Disabled because we use a plugin for this
+pygments:           false
+# Uses [engine] instead of Maruku. Use redcarpet since it's the new hotness
+markdown:           redcarpet
+# Controls the URLs that posts are generated with.
+permalink:          /:year/:month/:day/:title/
+# A list of directories and files to exclude from the conversion
+exclude:            README.textile Rakefile Gemfile Gemfile.lock requirements.txt
 
 # Rakefile
-# deployed site url for sitemap.xml generator
 rakefile:
   site_url:           http://josediazgonzalez.com
   deploy_host:        josediazgonzalez.com
@@ -24,15 +48,13 @@ rakefile:
   site:               _site
   editor:             subl
 
-
-# Custom
+# My custom, layout related stuff
 related_limit:      5
 excerpt_link:       "Read More&hellip;"
-
-# Plugins
 disqus_shortname:  josediazgonzalez
 ga_tracking_id:     'UA-8668344-3'
-code_dir:           code
+
+# Plugins
 post_types:
   - portfolio
 index_pages:
@@ -43,4 +65,8 @@ index_pages:
     do_related:     true
     title_prefix:   'Tag: '
 backtick:
-  tag: rainbow
+  tag:              rainbow
+atom:
+  title:            Jose Diaz-Gonzalez
+  author:           Jose Diaz-Gonzalez
+  email:            support@savant.be
