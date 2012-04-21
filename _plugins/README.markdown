@@ -6,6 +6,7 @@ I've created a bunch of plugins based on those included in [jekyll_ext](https://
 
 - `iterator`: allows you to iterate over all tags/categories and then iterate over the posts in those tags/categories. You can use this to automatically generate a tag cloud and a category page listing. <em>e.g. [Tag Cloud on Sidebar](http://josediazgonzalez.com/categories/cakephp)</em>
 - `liquid_exception_handler`: When creating there is a liquid exception, this will suppress the exception during jekyll's generation step. DANGEROUS
+- `recursive_layouts`: Gives Jekyll the ability to support layouts inside of `_layouts` subdirectories. Required for generator plugins
 - `post_filter`: Allows adding a `pre` and `post` filter step to post contents
 
 ## Filters
@@ -49,7 +50,6 @@ Also adds support for pullquotes:
 
 - `pygments_code`:
 - `template_wrapper`:
-- `recursive_layouts`: Gives Jekyll the ability to support layouts inside of `_layouts` subdirectories. Required for generator plugins
 
 # Errata
 
