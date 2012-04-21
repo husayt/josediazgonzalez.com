@@ -59,8 +59,11 @@ module Jekyll
     end
 
     def generate_info(site)
-      config = site.config
+      config = {}
+      config.merge(site.config['atom']) if site.config.key?('atom')
+      config.merge(site.config)
       xmlschema = site.time.xmlschema
+
       "
  <title>#{config["title"]}</title>
  <link href=\"#{config["url"]}/atom.xml\" rel=\"self\"/>
