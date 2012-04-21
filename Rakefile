@@ -10,7 +10,7 @@ config = YAML.load_file("_config.yml")
 rake_config = config["rakefile"]
 
 # Ensure all directories exist
-[ "_cache", "_cache/pygments_code", "_stashes" ].each do |dir|
+[ "_tmp", "_tmp/pygments_code", "_tmp/stash" ].each do |dir|
   FileUtils.mkdir_p(File.expand_path('../' + dir, __FILE__))
 end
 
@@ -29,7 +29,7 @@ end
 desc 'Run Jekyll to generate the site'
 task :build do
   # Move the stashed blog posts back to the posts directory
-  Dir.glob("%s/*.*" % [ "_stashes" ]) do |post|
+  Dir.glob("%s/*.*" % [ "_tmp/stash" ]) do |post|
     FileUtils.mv post, "_posts"
   end
 
@@ -135,15 +135,15 @@ task :generate, :filename do |t, args|
   puts '* Moving posts to stash dir'
 
   Dir.glob("_posts/*.*") do |post|
-    FileUtils.mv post, "_stashes" unless post.include?(ARGV[1])
+    FileUtils.mv post, "_tmp/stash" unless post.include?(ARGV[1])
   end
 
   puts '* Regenerating blog'
   puts `jekyll`
 
-  puts '* Moving posts from _stashes/ directory to _posts/ directory'
+  puts '* Moving posts from _tmp/stash/ directory to _posts/ directory'
   # Move the stashed blog posts back to the posts directory
-  Dir.glob("_stashes/*.*") do |post|
+  Dir.glob("_tmp/stash/*.*") do |post|
     FileUtils.mv post, "_posts"
   end
   exit(0) # Hack so that we don't have to worry about rake trying any funny business
@@ -188,7 +188,7 @@ end
 desc "Watch the site and regenerate when it changes"
 task :watch do
   require 'em-dir-watcher'
-  exclusions = ['_cache', '_site', 'Gemfile']
+  exclusions = ['_tmp', '_site', 'Gemfile']
 
   EM.run {
       dw = EMDirWatcher.watch '.', :exclude => exclusions do |paths|
