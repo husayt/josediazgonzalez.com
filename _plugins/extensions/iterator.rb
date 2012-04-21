@@ -1,3 +1,7 @@
+# Title: Iterator
+#
+# Add an iterator for posts into the categories and tags
+
 module Jekyll
   class Site
     alias_method :orig_site_payload, :site_payload
@@ -19,7 +23,7 @@ module Jekyll
     #       {% endfor %}
     #       </ul>
     #   {% endfor %}
-    # 
+    #
     # Returns [ {<index> => <kv_hash_key>, <items> => kv_hash[<kv_hash_key>]}, ... ]
     def make_iterable(kv_hash, options)
       options = {:index => 'name', :items => 'items'}.merge(options)

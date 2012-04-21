@@ -1,3 +1,7 @@
+# Title: Recursive Layouts
+#
+# Monkeypatch Site::read_layouts() to read layout files from subdirectories
+
 module Jekyll
   class Site
     # Monkeypatch Site::read_layouts() to read layout files from subdirectories
