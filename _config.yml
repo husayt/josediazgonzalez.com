@@ -1,10 +1,23 @@
+# ----------------------- #
+#           Site          #
+# ----------------------- #
 # Site-level configuration. Plugin which require extra
 # data should have that in plugin-specific configuration
 title:            Jose Diaz-Gonzalez
 author:           Jose Diaz-Gonzalez
 email:            support@savant.be
 
-# Jekyll Config
+# ----------------------- #
+#         Layouts         #
+# ----------------------- #
+related_limit:      5
+excerpt_link:       "Read More&hellip;"
+disqus_shortname:  josediazgonzalez
+ga_tracking_id:     'UA-8668344-3'
+
+# ----------------------- #
+#          Jekyll         #
+# ----------------------- #
 # Set this to true to disable plugins
 safe:               false
 # Enables or disables Jekyll from recreating the site when files are modified.
@@ -38,7 +51,9 @@ permalink:          /:year/:month/:day/:title/
 # A list of directories and files to exclude from the conversion
 exclude:            README.textile Rakefile Gemfile Gemfile.lock requirements.txt
 
-# Rakefile
+# ----------------------- #
+#         Rakefile        #
+# ----------------------- #
 rakefile:
   ssh_user:           deploy@josediazgonzalez.com
   ssh_port:           22
@@ -48,13 +63,9 @@ rakefile:
   site:               _site
   editor:             subl
 
-# My custom, layout related stuff
-related_limit:      5
-excerpt_link:       "Read More&hellip;"
-disqus_shortname:  josediazgonzalez
-ga_tracking_id:     'UA-8668344-3'
-
-# Plugins
+# ----------------------- #
+#         Plugins         #
+# ----------------------- #
 post_types:
   - portfolio
 index_pages:
