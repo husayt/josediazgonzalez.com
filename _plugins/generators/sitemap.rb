@@ -39,6 +39,8 @@ module Jekyll
         # Force file endings to be .html
         path = path.gsub(/\.(markdown|textile)$/i, '.html')
 
+        next if path == '/robots.txt'
+
         pages << { 'url' => path, 'date' => mod_date.strftime("%Y-%m-%d")} unless path =~/error/
       end
 
