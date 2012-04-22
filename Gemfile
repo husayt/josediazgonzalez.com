@@ -1,12 +1,32 @@
 source "http://rubygems.org"
-gem "jekyll"
-gem "em-dir-watcher"
+
+# Jekyll requirements
+gem "jekyll",		'~> 0.11'
+gem "gsl",			'~> 1.14'
+
+# Converter Requirements
+gem "redcarpet"
+gem "coffee-script"
+gem "haml"
+gem "sass"
+gem "stylus"
+
+# Filter requirements
 gem "hpricot"
 gem "nokogiri"
-gem "gsl"
-gem "rmagick"
-gem "redcarpet"
-gem "pygments.rb"
+
+# Generator requirements
 gem "inflection"
+
+# Tag requirements
+gem "rmagick"
 gem "rubypants"
-gem "clipboard"
+
+# Utilities requirements
+gem "pygments.rb"
+
+# Rakefile requirements
+group :development do
+	gem "em-dir-watcher"
+	gem "clipboard"
+end
