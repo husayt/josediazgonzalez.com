@@ -153,11 +153,12 @@ end
 ##############
 
 desc 'Generate and publish the entire site, and send out pings'
-task :deploy => [:generate, :push, :rsync, :sitemap, :ping] do
+task :deploy => [:generate, :rsync, :sitemap, :ping] do
 end
 
-desc 'Push source code to Github'
+desc 'Push _site directory to Github'
 task :push do
+  raise "You must enable 'push_site' in your rake config to enable pushing of the _site dir" unless rake_config["push_site"]
   puts '* Committing regenerated site'
   puts `git add _site && git commit -m 'Regenerating Site'`
   puts '* Pushing to Github'
