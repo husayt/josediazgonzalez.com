@@ -1,9 +1,14 @@
-require "rake"
 require "rubygems"
 require "bundler"
 require "date"
 require "yaml"
+
+# For tasks
 require "clipboard"
+require 'em-dir-watcher'
+require 'net/http'
+require 'uri'
+require 'xmlrpc/client'
 
 # Get rake configuration
 config = YAML.load_file("_config.yml")
@@ -16,142 +21,39 @@ end
 
 task :default => :dev
 
-desc 'Generate and publish the entire site, and send out pings'
-task :publish => [:build, :push, :sync, :sitemap, :ping] do
+#######################
+# Working with Jekyll #
+#######################
+
+# TODO: Support SASS compiling through compass
+desc "Generate jekyll site"
+task :generate do
+  puts "## Move the stashed blog posts back to the posts directory"
+  FileUtils.mv Dir.glob("_tmp/stash/*.*"), "_posts"
+
+  puts "## Generating Site with Jekyll"
+  system "jekyll"
 end
 
-desc "list tasks"
-task :list do
-  puts "Tasks: #{Rake::Task.tasks.to_sentence}"
-  puts "(type rake -T for more detail)\n\n"
+# TODO: Support SASS compiling through compass
+desc "Watch the site and regenerate when it changes"
+task :watch do
+  exclusions = ['_tmp', '_site', 'Gemfile']
+
+  EM.run {
+      dw = EMDirWatcher.watch '.', :exclude => exclusions do |paths|
+          paths.each do |path|
+              regenerate_site(relative)
+          end
+      end
+      puts ">>> Watching for Changes <<<"
+  }
 end
 
-desc 'Run Jekyll to generate the site'
-task :build do
-  # Move the stashed blog posts back to the posts directory
-  Dir.glob("%s/*.*" % [ "_tmp/stash" ]) do |post|
-    FileUtils.mv post, "_posts"
-  end
-
-  puts '* Generating static site with Jekyll'
-  puts `jekyll`
-end
-
-desc 'Push source code to Github'
-task :push do
-  puts '* Committing regenerated site'
-  puts `git add _site && git commit -m 'Regenerating Site'`
-  puts '* Pushing to Github'
-  puts `git push origin master`
-end
-
-desc 'rsync the contents of ./_site to the server'
-task :sync do
-  cmd = "rsync -avz '_site/' %s@%s:%s" % [ rake_config["deploy_user"], rake_config["deploy_host"], rake_config["deploy_path"] ]
-  puts '* Publishing files to live server'
-  puts `#{cmd}`
-end
-
-desc 'Notify Google of the new sitemap'
-task :sitemap do
-  begin
-    require 'net/http'
-    require 'uri'
-    puts '* Pinging Google about our sitemap'
-    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape("%s/sitemap.xml" % [ rake_config["site_url"] ]))
-  rescue LoadError
-    puts '! Could not ping Google about our sitemap, because Net::HTTP or URI could not be found.'
-  end
-end
-
-desc 'Ping pingomatic'
-task :ping do
-  begin
-    require 'xmlrpc/client'
-    puts '* Pinging ping-o-matic'
-    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , rake_config["site_url"], "%s/atom.xml" % [ rake_config["site_url"] ])
-  rescue LoadError
-    puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
-  end
-end
-
-desc 'Run Jekyll in development mode'
-task :dev do
-  puts '* Running Jekyll with auto-generation and server'
-  puts `jekyll --auto --server --lsi`
-end
-
-desc "remove files in output directory"
-task :clean do
-  puts '* Removing Output'
-  puts `rm -rf _site/*`
-end
-
-desc 'Create and push a tag'
-task :tag do
-  t = ENV['T']
-  m = ENV['M']
-  unless t && m
-    puts "USAGE: rake tag T='1.0-my-tag-name' M='My description of this tag'"
-    exit(1)
-  end
-
-  puts '* Creating tag'
-  puts `git tag -a -m "#{m}" #{t}`
-
-  puts '* Pushing tags'
-  puts `git push origin master --tags`
-end
-
-desc 'create a new post'
-task :post, :title do |t, args|
-  unless ARGV.length > 1
-    puts "USAGE: rake post 'the post title'"
-    exit(1)
-  end
-
-  slug = "#{Date.today}-#{ARGV[1].downcase.gsub(/[^\w]+/, '-')}"
-  file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
-  create_blank_post(file, ARGV[1])
-
-  if rake_config["editor"]
-    system "#{rake_config["editor"]} file"
-    puts "Opening file in editor using %s" % [ rake_config["editor"] ]
-  else
-    Clipboard.copy file
-    puts "Copied path to clipboard"
-  end
-
-  exit(0) # Hack so that we don't have to worry about rake trying any funny business
-end
-
-desc "Generate a single, or set, of blog posts containing certain words in the filename"
-task :generate, :filename do |t, args|
-  unless ARGV.length > 1
-    puts "USAGE: rake generate 'the-post-title'"
-    exit(1)
-  end
-
-  puts '* Moving posts to stash dir'
-
-  Dir.glob("_posts/*.*") do |post|
-    FileUtils.mv post, "_tmp/stash" unless post.include?(ARGV[1])
-  end
-
-  puts '* Regenerating blog'
-  puts `jekyll`
-
-  puts '* Moving posts from _tmp/stash/ directory to _posts/ directory'
-  # Move the stashed blog posts back to the posts directory
-  Dir.glob("_tmp/stash/*.*") do |post|
-    FileUtils.mv post, "_posts"
-  end
-  exit(0) # Hack so that we don't have to worry about rake trying any funny business
-end
-
-desc 'List all draft posts'
-task :drafts do
-  puts `find ./_posts -type f -exec grep -H 'published: false' {} \\;`
+# TODO: Continuously regenerate the blog when performing a preview
+desc "Preview the site in a web browser"
+multitask :preview => [:start_serve] do
+  system "open http://localhost:%s" %  [ rake_config["port"] ]
 end
 
 desc "start up an instance of serve on the output files"
@@ -174,38 +76,166 @@ task :stop_serve do
   end
 end
 
-desc "preview the site in a web browser"
-multitask :preview => [:start_serve] do
-  system "open http://localhost:%s" %  [ rake_config["port"] ]
+# TODO: Support configuration of post extension
+# TODO: Support error checking if the post already exists
+# TODO: Support a custom template for the initial post
+# TODO: Support initial categories and tags via a flag
+# TODO: Figure out a better way to hack the exit process of Rakefiles
+desc "Begin a new post in _posts"
+task :new_post do
+  unless ARGV.length > 1
+    puts "USAGE: rake post 'the post title'"
+    exit(1)
+  end
+
+  slug = "#{Date.today}-#{ARGV[1].downcase.gsub(/[^\w]+/, '-')}"
+  file = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
+  create_blank_post(file, ARGV[1])
+
+  if rake_config["editor"]
+    system "#{rake_config["editor"]} file"
+    puts "Opening file in editor using %s" % [ rake_config["editor"] ]
+  else
+    Clipboard.copy file
+    puts "Copied path to clipboard"
+  end
+
+  exit(0)
 end
 
-def rebuild_site(relative)
+# TODO: Implement :new_page
+desc "Create a new page in /(filename)/index.markdown"
+task :new_page do
+    raise "### UNIMPLEMENTED"
+end
+
+# TODO: Add a flag to disable plugin compilation
+# TODO: Error-checking when no post matches your filter
+# TODO: Figure out a better way to hack the exit process of Rakefiles
+desc "Generate a single, or set, of blog posts containing certain words in the filename"
+task :isolate, :filename do |t, args|
+  unless ARGV.length > 1
+    puts "USAGE: rake isolate 'the-post-title'"
+    exit(1)
+  end
+
+  puts '* Moving posts to stash dir'
+
+  Dir.glob("_posts/*.*") do |post|
+    FileUtils.mv post, "_tmp/stash" unless post.include?(ARGV[1])
+  end
+
+  puts '* Regenerating blog'
+  puts `jekyll`
+
+  puts '* Moving posts from _tmp/stash/ directory to _posts/ directory'
+
+  # Move the stashed blog posts back to the posts directory
+  FileUtils.mv Dir.glob("_tmp/stash/*.*"), "_posts"
+
+  exit(0) # Hack so that we don't have to worry about rake trying any funny business
+end
+
+desc "Move all stashed posts back into the posts directory, ready for site generation."
+task :integrate do
+  FileUtils.mv Dir.glob("_tmp/stash/*.*"), "_posts"
+end
+
+# TODO: Support SASS compiled files
+desc "Clean out caches: _tmp"
+task :clean do
+  puts '* Removing Output'
+  rm_rf [ "_tmp/**", "_site/**" ]
+end
+
+##############
+# Deploying  #
+##############
+
+desc 'Generate and publish the entire site, and send out pings'
+task :deploy => [:generate, :push, :rsync, :sitemap, :ping] do
+end
+
+desc 'Push source code to Github'
+task :push do
+  puts '* Committing regenerated site'
+  puts `git add _site && git commit -m 'Regenerating Site'`
+  puts '* Pushing to Github'
+  puts `git push origin master`
+end
+
+desc 'rsync the contents of ./_site to the server'
+task :rsync do
+  cmd = "rsync -avz '_site/' %s:%s" % [ rake_config["ssh_user"], rake_config["deploy_path"] ]
+  puts '* Publishing files to live server'
+  puts `#{cmd}`
+end
+
+desc 'Notify Google of the new sitemap'
+task :sitemap do
+  begin
+    puts '* Pinging Google about our sitemap'
+    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape("%s/sitemap.xml" % [ rake_config["site_url"] ]))
+  rescue LoadError
+    puts '! Could not ping Google about our sitemap, because Net::HTTP or URI could not be found.'
+  end
+end
+
+desc 'Ping pingomatic'
+task :ping do
+  begin
+    puts '* Pinging ping-o-matic'
+    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'Jose Diaz-Gonzalez' , rake_config["site_url"], "%s/atom.xml" % [ rake_config["site_url"] ])
+  rescue LoadError
+    puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
+  end
+end
+
+desc 'Run Jekyll in development mode'
+task :dev do
+  puts '* Running Jekyll with auto-generation and server'
+  puts `jekyll --auto --server --lsi`
+end
+
+desc 'Create and push a tag'
+task :tag do
+  t = ENV['T']
+  m = ENV['M']
+  unless t && m
+    puts "USAGE: rake tag T='1.0-my-tag-name' M='My description of this tag'"
+    exit(1)
+  end
+
+  puts '* Creating tag'
+  puts `git tag -a -m "#{m}" #{t}`
+
+  puts '* Pushing tags'
+  puts `git push origin master --tags`
+end
+
+desc 'List all draft posts'
+task :drafts do
+  puts `find ./_posts -type f -exec grep -H 'published: false' {} \\;`
+end
+
+desc "list tasks"
+task :list do
+  puts "Tasks: #{Rake::Task.tasks.to_sentence}"
+  puts "(type rake -T for more detail)\n\n"
+end
+
+##############
+# Deploying  #
+##############
+
+def regenerate_site(relative)
   puts "\n\n>>> Change Detected to: #{relative} <<<"
-  IO.popen('rake build'){|io| print(io.readpartial(512)) until io.eof?}
+  IO.popen('rake generate'){|io| print(io.readpartial(512)) until io.eof?}
   puts '>>> Update Complete <<<'
 end
 
-desc "Watch the site and regenerate when it changes"
-task :watch do
-  require 'em-dir-watcher'
-  exclusions = ['_tmp', '_site', 'Gemfile']
-
-  EM.run {
-      dw = EMDirWatcher.watch '.', :exclude => exclusions do |paths|
-          paths.each do |path|
-              rebuild_site(relative)
-          end
-      end
-      puts ">>> Watching for Changes <<<"
-  }
-end
-
 def ok_failed(condition)
-  if (condition)
-    puts "OK"
-  else
-    puts "FAILED"
-  end
+  puts condition ? "OK" : "FAILED"
 end
 
 # Helper method for :draft and :post, that required a TITLE environment

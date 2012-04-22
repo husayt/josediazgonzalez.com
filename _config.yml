@@ -40,10 +40,10 @@ exclude:            README.textile Rakefile Gemfile Gemfile.lock requirements.tx
 
 # Rakefile
 rakefile:
+  ssh_user:           deploy@josediazgonzalez.com
+  ssh_port:           22
   site_url:           http://josediazgonzalez.com
-  deploy_host:        josediazgonzalez.com
   deploy_path:        /apps/production/josediazgonzalez.com/default/public/_site
-  deploy_user:        deploy
   port:               4000
   site:               _site
   editor:             subl
