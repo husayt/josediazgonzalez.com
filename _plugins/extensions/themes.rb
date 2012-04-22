@@ -29,12 +29,10 @@ module Jekyll
     # Set layouts in the following order:
     #
     #  * ./_themes/default/_layouts
-    #  * ./source/_layouts
     #  * ./source/_themes/THEME_NAME/_layouts
     #
     def read_layouts(dir = '')
       recursive_read_layouts(File.join('..', '_themes', 'default', dir))
-      recursive_read_layouts(dir)
       recursive_read_layouts(File.join('_themes', self.config['theme'], dir)) if self.config.key?('theme')
     end
 
@@ -64,7 +62,6 @@ module Jekyll
     # Try includes in the following order:
     #
     # * source/_themes/THEME_NAME/_includes
-    # * source/_includes
     # * _themes/default/_includes
     #
     def render(context)
@@ -87,7 +84,7 @@ module Jekyll
     def find_path(context)
       site = context.registers[:site]
 
-      dirs = [ '', File.join('..', '_themes', 'default') ]
+      dirs = [ File.join('..', '_themes', 'default') ]
       dirs.unshift(File.join('_themes', site.config['theme'])) if site.config.key?('theme')
 
       dirs.each do |dir|
