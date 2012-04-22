@@ -1,3 +1,7 @@
+# Title: Quote
+# Source: God Knows where
+# Description: Blockquote and Pullquote tags
+
 module Jekyll
 
   # Outputs a string with a given attribution as a quote

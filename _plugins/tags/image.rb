@@ -1,3 +1,7 @@
+# Title: Image
+# Source: God Knows where
+# Description: Allows embedding images in your posts, pre-processed by rmagick
+
 module Jekyll
 
   require 'rubygems'
@@ -61,7 +65,7 @@ module Jekyll
       end
 
       if site.config.has_key?('image_include')
-        # TODO: Secure this. Do not allow reading files outside _includes 
+        # TODO: Secure this. Do not allow reading files outside _includes
         source = File.read(File.join(context.registers[:site].source, '_images', site.config['image_include']))
         partial = Liquid::Template.parse(source)
         context.stack do

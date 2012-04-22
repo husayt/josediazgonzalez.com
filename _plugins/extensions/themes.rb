@@ -1,6 +1,5 @@
 # Title: Themes
-#
-# Add theme support to Jekyll
+# Description: Add theme support to Jekyll
 #
 # Usage:
 #

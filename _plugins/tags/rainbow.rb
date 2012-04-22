@@ -1,3 +1,6 @@
+# Title: Rainbow
+# Description: Wraps codeblocks in `rainbow` compliant html tags
+
 module Jekyll
   class RainbowBlock < Liquid::Block
     def initialize(tag_name, markup, tokens)

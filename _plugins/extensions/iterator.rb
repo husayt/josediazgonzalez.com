@@ -1,6 +1,6 @@
 # Title: Iterator
-#
-# Add an iterator for posts into the categories and tags
+# Original: https://github.com/rfelix/my_jekyll_extensions/blob/master/tag_category_iterator/tag_category_iterator.rb
+# Description: Add an iterator for posts into the categories and tags
 
 module Jekyll
   class Site
