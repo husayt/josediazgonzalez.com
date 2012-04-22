@@ -26,14 +26,13 @@
 module Jekyll
   class Site
 
-    # Try, in the following order:
-    # _layouts
-    # _themes/default/_layouts
-    # source/_layouts
-    # source/_themes/THEME_NAME/_layouts
+    # Set layouts in the following order:
+    #
+    #  * ./_themes/default/_layouts
+    #  * ./source/_layouts
+    #  * ./source/_themes/THEME_NAME/_layouts
     #
     def read_layouts(dir = '')
-      recursive_read_layouts(File.join('..', dir))
       recursive_read_layouts(File.join('..', '_themes', 'default', dir))
       recursive_read_layouts(dir)
       recursive_read_layouts(File.join('_themes', self.config['theme'], dir)) if self.config.key?('theme')
@@ -62,11 +61,11 @@ module Jekyll
       @file = file.strip
     end
 
-    # Try, in the following order:
-    # source/_themes/THEME_NAME/_includes
-    # source/_includes
-    # _themes/default/_includes
-    # _includes
+    # Try includes in the following order:
+    #
+    # * source/_themes/THEME_NAME/_includes
+    # * source/_includes
+    # * _themes/default/_includes
     #
     def render(context)
       if @file !~ /^[a-zA-Z0-9_\/\.-]+$/ || @file =~ /\.\// || @file =~ /\/\./
@@ -88,8 +87,8 @@ module Jekyll
     def find_path(context)
       site = context.registers[:site]
 
-      dirs = [ '', File.join('..', '_themes', 'default'), '..']
-      dirs.unshift(File.join('..', '_themes', site.config['theme'])) if site.config.key?('theme')
+      dirs = [ '', File.join('..', '_themes', 'default') ]
+      dirs.unshift(File.join('_themes', site.config['theme'])) if site.config.key?('theme')
 
       dirs.each do |dir|
         includes_dir = File.join(site.source, dir, '_includes')
