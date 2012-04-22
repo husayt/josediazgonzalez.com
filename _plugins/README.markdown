@@ -1,6 +1,18 @@
 # Jekyll Plugins
 
-I've created a bunch of plugins based on those included in [jekyll_ext](https://github.com/rfelix/jekyll_ext). I was sort of tired of having to install `jekyll_ext`, and since Jekyll has had a plugin system since around version 0.6 or so, I decided to migrate the plugins I use to Jekyll proper.
+I've created, ported, and copied quite a few plugins to my own blog, mainly for testing, but also for fun. Feel free to troll around and figure out what works and what doesn't for you.
+
+Plugins will have readmes embedded at the top as comments. YMMV.
+
+## Converters
+
+For the time being, these converters do **NOT** work on anything in `_layouts`. This is a limitation in Jekyll which I hope to ~~hack~~ fix.
+
+- `coffee`: Converts `.coffee` files to `.js`
+- `haml`: Converts `.haml` files to `.html`
+- `sass`: Converts `.sass` and `.scss` files to `.css`
+- `styl`: Converts `.styl` files to `.css`
+- `upcase`: Converts `.upcase` files to uppercase
 
 ## Extensions
 
@@ -31,21 +43,21 @@ I've created a bunch of plugins based on those included in [jekyll_ext](https://
 ## Tags
 
 - `backtick`:
-- `blockquote`:
 - `highlight`:
 - `image`:
-- `rainbow`: Allows the usage of blockquotes with attribution within your application by doing:
+- `quote`: Allows the usage of blockquotes with attribution within your application by doing:
 
         {% blockquote John Hancock %}
         Content
-        {% endblockquote %}`
+        {% endblockquote %}
 Also adds support for pullquotes:
 
         {% pullquote John Hancock %}
         Content
-        {% endpullquote %}`
-
+        {% endpullquote %}
+- `rainbow`
 - `raw`
+- `render_time`
 
 ## Utilities
 
@@ -55,5 +67,3 @@ Also adds support for pullquotes:
 # Errata
 
 All plugins reside locally, in the `_plugins` folder, and in theory would be safe to run on Github. They may not be the best of Ruby code, since I am still but a Ruby apprentice, but they work fine for me :)
-
-Any undocumented plugins are not of my own creation. Please refer to their docblocks for more information.
