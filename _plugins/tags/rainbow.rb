@@ -1,4 +1,4 @@
-# Title: Rainbow
+# Title: RainbowTag
 # Description: Wraps codeblocks in `rainbow` compliant html tags
 
 module Jekyll

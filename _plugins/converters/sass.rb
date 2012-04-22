@@ -1,6 +1,6 @@
-# Title: Sass
+# Title: SassConverter
 # Source: https://gist.github.com/1942866
-# Description: Allows you to use sass instead of css
+# Description: A Jekyll plugin to convert .sass to .css
 
 require 'sass'
 

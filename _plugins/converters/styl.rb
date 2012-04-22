@@ -1,4 +1,4 @@
-# Title: Styl
+# Title: StylConverter
 # Source: https://gist.github.com/988201
 # Description: A Jekyll plugin to convert .styl to .css
 # Caveats:

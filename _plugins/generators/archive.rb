@@ -1,4 +1,4 @@
-# Title: Archive
+# Title: ArchiveGenerator
 # Original: https://github.com/rfelix/my_jekyll_extensions/blob/master/archive_gen/archive_gen.rb
 # Description: Creates archive pages
 

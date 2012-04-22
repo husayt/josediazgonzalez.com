@@ -1,8 +1,11 @@
+# Title: ExtendedFilters
+# Description: Some extra filters for jekyll
+
 require 'hpricot'
 require 'nokogiri'
 
 module Liquid
-  
+
   module ExtendedFilters
 
     def date_to_month(input)
@@ -18,7 +21,7 @@ module Liquid
     end
 
     def html_truncatewords(text, max_length = 200, ellipsis = "")
-      ellipsis_length = ellipsis.length     
+      ellipsis_length = ellipsis.length
       doc = Nokogiri::HTML::DocumentFragment.parse text
       content_length = doc.inner_text.length
       actual_length = max_length - ellipsis_length

@@ -1,4 +1,4 @@
-# Title: Backtick
+# Title: BacktickTag
 # Original: https://github.com/imathis/octopress/blob/master/plugins/backtick_code_block.rb
 # Description: Allow placing codeblocks within three ```, github-style
 

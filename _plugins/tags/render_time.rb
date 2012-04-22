@@ -1,4 +1,4 @@
-# Title: render_time
+# Title: RenderTimeTag
 # Source: https://github.com/mojombo/jekyll/wiki/Plugins
 # Description: Sample `render_time` tag
 

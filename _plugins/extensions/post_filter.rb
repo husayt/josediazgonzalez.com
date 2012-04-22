@@ -1,4 +1,4 @@
-# Title: PostFilter
+# Title: PostFilter Plugin
 # Source: https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb
 # Description: Allows filtering of Post methods, AOSP style
 

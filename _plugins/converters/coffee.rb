@@ -1,6 +1,6 @@
-# Title: Coffee
+# Title: CoffeeConverter
 # Source: https://gist.github.com/959938
-# Description: Allows you to use coffeescript instead of javascript
+# Description: A Jekyll plugin to convert .coffee to .js
 
 require 'coffee-script'
 

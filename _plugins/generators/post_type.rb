@@ -1,4 +1,4 @@
-# Title: PostType
+# Title: PostTypeGenerator
 # Description: Create custom post type pages, such as galleries or a portfolio
 
 require 'inflection'

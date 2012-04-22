@@ -1,4 +1,4 @@
-# Title: Sitemap
+# Title: SitemapGenerator
 # Original: https://github.com/recurser/jekyll-plugins/blob/master/generate_sitemap.rb
 # Description: Creates a sitemap.xml
 

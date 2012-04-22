@@ -1,4 +1,4 @@
-# Title: Simple Code Blocks for Jekyll
+# Title: HighlightTag
 # Author: Brandon Mathis http://brandonmathis.com
 # Description: Write highlights with semantic HTML5 <figure> and <figcaption> elements and optional syntax highlighting — all with a simple, intuitive interface.
 #

@@ -1,4 +1,4 @@
-# Title: Image
+# Title: ImageTag
 # Source: God Knows where
 # Description: Allows embedding images in your posts, pre-processed by rmagick
 

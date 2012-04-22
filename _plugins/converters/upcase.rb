@@ -1,4 +1,4 @@
-# Title: Upcase
+# Title: UpcaseConverter
 # Source: https://github.com/mojombo/jekyll/wiki/Plugins
 # Description: Uppercase ALL the things
 

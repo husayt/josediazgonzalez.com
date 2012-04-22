@@ -1,4 +1,4 @@
-# Title: Atom
+# Title: AtomGenerator
 # Description: Creates an atom.xml feed
 
 require 'pathname'

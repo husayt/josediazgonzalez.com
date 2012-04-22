@@ -1,4 +1,4 @@
-# Title: Themes
+# Title: Themes Jekyll Extension
 # Description: Add theme support to Jekyll
 #
 # Usage:
@@ -22,9 +22,6 @@
 #          |   `-- sidebar.markdown
 #          `-- _layouts
 #          |   `-- post.html
-#
-#
-#
 
 module Jekyll
   class Site

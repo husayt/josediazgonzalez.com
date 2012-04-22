@@ -1,3 +1,7 @@
+# Title: PygmentsCode
+# Source: https://github.com/imathis/octopress/blob/master/plugins/pygments_code.rb
+# Description: Remove need for built-in Pygments syntax highlighting in favor of Pygments gem
+
 require 'pygments'
 require 'fileutils'
 require 'digest/md5'

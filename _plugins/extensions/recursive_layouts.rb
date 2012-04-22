@@ -1,4 +1,4 @@
-# Title: Recursive Layouts
+# Title: Recursive Layouts Jekyll Extension
 # Description: Monkeypatch Site::read_layouts() to read layout files from subdirectories
 
 module Jekyll

@@ -1,4 +1,4 @@
-# Title: GenericIndex
+# Title: GenericIndexGenerator
 # Original: https://github.com/rfelix/my_jekyll_extensions/blob/master/tag_gen/tag_gen.rb
 # Description: Creates generic index pages
 

@@ -1,4 +1,4 @@
-# Title: Quote
+# Title: QuoteTag
 # Source: God Knows where
 # Description: Blockquote and Pullquote tags
 

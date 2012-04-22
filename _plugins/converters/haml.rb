@@ -1,6 +1,6 @@
-# Title: Haml
+# Title: HamlConverter
 # Source: https://gist.github.com/1098904
-# Description: Allows you to use haml in your posts
+# Description: A Jekyll plugin to convert .haml to .html
 
 require 'haml'
 

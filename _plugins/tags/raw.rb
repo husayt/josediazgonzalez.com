@@ -1,4 +1,4 @@
-# Title: Raw
+# Title: RawTag
 # Source: https://gist.github.com/1020852
 # Description: Raw tag for jekyll. Keeps liquid from parsing text betweeen {% raw %} and {% endraw %}
 
