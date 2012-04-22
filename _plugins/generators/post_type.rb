@@ -1,7 +1,5 @@
 # Title: PostType
-#
-# Create custom post type pages, such as galleries or a portfolio,
-# similar to one would create new posts
+# Description: Create custom post type pages, such as galleries or a portfolio
 
 require 'inflection'
 require 'fileutils'

@@ -1,6 +1,5 @@
 # Title: Atom
-#
-# Creates an atom.xml feed
+# Description: Creates an atom.xml feed
 
 require 'pathname'
 

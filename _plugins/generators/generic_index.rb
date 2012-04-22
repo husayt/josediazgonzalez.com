@@ -1,6 +1,6 @@
 # Title: GenericIndex
-#
-# Creates generic index pages
+# Original: https://github.com/rfelix/my_jekyll_extensions/blob/master/tag_gen/tag_gen.rb
+# Description: Creates generic index pages
 
 require 'inflection'
 
@@ -109,5 +109,4 @@ module Jekyll
       site.static_files << index
     end
   end
-
 end
