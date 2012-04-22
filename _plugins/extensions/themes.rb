@@ -25,13 +25,30 @@
 
 module Jekyll
   class Site
-    alias_method :orig_read_layouts, :read_layouts
 
+    # Try, in the following order:
+    # _layouts
+    # _themes/default/_layouts
+    # source/_layouts
+    # source/_themes/THEME_NAME/_layouts
+    #
     def read_layouts(dir = '')
-      orig_read_layouts(dir)
-      return unless self.config.key?('theme')
+      recursive_read_layouts(File.join('..', dir))
+      recursive_read_layouts(File.join('..', '_themes', 'default', dir))
+      recursive_read_layouts(dir)
+      recursive_read_layouts(File.join('_themes', self.config['theme'], dir)) if self.config.key?('theme')
+    end
 
-      orig_read_layouts(File.join(dir, '_themes', self.config['theme']))
+    def recursive_read_layouts(dir = '')
+      base = File.join(self.source, dir, "_layouts")
+      return unless File.exists?(base)
+      entries = []
+      Dir.chdir(base) { entries = filter_entries(Dir.glob('**/*.*')) }
+
+      entries.each do |f|
+        name = f.split(".")[0..-2].join(".")
+        self.layouts[name] = Layout.new(self, base, f)
+      end
     end
 
   end
@@ -45,58 +62,47 @@ module Jekyll
       @file = file.strip
     end
 
+    # Try, in the following order:
+    # source/_themes/THEME_NAME/_includes
+    # source/_includes
+    # _themes/default/_includes
+    # _includes
+    #
     def render(context)
-      includes_dir = File.join(context.registers[:site].source, '_includes')
-
-      if File.symlink?(includes_dir)
-        return "Includes directory '#{includes_dir}' cannot be a symlink"
-      end
-
-      theme = nil
-      use_theme = false
-
-      if context.registers[:site].config.key?('theme')
-        theme = context.registers[:site].config['theme']
-        theme_includes_dir = File.join(context.registers[:site].source, '_themes', theme, '_includes')
-        if File.exists?(theme_includes_dir)
-          use_theme = true
-          return "Includes directory '#{theme_includes_dir}' cannot be a symlink" if File.symlink?(theme_includes_dir)
-        end
-      end
-
       if @file !~ /^[a-zA-Z0-9_\/\.-]+$/ || @file =~ /\.\// || @file =~ /\/\./
         return "Include file '#{@file}' contains invalid characters or sequences"
       end
 
-      choices = []
-      if use_theme
-        Dir.chdir(theme_includes_dir) do
-          choices = Dir['**/*'].reject { |x| File.symlink?(x) }
+      includes_dir = find_path(context)
+      "Included file '#{@file}' not found in any _includes directories" if includes_dir.nil?
+
+      Dir.chdir(includes_dir) do
+        source = File.read(@file)
+        partial = Liquid::Template.parse(source)
+        context.stack do
+          partial.render(context)
         end
       end
+    end
 
-      if choices.include?(@file)
-        Dir.chdir(theme_includes_dir) do
-          source = File.read(@file)
-          partial = Liquid::Template.parse(source)
-          context.stack do
-            partial.render(context)
-          end
-        end
-      else
+    def find_path(context)
+      site = context.registers[:site]
+
+      dirs = [ '', File.join('..', '_themes', 'default'), '..']
+      dirs.unshift(File.join('..', '_themes', site.config['theme'])) if site.config.key?('theme')
+
+      dirs.each do |dir|
+        includes_dir = File.join(site.source, dir, '_includes')
+
+        next if File.symlink?(includes_dir)
+
         Dir.chdir(includes_dir) do
           choices = Dir['**/*'].reject { |x| File.symlink?(x) }
-          unless choices.include?(@file)
-            return "Included file '#{@file}' not found in _includes directory"
-          end
-
-          source = File.read(@file)
-          partial = Liquid::Template.parse(source)
-          context.stack do
-            partial.render(context)
-          end
+          return includes_dir if choices.include?(@file)
         end
       end
+
+      nil
     end
   end
 

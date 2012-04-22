@@ -17,6 +17,7 @@ gem "nokogiri"
 
 # Generator requirements
 gem "inflection"
+gem "stringex"
 
 # Tag requirements
 gem "rmagick"

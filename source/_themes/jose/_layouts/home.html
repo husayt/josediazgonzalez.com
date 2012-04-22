@@ -1,0 +1,14 @@
+---
+layout: default
+body: home
+---
+{% include intro_responsive.markdown %}
+<div id="content">
+	{{ content }}
+</div>
+
+<div id="sidebar">
+	{% include intro.markdown %}
+	{% include sidebar_tabs.markdown %}
+	{% include portfolio.markdown %}
+</div>

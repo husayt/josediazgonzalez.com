@@ -1,15 +1,15 @@
 # Title: PostTypeGenerator
 # Description: Create custom post type pages, such as galleries or a portfolio
 
-require 'inflection'
 require 'fileutils'
 require 'find'
+require 'inflection'
+require 'stringex'
 
 module Jekyll
   class PostTypeIndex < Page
     def initialize(site, base, dir, type, post_path, config)
-      slug = post_path.sub(/^#{config["folder"]}\/([^\.]+)\..*/, '\1')
-      name = post_path.sub(/^#{config["folder"]}\//, '\1')
+      slug = post_path.chomp(File.extname(post_path)).to_url
       @site = site
       @base = base
       @dir = File.join(dir, slug)
@@ -19,7 +19,7 @@ module Jekyll
       self.data = @site.layouts[type].data
 
       # Read in the data from the post
-      self.read_yaml(@base, post_path)
+      self.read_yaml(File.join(@base, config['folder']), post_path)
 
       self.data['slug'] = slug
       self.data['is_' + config['post_type']] = true
@@ -40,7 +40,7 @@ module Jekyll
         self.data['published'] = true
       end
 
-      ext = File.extname(name)
+      ext = File.extname(post_path)
       unless ['.textile', '.markdown', '.html'].include?(ext)
         ext = '.textile'
       end
@@ -99,7 +99,7 @@ module Jekyll
 
         type = "post_type/#{post_type}/index"
         if site.layouts.key?(type)
-          posts = get_files(config["folder"])
+          posts = get_files(site, config["folder"])
           posts.each do |post_path|
             post = write_index(site, config['dir'], type, post_path, config)
             post_type_list << post unless post.nil?
@@ -133,13 +133,20 @@ module Jekyll
     # Gets a list of files in the _posttype folder with a .markdown or .textile extension.
     #
     # Return Array list of post config files.
-    def get_files(folder)
+    def get_files(site, folder)
       files = []
-      Find.find(folder) do |file|
-        files << file if file=~/.(markdown|textile)$/
-      end
-
+      Dir.chdir(File.join(site.source, folder)) { files = filter_entries(Dir.glob('**/*.*')) }
       files
+    end
+
+    def filter_entries(entries)
+      entries = entries.reject do |e|
+        unless ['.htaccess'].include?(e)
+          ['.', '_', '#'].include?(e[0..0]) ||
+          e[-1..-1] == '~' ||
+          File.symlink?(e)
+        end
+      end
     end
   end
 end
