@@ -1,5 +1,8 @@
-module Jekyll
+# Title: Archive
+#
+# Creates archive pages
 
+module Jekyll
   class ArchiveIndex < Page
     def initialize(site, base, dir, type)
       @site = site
@@ -7,14 +10,18 @@ module Jekyll
       @dir = dir
       @name = 'index.html'
 
-      self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), type + '.html')
+      # Use the already cached layout content and data for theme support
+      self.content = @site.layouts[type].content
+      self.data = @site.layouts[type].data
+
       self.data['collated_posts'] = self.collate(site)
 
       year, month, day = dir.split('/')
       self.data['year'] = year.to_i
-      month and self.data['month'] = month.to_i
-      day and self.data['day'] = day.to_i
+      self.data['month'] = month.to_i if month
+      self.data['day'] = day.to_i if day
+
+      self.process(@name)
     end
 
     def collate(site)
@@ -42,17 +49,17 @@ module Jekyll
       collate(site)
 
       self.collated_posts.keys.each do |y|
-        write_archive_index(site, y.to_s, 'archives/yearly') if site.layouts.key? 'archives/yearly'
+        write_index(site, y.to_s, 'archives/yearly') if site.layouts.key? 'archives/yearly'
         self.collated_posts[ y ].keys.each do |m|
-          write_archive_index(site, "%04d/%02d" % [ y.to_s, m.to_s ], 'archives/monthly') if site.layouts.key? 'archives/monthly'
+          write_index(site, "%04d/%02d" % [ y.to_s, m.to_s ], 'archives/monthly') if site.layouts.key? 'archives/monthly'
           self.collated_posts[ y ][ m ].keys.each do |d|
-            write_archive_index(site, "%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archives/daily') if site.layouts.key? 'archives/daily'
+            write_index(site, "%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archives/daily') if site.layouts.key? 'archives/daily'
           end
         end
       end
     end
 
-    def write_archive_index(site, dir, type)
+    def write_index(site, dir, type)
       archive = ArchiveIndex.new(site, site.source, dir, type)
       archive.render(site.layouts, site.site_payload)
       archive.write(site.dest)

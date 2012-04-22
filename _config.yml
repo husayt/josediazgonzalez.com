@@ -59,10 +59,10 @@ post_types:
   - portfolio
 index_pages:
   category:
-    do_related:     false
+    related:        false
     title_prefix:   'Category: '
   tag:
-    do_related:     true
+    related:        true
     title_prefix:   'Tag: '
 backtick:
   tag:              rainbow

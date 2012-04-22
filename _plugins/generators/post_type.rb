@@ -1,28 +1,30 @@
+# Title: PostType
+#
+# Create custom post type pages, such as galleries or a portfolio,
+# similar to one would create new posts
+
 require 'inflection'
 require 'fileutils'
 require 'find'
 
 module Jekyll
-  # The PostType class creates a single post page for the specified post_type.
-  class PostType < Page
-
-    # Initialize a new PostType.
-    #   +site+ is the Site
-    #   +source+ is the String path to the <source>
-    #   +dir+ is the relative path from the base directory to the post type folder.
-    #   +name+ is the name of the post_type page to process.
-    def initialize(site, base, dir, post_type, post_path, config)
+  class PostTypeIndex < Page
+    def initialize(site, base, dir, type, post_path, config)
       slug = post_path.sub(/^#{config["folder"]}\/([^\.]+)\..*/, '\1')
       name = post_path.sub(/^#{config["folder"]}\//, '\1')
       @site = site
       @base = base
       @dir = File.join(dir, slug)
 
-      self.read_yaml(File.join(base, '_layouts'), "#{config['index_layout']}.html")
+      # Use the already cached layout content and data for theme support
+      self.content = @site.layouts[type].content
+      self.data = @site.layouts[type].data
 
+      # Read in the data from the post
       self.read_yaml(@base, post_path)
+
       self.data['slug'] = slug
-      self.data['is_' + post_type] = true
+      self.data['is_' + config['post_type']] = true
 
       if self.data.has_key?('date')
         # ensure Time via to_s and reparse
@@ -30,7 +32,7 @@ module Jekyll
       end
 
       if !self.data.has_key?('layout')
-        self.data['layout'] = config["index_layout"]
+        self.data['layout'] = type
       end
 
       # Ignore the post_type page unless it has been marked as published.
@@ -51,16 +53,20 @@ module Jekyll
   end
 
   class PostTypeList < Page
-    def initialize(site,  base, dir, post_type, posts, config)
+    def initialize(site,  base, dir, type, posts, config)
       @site = site
       @base = base
       @dir = dir
       @name = 'index.html'
 
+      # Use the already cached layout content and data for theme support
+      self.content = @site.layouts[type].content
+      self.data = @site.layouts[type].data
+
+      self.data[::Inflection.plural(config['post_type'])] = posts
+      self.data['is_' + config['post_type']] = true
+
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), config["list_layout"] + '.html')
-      self.data[::Inflection.plural(post_type)] = posts
-      self.data['is_' + post_type] = true
     end
   end
 
@@ -86,43 +92,41 @@ module Jekyll
 
         config = config.merge!({
           'page_title'  => post_type.capitalize + ': ',
-          'index_layout'=> "post_type/#{post_type}/index",
-          'list_layout' => "post_type/#{post_type}/list",
           'folder'      => "_post_types/#{post_type}",
-          'dir_key'     => post_type
+          'post_type'   => post_type,
+          'dir'         => post_type,
         }){ |key, v1, v2| v1 }
 
         post_type_list = []
 
-        if site.layouts.key? config["index_layout"]
+        type = "post_type/#{post_type}/index"
+        if site.layouts.key?(type)
           posts = get_files(config["folder"])
           posts.each do |post_path|
-            post = write_posttype_index(site, config["dir_key"], post_type, post_path, config)
-            unless post.nil?
-              post_type_list << post
-            end
+            post = write_index(site, config['dir'], type, post_path, config)
+            post_type_list << post unless post.nil?
           end
         end
 
-        if post_type_list.size > 1 and site.layouts.key? config["list_layout"]
-          write_posttype_list(site, config["dir_key"], post_type, post_type_list, config)
+        type = "post_type/#{post_type}/list"
+        if post_type_list.size > 1 and site.layouts.key? type
+          write_list(site, config['dir'], type, post_type_list, config)
         end
       end
     end
 
-    def write_posttype_index(site, dir, post_type, post_path, config)
-      index = PostType.new(site, site.source, dir, post_type, post_path, config)
-      if index.data['published']
-        index.render(site.layouts, site.site_payload)
-        index.write(site.dest)
-        site.static_files << index
-        return index
-      end
-      return nil
+    def write_index(site, dir, type, post_path, config)
+      index = PostTypeIndex.new(site, site.source, dir, type, post_path, config)
+      return nil if not index.data['published']
+
+      index.render(site.layouts, site.site_payload)
+      index.write(site.dest)
+      site.static_files << index
+      index
     end
 
-    def write_posttype_list(site, dir, post_type, posts, config)
-      index = PostTypeList.new(site, site.source, dir, post_type, posts, config)
+    def write_list(site, dir, type, posts, config)
+      index = PostTypeList.new(site, site.source, dir, type, posts, config)
       index.render(site.layouts, site.site_payload)
       index.write(site.dest)
       site.static_files << index
@@ -134,13 +138,10 @@ module Jekyll
     def get_files(folder)
       files = []
       Find.find(folder) do |file|
-        if file=~/.markdown$/ or file=~/.textile$/
-          files << file
-        end
+        files << file if file=~/.(markdown|textile)$/
       end
 
       files
     end
   end
-
 end

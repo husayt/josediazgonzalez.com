@@ -1,38 +1,27 @@
+# Title: Sitemap
+#
+# Creates an sitemap.xml
+
 require 'pathname'
 
 module Jekyll
-
   class Page
     def subfolder
       @dir
     end
   end
 
-  class SitemapGenerator < Generator
-    safe true
-    priority :low
-
-    def generate(site)
-      site_folder = site.config['destination']
-      Pathname.new(site_folder).mkdir unless File.directory?(site_folder)
-
-      sitemap = SitemapIndex.new(site, site.source, '/')
-      sitemap.render(site.layouts, site.site_payload)
-      sitemap.write(site.dest)
-      site.static_files << sitemap
-    end
-  end
-
   class SitemapIndex < Page
-    alias_method :orig_write, :write
-
-    def initialize(site, base, dir)
+    def initialize(site, base, dir, type)
       @site = site
       @base = base
       @dir  = dir
       @name = 'sitemap.xml'
 
-      self.read_yaml(File.join(base, '_layouts', 'sitemap'), @name)
+      # Use the already cached layout content and data for theme support
+      self.content = @site.layouts[type].content
+      self.data = @site.layouts[type].data
+
       self.data['pages'] = payload
       self.process(@name)
     end
@@ -58,6 +47,25 @@ module Jekyll
       end
 
       pages
+    end
+  end
+
+  class SitemapGenerator < Generator
+    safe true
+    priority :low
+
+    def generate(site)
+      site_folder = site.config['destination']
+      Pathname.new(site_folder).mkdir unless File.directory?(site_folder)
+
+      write_index(site, '/', 'sitemap/sitemap') if site.layouts.key? 'sitemap/sitemap'
+    end
+
+    def write_index(site, dir, type)
+      sitemap = SitemapIndex.new(site, site.source, dir, type)
+      sitemap.render(site.layouts, site.site_payload)
+      sitemap.write(site.dest)
+      site.static_files << sitemap
     end
   end
 end

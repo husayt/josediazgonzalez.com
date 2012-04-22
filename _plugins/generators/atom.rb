@@ -1,16 +1,21 @@
+# Title: Atom
+#
+# Creates an atom.xml feed
+
 require 'pathname'
 
 module Jekyll
   class AtomIndex < Page
-    alias_method :orig_write, :write
-
-    def initialize(site, base, dir)
+    def initialize(site, base, dir, type)
       @site = site
       @base = base
       @dir  = dir
       @name = 'atom.xml'
 
-      self.read_yaml(File.join(base, '_layouts', 'atom'), @name)
+      # Use the already cached layout content and data for theme support
+      self.content = @site.layouts[type].content
+      self.data = @site.layouts[type].data
+
       self.process(@name)
     end
   end
@@ -23,7 +28,11 @@ module Jekyll
       site_folder = site.config['destination']
       Pathname.new(site_folder).mkdir unless File.directory?(site_folder)
 
-      atom = AtomIndex.new(site, site.source, '/')
+      write_index(site, '/', 'atom/atom') if site.layouts.key? 'atom/atom'
+    end
+
+    def write_index(site, dir, type)
+      atom = AtomIndex.new(site, site.source, dir, type)
       atom.render(site.layouts, site.site_payload)
       atom.write(site.dest)
       site.static_files << atom
