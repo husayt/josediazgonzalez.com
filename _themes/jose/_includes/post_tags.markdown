@@ -1,4 +1,5 @@
-<div id="popular-tags" class="section">	
+{% if page.tags.length %}
+<div id="popular-tags" class="section">
 	<h2 class="section-title">Post Tags</h2>
 	<ul>
 		{% for tag in page.tags %}
@@ -6,3 +7,4 @@
 		{% endfor %}
 	</ul>
 </div>
+{% endif %}
