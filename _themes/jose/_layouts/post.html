@@ -41,7 +41,18 @@ body: blog single-post
 
 <div id="sidebar">
 	{% include intro.markdown %}
-	{% include post_tags.markdown %}
+
+	{% if page.tags.length %}
+	<div id="popular-tags" class="section">
+		<h2 class="section-title">Post Tags</h2>
+		<ul>
+			{% for tag in page.tags %}
+				<li><a href="/tags/{{ tag | replace:' ', '-' | downcase  }}" name="{{ tag | replace:' ','-' | downcase }}">{{ tag }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+
 	{% include sidebar_tabs.markdown %}
 	{% include portfolio.markdown %}
 </div>
