@@ -130,7 +130,7 @@ span.fancy {font-family:"Hoefler Text",Baskerville,Garamond,"Palatino Linotype",
 		#sidebar ol {list-style-type:decimal; list-style-position:outside; padding-left:20px;}
 		#sidebar ul li, #sidebar ol li {padding:3px 0; border-top:1px solid #ddd;}
 		#sidebar ul li:first-child, #sidebar ol li:first-child {padding-top:0; border-top:0;}
-		#sidebar .section {background:url(/images/ui_inner_shadow.png) left top repeat-x; padding:20px; border-bottom:1px solid white;}
+		#sidebar .section {background:url(/images/ui_inner_shadow.png) left top repeat-x; padding:20px; }
 		#sidebar .section:last-of-type {border-bottom:0;}
 		#sidebar .section:first-of-type {background:0; border-top:0;}
 		#sidebar #ads {padding-bottom:20px; overflow:hidden;}
