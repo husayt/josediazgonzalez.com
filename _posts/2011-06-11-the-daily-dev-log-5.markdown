@@ -14,7 +14,8 @@ is it possible to remove the pages/ on the url?
 
 The hard way is to specify each in your `app/config/routes.php` one as follows:
 
-{% highlight routes.php %}<?php
+{% highlight routes.php %}
+<?php
 Router::connect('/about', array(
     'controller' => 'pages',
     'action' => 'display'
@@ -41,7 +42,7 @@ $staticPages = array(
     'legal',
     'policy',
 );
- 
+
 $staticList = implode('|', $staticPages);
 
 Router::connect('/:static', array(
