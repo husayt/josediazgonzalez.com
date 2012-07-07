@@ -5,8 +5,35 @@ body: full-width page
 {% include intro_responsive.markdown %}
 <div id="content">
 	<div class="post">
-		<h1 class="post-title">{{ page.title }}</h1>
-		<p class="lead">{{ page.lead }}</p>
+    {% if page.image %}
+      <div class="post-preamble">
+        <div class="post-image">
+          <div>
+            <img src="{{ page.image }}" >
+          </div>
+          {% if page.subtitle %}<span>{{ page.subtitle }}</span>{% endif %}
+        </div>
+        <h1 class="post-title">{{ page.title }}</h1>
+        <p class="lead">
+          {% if page.mobile_lead %}
+            <span class="mobile-hide">{{ page.lead }}</span>
+            <span class="mobile-show">{{ page.mobile_lead }}</span>
+          {% else %}
+            {{ page.lead }}
+          {% endif %}
+        </p>
+      </div>
+    {% else %}
+  		<h1 class="post-title">{{ page.title }}</h1>
+  		<p class="lead">
+        {% if page.mobile_lead %}
+          <span class="mobile-hide">{{ page.lead }}</span>
+          <span class="mobile-show">{{ page.mobile_lead }}</span>
+        {% else %}
+          {{ page.lead }}
+        {% endif %}
+      </p>
+    {% endif %}
 		{{ content }}
 	</div>
 </div>

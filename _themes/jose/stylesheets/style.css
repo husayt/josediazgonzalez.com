@@ -255,6 +255,7 @@ body.home #main-container {border-top:0;}
 	#selected-work ul li {padding:0; border:0; display:inline;}
 	#selected-work ul li a {color:#fff; width:125px; height:115px; margin-bottom:10px; position:relative; display:block; float:left; overflow:hidden;}
 	#selected-work ul li.odd a {margin-right:10px;}
+	#selected-work ul li a img {height: 115px; width: 125px;}
 	#selected-work ul li a span {background:rgb(0,0,0); background:rgba(0,0,0,0.75); color:#fff; font-size:12px; font-style:italic; width:95px; height:85px; padding:10px; border:5px solid #000; display:block; position:absolute; left:0; top:125px;}
 	#selected-work ul li a:hover span {top:0;}
 	#selected-work ul li a:hover {-moz-box-shadow:0 0 4px rgba(0,0,0,0.4); -webkit-box-shadow:0 0 4px rgba(0,0,0,0.4);}
@@ -590,6 +591,8 @@ div.success p {line-height:24px; padding:0; margin-left:36px; }
 	body.single-project .project-content { width: 325px; }
 	.mobile-hide { display: none; }
 	.mobile-show { display: block; }
+	.tablet-hide { display: none; }
+	.tablet-show { display: block; }
 	.mobile-show #update-icons {position:absolute; right:30px; top:93px; padding:5px; background:#e2e5eb; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; border:1px solid #ccc;}
 	.mobile-show #update-icons:hover {border-color:#aaa;}
 	.mobile-show #update-icons li:first-child {border:0;}
