@@ -203,6 +203,12 @@ span.fancy {font-family:"Hoefler Text",Baskerville,Garamond,"Palatino Linotype",
 			p#qc-thanks { display:none;}
 			p#qc-thanks strong { font-size:14px;}
 
+/* 3.1. STICKY FOOTER HACK */
+* {margin: 0; }
+html, body {height: 100%;}
+.wrapper {min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -122px;}
+.footer, .push { height: 122px; }
+
 
 /* 4. HOME
 ------------------------------------- */
@@ -515,6 +521,84 @@ div.success p {line-height:24px; padding:0; margin-left:36px; }
 #dsq-content .dsq-comment.child .dsq-full-comment .dsq-comment-footer {border-bottom: none !important; }
 #dsq-content .dsq-comment-text { font-size: 14px !important; line-height: 1.6 !important; padding: 0 0 20px 8px !important; }
 #dsq-content .dsq-comment-footer { border-bottom: 1px dotted #BBB !important; padding-bottom: 15px !important ;}
+
+/* 10. About Page
+------------------------------------- */
+.post-preamble {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  min-height: 190px;
+  position: relative;
+}
+.post-image {
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+}
+.post-image div {
+  border: 1px solid #DDD;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  padding: 2px;
+}
+.post-image img {
+  display: block;
+  width: 200px;
+}
+.post-image span {
+  font-size: 11px;
+  font-style: italic;
+}
+.about-page .post ul {
+  padding-bottom: 0;
+}
+.about-page .post p {
+  padding-bottom: 0;
+}
+.about-page .post ul p {
+  font-size: 14px;
+  padding-right: 3em;
+}
+.about-page .location {
+  font-weight: bold;
+  position: relative;
+}
+.about-page .location .time-period {
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.about-page .position {
+  margin-bottom: 4px;
+}
+.about-page #side-intro {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  body.page .post h1.post-title {
+    font-size: 32px;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .post-image {
+    position: static;
+  }
+  .post-image img {
+    width: 274px;
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    filter: flipv; /*IE*/
+  }
+  .post h2,
+  .post .lead {
+    text-align: center;
+  }
+}
 
 /* 11. EXTRAS
 ------------------------------------- */
