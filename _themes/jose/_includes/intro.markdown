@@ -5,8 +5,8 @@
 	</div>
 	<div id="update-icons">
 		<ul>
-			<li class="rss"><a href="/atom.xml" title="Grab the Feed">RSS</a></li>
-			<li class="twitter"><a class="twitter-anywhere-user" href="http://www.twitter.com/savant">@savant</a></li>
+			<li><a href="/atom.xml" title="Grab the Feed" class="icon-rss"></a> </li>
+      <li><a href="http://www.twitter.com/savant" class="twitter-anywhere-user icon-twitter" ></a></li>
 		</ul>
 	</div>
 </div>

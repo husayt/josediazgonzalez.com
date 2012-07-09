@@ -163,11 +163,7 @@ span.fancy {font-family:"Hoefler Text",Baskerville,Garamond,"Palatino Linotype",
 		#sidebar #update-icons li:first-child {border:0;}
 		#sidebar #update-icons li:last-child {padding:0;}
 		#sidebar #update-icons li { padding:0 3px 0 0; border:0; float:left; }
-		#sidebar #update-icons li a { display: block; width:16px; height:16px; text-indent:-9999px; overflow:hidden;}
-		#sidebar #update-icons li.rss a {background:url(/images/icons/ico_rss_sm.png) no-repeat; }
-		#sidebar #update-icons li.twitter a {background:url(/images/icons/ico_twitter_sm.png) no-repeat;}
-		#sidebar #update-icons li.fb a {background:url(/images/icons/ico_fb_sm.png) no-repeat;}
-		#sidebar #update-icons li.email a {background:url(/images/icons/ico_email_sm.png) no-repeat;}
+		#sidebar #update-icons li a { display: block; width:16px; height:16px; }
 		#sidebar #popular-tags ul li {border:0; padding:0; display:inline;}
 		#sidebar #popular-tags ul li a {background:#e2e5eb; color:#999da3; font-size:12px; font-style:italic; line-height:1; padding:6px 8px; display:inline-block; margin: 0 8px 8px 0; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; -khtml-border-radius:3px; }
 		#sidebar #popular-tags ul li a:hover {background:#DA1A0B; color:#fff;}
@@ -682,11 +678,7 @@ div.success p {line-height:24px; padding:0; margin-left:36px; }
 	.mobile-show #update-icons li:first-child {border:0;}
 	.mobile-show #update-icons li:last-child {padding:0;}
 	.mobile-show #update-icons li { padding:0 3px 0 0; border:0; float:left; }
-	.mobile-show #update-icons li a { display: block; width:16px; height:16px; text-indent:-9999px; overflow:hidden;}
-	.mobile-show #update-icons li.rss a {background:url(/images/icons/ico_rss_sm.png) no-repeat; }
-	.mobile-show #update-icons li.twitter a {background:url(/images/icons/ico_twitter_sm.png) no-repeat;}
-	.mobile-show #update-icons li.fb a {background:url(/images/icons/ico_fb_sm.png) no-repeat;}
-	.mobile-show #update-icons li.email a {background:url(/images/icons/ico_email_sm.png) no-repeat;}
+	.mobile-show #update-icons li a { display: block; width:16px; height:16px; }
 }
 @media screen and (max-width: 600px) {
 	#main-container {
@@ -755,9 +747,5 @@ div.success p {line-height:24px; padding:0; margin-left:36px; }
 	.mobile-show #update-icons li:first-child {border:0;}
 	.mobile-show #update-icons li:last-child {padding:0;}
 	.mobile-show #update-icons li { padding:0 3px 0 0; border:0; float:left; }
-	.mobile-show #update-icons li a { display: block; width:16px; height:16px; text-indent:-9999px; overflow:hidden;}
-	.mobile-show #update-icons li.rss a {background:url(/images/icons/ico_rss_sm.png) no-repeat; }
-	.mobile-show #update-icons li.twitter a {background:url(/images/icons/ico_twitter_sm.png) no-repeat;}
-	.mobile-show #update-icons li.fb a {background:url(/images/icons/ico_fb_sm.png) no-repeat;}
-	.mobile-show #update-icons li.email a {background:url(/images/icons/ico_email_sm.png) no-repeat;}
+	.mobile-show #update-icons li a { display: block; width:16px; height:16px; }
 }
