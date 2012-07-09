@@ -204,11 +204,11 @@ span.fancy {font-family:"Hoefler Text",Baskerville,Garamond,"Palatino Linotype",
 			p#qc-thanks strong { font-size:14px;}
 
 /* 3.1. STICKY FOOTER HACK */
-* {margin: 0; }
+/** {margin: 0; }
 html, body {height: 100%;}
 .wrapper {min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -122px;}
 .footer, .push { height: 122px; }
-
+*/
 
 /* 4. HOME
 ------------------------------------- */
