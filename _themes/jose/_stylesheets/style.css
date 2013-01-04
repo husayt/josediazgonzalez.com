@@ -289,6 +289,7 @@ body.home #main-container {border-top:0;}
 	.post-title a:active {color:#000;}
 	.post .post-meta {font-size:12px; text-transform:uppercase; padding:2px 0 6px; margin:0 0 15px; border-top:0; border-bottom:1px dotted #bbb;}
 	.post .post-meta span {margin-right:5px;}
+	.post .post-meta span.gittip {float: right; vertical-align: top; margin-top: -1px; margin-right: -10px;}
 	.post .post-meta span img {margin-right:5px; position:relative; top:2px;}
 	.post h5, .post h6 {text-transform:uppercase; letter-spacing: 1px; }
 	.post p.lead { font-size:20px; color:#808080; }

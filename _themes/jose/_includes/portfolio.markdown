@@ -5,7 +5,7 @@
 	<ul>
 	{% for page in site.post_types.portfolio limit: 4 %}
 		<li class="{% cycle 'odd', 'even' %}">
-			<a href="#">
+			<a href="/portfolio/{{ page.slug }}/">
 				<img src="/images/portfolio/{{ page.slug }}/small.jpg" alt="{{ page.title }}" title="{{ page.title }}"/>
 				<span>{{ page.title }}</span>
 			</a>
