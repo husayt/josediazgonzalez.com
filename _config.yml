@@ -6,10 +6,22 @@
 # All plugins should be able to depend upon these settings
 
 title:              Jose Diaz-Gonzalez
+description:
 author:             Jose Diaz-Gonzalez
 email:              support@savant.be
-theme:              jose
+theme:              twentytwelve
 location:           'New York, New York'
+navigation:
+  - title:          Home
+    link:           '/'
+  - title:          Categories
+    link:           '/categories/'
+  - title:          Tags
+    link:           '/tags/'
+  - title:          Hire Me
+    link:           '/hire-me/'
+  - title:          About
+    link:           '/about/'
 
 # ----------------------- #
 #         Layouts         #
