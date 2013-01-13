@@ -1,14 +1,17 @@
 ---
-  title: Trees Versus Graphs versus Vines
-  category: Other
+  title:       "Trees Versus Graphs versus Vines"
+  description: Trees Versus Graphs versus Vines
+  category:    Other
   tags:
     - trees
     - graphs
     - vines
     - tree behavior
     - graph behavior
-  layout: post
-  description: Trees Versus Graphs versus Vines
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 {% blockquote Djabbour %}

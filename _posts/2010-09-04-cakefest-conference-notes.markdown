@@ -5,8 +5,11 @@
     - cakephp
     - conference
     - cakefest
-  layout: post
   description: CakeFest 2010 Conference notes and links
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 ## Talk slideshows

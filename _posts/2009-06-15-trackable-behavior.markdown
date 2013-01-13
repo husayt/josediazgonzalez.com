@@ -1,6 +1,8 @@
 ---
-  title: Trackable Behavior
-  category: Behaviors
+  title:       "Trackable Behavior"
+  date:        2009-06-15 00:00
+  description: Trackable Behavior for CakePHP 1.2/1.3
+  category:    Behaviors
   tags:
     - cakephp
     - trackable
@@ -9,8 +11,10 @@
     - quicktip
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: Trackable Behavior for CakePHP 1.2/1.3
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 
@@ -18,7 +22,7 @@ As always, I like taking code and trying to improve it. It's an exercise for me,
 
 In this case, I had been thinking about how to track who created a record, and who last modified said record. There is [Logable Behavior](http://bakery.cakephp.org/articles/view/logablebehavior) at the Bakery, but I thought it was a bit overkill for my needs. So I went with [WhoDidIt Behavior](http://bakery.cakephp.org/articles/view/whodidit-behavior-automagic-created_by-and-modified_by-fields) by Daniel Vecchiato.
 
-The implementation was still a bit messy, but I understood it well enough. Then I read Matt Curry's [Super Awesome Advanced CakePHP Tips eBook](http://www.pseudocoder.com/free-cakephp-book/) and saw a slightly varied implementation of WhoDidIt, except using his yummy User::get() syntax. Since this still required adding the model association on what you were tracking, it wasn't self-contained and a bit messier than WhoDidIt.
+The implementation was still a bit messy, but I understood it well enough. Then I read Matt Curry's [Super Awesome Advanced CakePHP Tips eBook](http://www.pseudocoder.com/free-cakephp-book/) and saw a slightly varied implementation of WhoDidIt, except using his yummy `User::get()` syntax. Since this still required adding the model association on what you were tracking, it wasn't self-contained and a bit messier than WhoDidIt.
 
 So at the end of the day, I decided to combine the two and produce this (hopefully) equally yummy Behavior. I believe it's a small improvement on both behavior's in that it:
 

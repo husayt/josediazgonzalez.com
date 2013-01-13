@@ -7,8 +7,11 @@
     - model
     - loadmodel
     - cakephp 1.3
-  layout: post
   description: How do you use loadModel() in the CakePHP Model? Hint, you don't. There are other ways though.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 In IRC, a frequently asked question is how to use unrelated models in both controllers and models.
@@ -19,8 +22,7 @@ In the Model, however, the answer has been to use `ClassRegistry::init()` to loa
 
 Last night, someone asked about what they should use in a Model, so instead of repeating the same tired answers, I came up with a `Model::loadModel()` method of my own.
 
-{% highlight app_model.php %}
-<?php
+``` lang:php
 class AppModel extends Model {
 
 /**
@@ -73,22 +75,20 @@ class AppModel extends Model {
     }
 
 }
-?>
-{% endhighlight %}
+```
 
 I think it's pretty nifty. Usage is simple:
 
-{% highlight user.php %}
-<?php
+``` lang:php
 class User extends AppModel {
-    
+
     function getPosts($limit = 10) {
         $this->loadModel('Post');
         return $this->Post->find('all', array('limit' => $limit));
     }
 
     function getTags($limit = 10) {
-        // Tag is really just an alias for a Category, we can then 
+        // Tag is really just an alias for a Category, we can then
         // load up separate instances of the model for things like
         // attaching behaviors etc.
         $this->loadModel('Tag', 'Category');
@@ -96,8 +96,7 @@ class User extends AppModel {
     }
 
 }
-?>
-{% endhighlight %}
+```
 
 Of course, once you call `Model::loadModel()`, the loaded model is available for the length of the entire request, so long as it is called from that same initial model. It would be useful in cases where, for example, one needs to call an internal, unrelated Api Model repeatedly across multiple model methods.
 

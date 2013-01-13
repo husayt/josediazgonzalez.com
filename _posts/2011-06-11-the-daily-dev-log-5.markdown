@@ -2,8 +2,11 @@
   title: The Daily Dev Log - 5
   category: Dev Log
   tags:
-  layout: post
   description: Writing a CakeRoute might be straightforward, and when used correctly, can really trim down the number of routes you connect in your routes.php file.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Last night, someone came into the `#cakephp` irc room on freenode,  attempting to place static html files in the `app/webroot` directory. I was able to steer him towards the solution of moving them to the `app/views/pages` directory, but then he had the following question:
@@ -14,8 +17,7 @@ is it possible to remove the pages/ on the url?
 
 The hard way is to specify each in your `app/config/routes.php` one as follows:
 
-{% highlight routes.php %}
-<?php
+``` lang:php
 Router::connect('/about', array(
     'controller' => 'pages',
     'action' => 'display'
@@ -31,12 +33,11 @@ Router::connect('/policy', array(
     'action' => 'display'
     'policy'
 ));
-?>{% endhighlight %}
+```
 
 This is incredibly inefficient for several reasons. One, we have to add another route each and every time we add a new page. Or remove it once the page has been deleted. Two, it both clutters up the `app/config/routes.php` file, as well as uses increasingly more and more memory each time we add a new route. This can be mitigated by using the following technique (from [teknoid's post](http://nuts-and-bolts-of-cakephp.com/2011/03/15/dealing-with-static-pages-v2-or-3/)):
 
-{% highlight routes.php %}
-<?php
+``` lang:php
 $staticPages = array(
     'about',
     'legal',
@@ -53,14 +54,13 @@ Router::connect('/:static', array(
         )
     );
 ?>
-{% endhighlight %}
+```
 
 So now we only have one extra route, but we also have to ensure that we update the `$staticPages` variable each time we add a new page. I'm too lazy for that.
 
 Fortunately someone came up with a brilliant idea around this. Geoffrey Gabbers has a [blog post](http://garbers.co.za/2011/06/01/static-pages-in-cakephp/) that utilizes some fancy `glob()` footwork to figure out if that page should be routed:
 
-{% highlight routes.php %}
-<?php
+``` lang:php
 $availablePages = glob(VIEWS . 'pages' . DS . '*.ctp');
 if ($availablePages) {
     $extensions = array_pad(array(), count($availablePages), '.ctp');
@@ -70,8 +70,7 @@ if ($availablePages) {
         array('page' => implode('|', $availablePages), 'pass' => array('page'))
     );
 }
-?>
-{% endhighlight %}
+```
 
 {% pullquote %}
 CakeRoute classes are available as of 1.3, and will be available in the upcoming 2.0 release
@@ -85,13 +84,11 @@ I figured I'd take a stab at my issue by writing a small routing class. A can of
 
 CakeRoute classes need only define the `match()` and `parse()` methods. In my case, to make it even more automagic, I override the PHP4-style constructor - which seems to be called over the PHP5-style constructor even though `CakeRoute` the classes do not extend the CakePHP `Object` class - to provide some consistent defaults. Now setting up new `/:page` style routes is as simple as adding the following to your `app/config/routes.php` file:
 
-{% highlight routes.php %}
-<?php
+``` lang:php
 App::import('Lib', 'PageRoute.PageRoute');
 Router::connect('/:page', array('controller' => 'pages', 'action' => 'display'),
 	array('routeClass' => 'PageRoute')
 );
-?>
-{% endhighlight %}
+```
 
 Thats all that is needed. No need for any further configuration, although my [plugin](https://github.com/josegonzalez/page_route) does allow it if necessary. Feel free to catch it on Github :)

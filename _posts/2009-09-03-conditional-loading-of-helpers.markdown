@@ -1,6 +1,8 @@
 ---
-  title: Conditional Loading of Helpers
-  category: Helpers
+  title:       "Conditional Loading of Helpers"
+  date:        2009-09-03 00:00
+  description: Example of conditionally loading helpers in a view
+  category:    Helpers
   tags:
     - cakephp
     - helpers
@@ -8,19 +10,19 @@
     - quicktip
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: Example of conditionally loading helpers in a view
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
-{% highlight php %}
-<?php
+``` lang:php
 class TumblesController extends TumbleAppController {
-
-	var $name = 'Tumbles';
 	function beforeRender() {
 		parent::beforeRender()
 		$this->_configureHelpers($this->params['action']);
 	}
+
 /**
  * Configures the helpers for the current action
  *
@@ -47,5 +49,4 @@ class TumblesController extends TumbleAppController {
 		}
 	}
 }
-?>
-{% endhighlight %}
+```

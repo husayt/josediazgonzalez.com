@@ -1,6 +1,7 @@
 ---
-  title: Inflect Shell - Inflect the heck out of your word(s) 
-  category: Console
+  title:       "Inflect Shell - Inflect the heck out of your word(s)"
+  description: CakePHP provides us with a nice little Inflector class. It's quite useful in creating slugs, but can't be used for testing purposes without creating a dummy page.
+  category:    Console
   tags:
     - cakephp
     - cakeshell
@@ -8,8 +9,10 @@
     - github
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: CakePHP provides us with a nice little Inflector class. It's quite useful in creating slugs, but can't be used for testing purposes without creating a dummy page.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 CakePHP provides us with a nice little Inflector class. It's quite useful in creating slugs, as you can see from [Mariano Iglesias' Sluggable Behavior](http://github.com/mariano/syrup/blob/master/models/behaviors/sluggable.php). You can also use it to see what you should name your tables based upon your model name (is the tableized form of 'Person' 'person' or 'peoples'?). To initiate such tests, though, you'd usually need to either embed the code in an app - why are we using an entire app to variablize a phrase? - or use something like [Matt Curry's](http://pseudocoder.com/) [Interactive Plugin](github.com/mcurry/interactive) for the [DebugKit](thechaw.com/debug_kit). Both slightly lame because of the setup.
@@ -18,12 +21,12 @@ Anyways, I needed to turn a word/phrase into what the fieldname in the database 
 
 Usage is simple:
 
-{% highlight bash %}
+``` lang:shell
 cake inflect
 cake inflect methodName
 cake inflect methodName word
 cake inflect methodName words to inflect
-{% endhighlight %}
+```
 
 It'll prompt for any missing information/anything that isn't correct (there isn't a 'helff' Inflector method, for example).
 

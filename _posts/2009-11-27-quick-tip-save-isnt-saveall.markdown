@@ -1,26 +1,29 @@
 ---
-  title: Quick Tip - Model::save() isn't Model::saveAll()
-  category: Models
+  title:       "Quick Tip - Model::save() isn't Model::saveAll()"
+  description: A very small example on when to use Model::save() versus Model::saveAll()
+  category:    Models
   tags:
     - quicktip
     - cakephp
     - models
     - snippet
-  layout: post
-  description: A very small example on when to use Model::save() versus Model::saveAll()
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Saving multiple records that are related to a primary record?
 
-{% highlight php %}
+``` lang:php
 <?php echo $this->Page->save($this->data); ?>
-{% endhighlight %}
+```
 
 That won't save your related model data. Just the primary model (Page Model in this case).
 
-{% highlight php %}
+``` lang:php
 <?php echo $this->Page->saveAll($this->data, array('validate' => 'first')); ?>
-{% endhighlight %}
+```
 
 This will. Have fun saving your page meta data.
 

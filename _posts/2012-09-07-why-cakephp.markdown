@@ -1,10 +1,13 @@
 ---
   title: Why CakePHP?
+  description: Why choose CakePHP over any other framework?
   category: CakePHP
   tags:
     - cakephp
-  layout: post
-  description: Why choose CakePHP over any other framework?
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Yesterday, Zend Framework 2.0 and Symfony 2.1 were released... almost at the same time. First, I want to congratulate both the Zend Framework team and the Symfony team for their huge milestones; I know that working on a new major version is no small task.

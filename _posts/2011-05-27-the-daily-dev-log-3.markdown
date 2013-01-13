@@ -2,8 +2,11 @@
   title: The Daily Dev Log 3
   category: Dev Log
   tags:
-  layout: post
   description: Defining joins in CakePHP finds is simple, but can result in weird sql statements if used in conjunction with Containable.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 For those that didn't know, you can specify a custom join in CakePHP by doing the following:

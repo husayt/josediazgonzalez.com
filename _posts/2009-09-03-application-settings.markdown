@@ -1,6 +1,8 @@
 ---
-  title: Application Settings
-  category: CakePHP
+  title:       "Application Settings"
+  date:        2009-09-03 00:00
+  description: Snippet of code to load application-level settings from the database
+  category:    CakePHP
   tags:
     - cakephp
     - helpers
@@ -8,12 +10,13 @@
     - quicktip
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: Snippet of code to load application-level settings from the database
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
-{% highlight php %}
-<?php
+``` lang:php
 /**
  * AppController
  *
@@ -26,7 +29,7 @@
 class AppController extends Controller {
 /**
 * Reads settings from database and writes them using the Configure class
-* 
+*
 * @return void
 * @access private
 * @author Jose Diaz-Gonzalez
@@ -46,5 +49,4 @@ class AppController extends Controller {
 		}
 	}
 }
-?>
-{% endhighlight %}
+```

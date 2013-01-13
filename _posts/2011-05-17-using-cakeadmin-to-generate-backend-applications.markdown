@@ -5,8 +5,11 @@
     - cake_admin
     - admin
     - cakephp 1.3
-  layout: post
   description: CakeAdmin is a CakePHP 1.3 plugin for building web application backends quickly and easily. It is most analogous to running `cake bake` which generating your basic application structure with a series of questions.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 [CakeAdmin](https://github.com/josegonzalez/cake_admin) is a CakePHP 1.3 plugin for building web application backends quickly and easily. It is most analogous to running `cake bake` which generating your basic application structure with a series of questions.
@@ -21,29 +24,24 @@ Future development may allow for rollout of CakeAdmin classes with built-in sche
 
 [CakeAdmin](https://github.com/josegonzalez/cake_admin) works by specifying a series of properties on a `*CakeAdmin` class. For example, we might have a `PostCakeAdmin` class - available in `app/libs/admin/post_cake_admin.php` - that builds an administrative section for your `Post` model. The simplest example is below:
 
-{% highlight post_cake_admin.php %}
-<?php
+``` lang:php
 class PostCakeAdmin extends CakeAdmin {
 }
-?>
-{% endhighlight %}
+```
 
 The above admin file would create the `index`, `add`, `edit`, and `delete` actions for your backend in `app/plugins/admin/`. This means you would be able to access it at `localhost/admin/posts`, without having to turn on prefix routing. For those who wish to use prefix routing as well as `cake_admin`, it would be possible to specify additional routes to ensure everything in your new plugin works.
 
 It's also possible to specify special behaviors on a given `*CakeAdmin` class. Given a Post model that would normally have a `photo` field storing a photo name, we might have the following `PostCakeAdmin` class:
 
-{% highlight post_cake_admin.php %}
-<?php
+``` lang:php
 class PostCakeAdmin extends CakeAdmin {
 	var $actsAs = array('Upload.Upload' => array('photo'));
 }
-?>
-{% endhighlight %}
+```
 
 The above assumes we're using the [Upload Plugin](https://github.com/josegonzalez/upload), but we could extend this idea to pretty much any other behavior. We would still need to modify our forms to ensure that the form fields are correct for this particular plugin like so:
 
-{% highlight post_cake_admin.php %}
-<?php
+``` lang:php
 class PostCakeAdmin extends CakeAdmin {
     var $actsAs = array('Upload.Upload' => array('photo'));
     var $actions = array(
@@ -77,8 +75,7 @@ class PostCakeAdmin extends CakeAdmin {
         )
     );
 }
-?>
-{% endhighlight %}
+```
 
 {% pullquote %}
 Built-in actions include index, add, edit, delete, view, history, changelog. Since each action has a very specific, and likely peculiar configuration setup, you may want to delve further into each class for more information.

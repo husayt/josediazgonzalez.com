@@ -6,8 +6,11 @@
     - cakephp
     - life
     - development
-  layout: post
   description: 2009 wasn't so bad, and here's how it owned face for me.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 I'd like to start out by thanking Sun Microsystems, and in particular my manager during my short stint more than a year ago there, [Rinaldo DiGiorgio](digiorgio.com/)([twitter](http://twitter.com/digitalrinaldo)). I can honestly say I'd not be as good a programmer (or as great a copy-paster :P ) were it not for the time I spent there. I learned a lot, but more importantly I had the time to reflect upon just how far I had to go to even dent the knowledge I wanted to know. Thanks for the opportunity :)

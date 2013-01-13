@@ -1,21 +1,24 @@
 ---
-  title: Cacheable Behavior
-  category: Behaviors
+  title:       "Cacheable Behavior"
+  date:        2009-09-04 00:00
+  description: Cacheable Model behavior caches views pertaining to model records to the disk via a RequestAction hack.
+  category:    Behaviors
   tags:
     - cakephp
     - behaviors
     - caching
     - quicktip
     - cakephp 1.2
-  layout: post
-  description: Cacheable Model behavior caches views pertaining to model records to the disk via a RequestAction hack.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
-{% highlight php %}
-<?php
+``` lang:php
 /**
  * Cacheable Model Behavior
- * 
+ *
  * Caches the file to the database
  *
  * @package app
@@ -98,5 +101,4 @@ class CacheableBehavior extends ModelBehavior {
 		$file->close();
 	}
 }
-?>
-{% endhighlight %}
+```

@@ -7,7 +7,10 @@
     - project management
     - wishlist
     - side projects
-  layout: post
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Looking at thechaw.com to handle my project management needs (on a related note, I'll be doing less of this although its still a problem I want to look at. Anyone need a developer in the NYC area? I work for chump-change!) Regardless, here is a list of things I'd like to see happen, and my thoughts on the whole matter (ignore any stupidities herein). I'm probably going to go through and do one or two of these myself as plugins, but ymmv everyone.

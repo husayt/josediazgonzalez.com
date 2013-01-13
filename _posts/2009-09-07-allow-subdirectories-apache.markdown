@@ -1,16 +1,20 @@
 ---
-  title: Allow Subdirectories Apache
-  category: Deployment
+  title:       "Allow Subdirectories Apache"
+  date:        2009-09-07 00:00
+  description: Example .htaccess file for allowing custom subdirectories in your CakePHP application under Apache
+  category:    Deployment
   tags:
     - cakephp
     - htaccess
     - apache
     - quicktip
-  layout: post
-  description: Example .htaccess file for allowing custom subdirectories in your CakePHP application under Apache
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
-{% highlight apache %}
+``` lang:apache
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
@@ -23,4 +27,4 @@
     RewriteRule    (.*) app/webroot/$1 [L]
 
 </IfModule>
-{% endhighlight %}
+```

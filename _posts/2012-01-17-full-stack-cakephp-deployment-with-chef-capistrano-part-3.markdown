@@ -5,8 +5,11 @@
     - deployment
     - chef
     - cakephp
-  layout: post
   description: Templating, Custom Resources, and Cookbook creation for the Chef Deployment Tool
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 {% blockquote %}
@@ -21,21 +24,25 @@ For PHP developers, the big difference is that it uses short-syntax - `<? ?>` - 
 
 Another key change is in variable output within strings. In PHP, we can do:
 
+``` lang:php
     $foo = 'bar';
     $baz = "{$foo}";
     echo $baz; // outputs: bar
+```
 
 In Ruby, we might do the following:
 
+``` lang:ruby
     foo = 'bar'
     baz = "#{foo}"
     puts baz # outputs: bar
+```
 
 That's pretty neat I think, not that big of a change.
 
 Templates alone aren't very useful, but they are normally used in conjunction with the `Template` resource in Chef as follows:
 
-{% highlight ruby %}
+``` lang:ruby
 template "/path/to/where/template/should/be/written/to" do
   source "some_template.erb"
   owner "root"
@@ -46,7 +53,7 @@ template "/path/to/where/template/should/be/written/to" do
     :an_array   => [ "of", "values" ]
   )
 end
-{% endhighlight %}
+```
 
 In the above example, we are creating the file `/path/to/where/template/should/be/written/to` from the `some_template.erb` file. We're also setting the owner, group and the permissions of the file. The variables `var_name` and `an_array` would be available as variables in the view.
 
@@ -56,7 +63,7 @@ Pretty straight-forward I think.
 
 Attributes are fairly straight-forward. They allow you to set defaults for a particular cookbook by setting/modifying the variables in your `DNA` config.
 
-{% highlight default.rb %}
+``` lang:ruby
 # Deploy settings
 default[:server][:production][:dir] = "/apps/production"
 default[:server][:production][:hostname] = "example.com"
@@ -68,13 +75,13 @@ if node.nginx.attribute?("varnish")
 end
 
 override[:server][:extensions][:gzip] = true
-{% endhighlight %}
+```
 
 In the above, we are setting the default `paths` and `hostnames` for the `production` and `staging` server environments, as well as setting some `varnish`-related configuration if `node[:nginx][:varnish]` exists; We also override the configured server extensions to ensure `gzip` will always be turned on, in case someone tries to turn it off via the `DNA` configuration.
 
 I normally just set defaults and forget about it. For those deploying across multiple Operating Systems, we can do the following to set variables depending upon the OS:
 
-{% highlight default.rb %}
+``` lang:ruby
 # Platform specific settings
 case platform
 when "redhat","centos","fedora","suse"
@@ -86,7 +93,7 @@ when "windows"
 else
   # When all else fails...
 end
-{% endhighlight %}
+```
 
 Attributes are a good way of providing simple, cross-platform compatible defaults that can be later tweaked by way of `DNA` files. They allow you to provide a baseline configuration that might be modified in cases where we have more memory, lower disk throughput, or some other deviation from the norm.
 
@@ -100,7 +107,7 @@ Definitions are the <del>poor</del> smart mans way of creating resources. Defini
 
 A good candidate is bringing up a new virtualhost for nginx.
 
-{% highlight cookbooks/nginx/definitions/nginx_up.rb (nginx_up.rb) %}
+``` lang:ruby
 # Definition
 define :nginx_up, :enable => true do
 
@@ -118,18 +125,18 @@ define :nginx_up, :enable => true do
     action :enable
   end
 end
-{% endhighlight %}
+```
 
 The above definition creates a templated virtualhost file and then enables it using nginx. While it is simple, it only displays a small portion of what you can do with definitions. You could simply bring up a virtualhost, or automatically create EBS-mounted volumes with 2 partitions, each having certain folders. That's merely up to your imagination. Personally, I like the beauty of typing the following into my cookbooks:
 
-{% highlight nginx_cakephp.rb %}
+``` lang:ruby
 # info is an array of data
 
 nginx_up "#{info[:hostname]}.#{info[:base]}" do
   hostname "#{info[:hostname]}.#{info[:base]}"
   variables(info[:variables])
 end
-{% endhighlight %}
+```
 
 Instead of the alternative. But thats just me.
 
@@ -139,7 +146,7 @@ This one is simple. Sometimes you need to have another cookbook loaded for your 
 
 We can specify that an entire cookbook depends upon another cookbook (or recipe) in the metadata file (json or ruby, I prefer ruby):
 
-{% highlight php/metadata.rb metadata.rb %}
+``` lang:ruby
 maintainer        "Jose Diaz-Gonzalez"
 maintainer_email  "support@savant.be"
 license           "MIT"
@@ -147,12 +154,11 @@ description       "Installs and maintains php and php modules"
 
 depends           "nginx"
 depends           "mysql::client"
-{% endhighlight %}
+```
 
 If we conditionally need it for a particular recipe/definition, we just include the recipe as follows:
 
-{% highlight php/definitions/pear.rb pear.rb %}
-
+``` lang:ruby
 define :pear_module, :module => nil, :enable => true do
 
   include_recipe "php::pear"
@@ -164,8 +170,7 @@ define :pear_module, :module => nil, :enable => true do
   end
 
 end
-
-{% endhighlight %}
+```
 
 By default, `php` maps to `php::default`, where `default.rb` is the `default` recipe for a cookbook. Please keep this in mind.
 

@@ -8,8 +8,11 @@
     - html purifier
     - licensing
     - cakephp 1.3
-  layout: post
   description: Sanitizing saved data when rendering the view is stupid, and it should be done when creating/updating records.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Someone on #cakephp had an issue with PHP timing out. Normally, I'd say it was just bad coding, but it's probably just a bad practice on their part. The issue they had is with HTML Purifier.
@@ -22,13 +25,12 @@ So how do we do it? Well, we can either overwrite the original data before savin
 
 I created a behavior that uses the [HTMLPurifier library](http://htmlpurifier.org) to purify data. You can either overwrite the original data (if you are constrained by space or memory concerns), or you can simply allow it to be saved to another field. By default, it uses a suffix on your original field. Here is an example
 
-{% highlight php %}
-<?php
+``` lang:php
 class Post extends Model {
 	public $actsAs = array(
 		'Purifiable.Purifiable' => array(
 			'fields' => array('title', 'content')));
-	
+
 	public function saveNewPost() {
 		$record = array(
 			$this->alias => array(
@@ -38,8 +40,7 @@ class Post extends Model {
 		return $this->save($record);
 	}
 }
-?>
-{% endhighlight %}
+```
 
 Calling `Post::saveNewPost()` in the above example should populate the fields `title_clean` and `content_clean` with clean data, while keeping your other fields in their less than pristine state.
 

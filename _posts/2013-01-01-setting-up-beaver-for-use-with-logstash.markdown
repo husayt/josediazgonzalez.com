@@ -28,7 +28,9 @@ I did, however, still want those log lines, so I set about writing a small daemo
 
 To start, we need to install Beaver:
 
-    pip install --update Beaver
+``` lang:shell
+pip install --update Beaver
+```
 
 This will retrieve the latest version of Beaver - version 18 as of this writing - via pip. It's possible to install via `easy_install`, but pip will ensure requirements are set.
 
@@ -38,24 +40,28 @@ Please note that while I specify `Python 2.7`, you *may* actually be able to get
 
 Running beaver is relatively straightforward:
 
-    beaver -c /etc/beaver/beaver.conf
+``` lang:shell
+beaver -c /etc/beaver/beaver.conf
+```
 
 In the above example, I tell beaver to run using a configuration file located at `/etc/beaver/beaver.conf`. Beaver takes configuration via arguments as well as via a configuration file, though I've found using a configuration file is much more flexible. Certain options can only be set via configuration file, so the above is how I recommend running beaver.
 
 Once running, it will read your configuration from that file. An example for an api running under varnish is as follows:
 
-    [beaver]
-    transport: redis
-    redis_url: redis://localhost:6380/0
-    redis_namespace: logstash:cache:production
-    ssh_key_file: /etc/beaver/id_rsa
-    ssh_tunnel: deploy@redis-internal
-    ssh_tunnel_port: 6380
-    ssh_remote_host: redis-internal
-    ssh_remote_port: 6379
-    [/mnt/varnish/log/*.log]
-    tags: cache,varnish
-    type: cache:production
+``` lang:generic
+[beaver]
+transport: redis
+redis_url: redis://localhost:6380/0
+redis_namespace: logstash:cache:production
+ssh_key_file: /etc/beaver/id_rsa
+ssh_tunnel: deploy@redis-internal
+ssh_tunnel_port: 6380
+ssh_remote_host: redis-internal
+ssh_remote_port: 6379
+[/mnt/varnish/log/*.log]
+tags: cache,varnish
+type: cache:production
+```
 
 My configuration file has two stanzas. The first is a general configuration stanza. Beaver supports optional ssh tunneling, which is useful if you are going across datacenters. Those options are prefixed with `ssh_`. I also specify the url for redis, in this case using the tunnel port.
 
@@ -65,77 +71,79 @@ I also have a stanza for a particular glob path for beaver to follow. In this ca
 
 Once started, beaver will ship my logs via a redis `pipeline` to my redis instance, where logstash picks up the work quite easily. The following is my logstash `indexer.conf`:
 
-    input {
-      # Read from the redis list
-      redis {
-        host => 'redis-internal'
-        data_type => 'list'
-        key => 'logstash:cache:production'
-        type => 'cache:production'
-        threads => 2
-      }
-    }
+``` lang:generic
+input {
+  # Read from the redis list
+  redis {
+    host => 'redis-internal'
+    data_type => 'list'
+    key => 'logstash:cache:production'
+    type => 'cache:production'
+    threads => 2
+  }
+}
 
-    filter {
-      # Pull out my varnish logs in combined apache log format
-      grok {
-        patterns_dir => "/etc/logstash/patterns"
-        tags => ["cache"]
-        pattern => "%{COMBINEDAPACHELOG}"
-      }
+filter {
+  # Pull out my varnish logs in combined apache log format
+  grok {
+    patterns_dir => "/etc/logstash/patterns"
+    tags => ["cache"]
+    pattern => "%{COMBINEDAPACHELOG}"
+  }
 
-      # Override the beaver provided timestamp info in favor of a more correct one
-      date {
-        tags => ["cache"]
-        timestamp => "dd/MMM/yyyy:HH:mm:ss Z"
-      }
+  # Override the beaver provided timestamp info in favor of a more correct one
+  date {
+    tags => ["cache"]
+    timestamp => "dd/MMM/yyyy:HH:mm:ss Z"
+  }
 
-      # Properly parse the request uri as a url
-      grok {
-        patterns_dir => "/etc/logstash/patterns"
-        tags => ["cache"]
-        match => [
-          "request", "%{URIPROTO:uriproto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:urihost})?(?:%{URIPATHPARAM:querystring})?"
-        ]
-      }
+  # Properly parse the request uri as a url
+  grok {
+    patterns_dir => "/etc/logstash/patterns"
+    tags => ["cache"]
+    match => [
+      "request", "%{URIPROTO:uriproto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:urihost})?(?:%{URIPATHPARAM:querystring})?"
+    ]
+  }
 
-      # Remove unneeded fields and fix up the querystring a bit
-      mutate {
-        tags => ["cache"]
-        remove => [ "agent", "auth", "bytes", "httpversion", "ident", "referrer", "timestamp", "verb" ]
-        gsub => [
-          "querystring", "&", " ",
-          "querystring", "/events\?", ""
-        ]
-      }
+  # Remove unneeded fields and fix up the querystring a bit
+  mutate {
+    tags => ["cache"]
+    remove => [ "agent", "auth", "bytes", "httpversion", "ident", "referrer", "timestamp", "verb" ]
+    gsub => [
+      "querystring", "&", " ",
+      "querystring", "/events\?", ""
+    ]
+  }
 
-      # Parse out the querystring as a key => value hash so that we can analyze this later
-      kv {
-        tags => ["cache"]
-        fields => ["querystring"]
-      }
+  # Parse out the querystring as a key => value hash so that we can analyze this later
+  kv {
+    tags => ["cache"]
+    fields => ["querystring"]
+  }
 
-      # Url Decode the query. Would be nice to be able to specify this on a glob of fields, but whatever
-      urldecode {
-        tags => ["jerry", "varnish"]
-        field => "q"
-      }
+  # Url Decode the query. Would be nice to be able to specify this on a glob of fields, but whatever
+  urldecode {
+    tags => ["jerry", "varnish"]
+    field => "q"
+  }
 
-      # Remove some unneeded apache log info, as well as the duplicative @source field
-      # Also add a q_analyzed field so that we have both an analyzed and non-analyzed version of the search query
-      mutate {
-        tags => ["cache"]
-        remove => [ "port", "querystring", "request", "urihost", "uriproto", "@source" ]
-        replace => [ "q_analyzed", "%{q}", ]
-      }
-    }
+  # Remove some unneeded apache log info, as well as the duplicative @source field
+  # Also add a q_analyzed field so that we have both an analyzed and non-analyzed version of the search query
+  mutate {
+    tags => ["cache"]
+    remove => [ "port", "querystring", "request", "urihost", "uriproto", "@source" ]
+    replace => [ "q_analyzed", "%{q}", ]
+  }
+}
 
-    output {
-      # Output everything to my logstash cluster sitting behind haproxy
-      elasticsearch {
-        host => "localhost:1337"
-      }
-    }
+output {
+  # Output everything to my logstash cluster sitting behind haproxy
+  elasticsearch {
+    host => "localhost:1337"
+  }
+}
+```
 
 I've documented everything above, and it's fairly straightforward as to whats happening. There are some gotchas with creating key-value pairs - I had to replace the `&` characters in the querystring with space ` ` characters - but nothing that won't be fixed in logstash in the future.
 

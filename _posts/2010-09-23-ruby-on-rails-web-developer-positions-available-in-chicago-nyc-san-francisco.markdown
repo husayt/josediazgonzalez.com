@@ -2,8 +2,11 @@
   title: Ruby on Rails Web Developer positions available in Chicago, NYC, San Francisco
   category: Other
   tags:
-  layout: post
   description: Clearly this person doesn't even know what I do. Also, grammar matters?
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Clearly this person doesn't even know what I do. Also, grammar matters?

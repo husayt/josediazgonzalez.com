@@ -1,32 +1,32 @@
 ---
-  title: Yahoo Maps-based Geocoding
-  category: Models
+  title:       "Yahoo Maps-based Geocoding"
+  date:        2009-06-14 00:00
+  description: Very crude integration of Yahoo Maps and CakePHP using CURL
+  category:    Models
   tags:
     - cakephp
     - yahoo maps
     - geocoding
     - cakephp 1.2
-  layout: post
-  description: Very crude integration of Yahoo Maps and CakePHP using CURL
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 I recently had to create online maps for an art gallery, specifically for their exhibits. So I decided to use the Yahoo API to grab the coordinates based upon the data that was being sent to the model and save this to the database. Here's how I did it.
 
 First, the model has to be aware of the Yahoo AppID. I set this as a variable within the model itself, but you can set it in the url.
 
-{% highlight exhibit.php %}
-<?php
+``` lang:php
 class Exhibit extends AppModel {
-
-	var $name = 'Exhibit';
-	var $yahooApiID = 'YOURAPPIDHERE';
+    public $yahooApiID = 'YOURAPPIDHERE';
 }
-?>
-{% endhighlight %}
+```
 
 Next we should probably actually get the Latitude and Longitude for the data. I am assuming you have the correct fields defined in your exhibits table. The `CREATE TABLE` query is shown below
 
-{% highlight exhibits.sql %}
+``` lang:sql
 CREATE TABLE `exhibits` (
   `id` int(11) unsigned NOT NULL auto_increment
   `address` varchar(50) default NULL,
@@ -36,18 +36,14 @@ CREATE TABLE `exhibits` (
   `lattitude` varchar(20) default NULL,
   `longitude` varchar(20) default NULL
   PRIMARY KEY  (`id`),
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-{% endhighlight %}
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 Now that you have the proper fields, we'll REALLY get the Latitude and Longitude. Below is the entire Model class relating to Exhibits:
 
-{% highlight exhibit.php %}
-<?php
+``` lang:php
 class Exhibit extends AppModel {
-
-	var $name = 'Exhibit';
-
-	function beforeValidate(){
+	function beforeValidate() {
 		$curl = false;
 
 		// Start constructing the URL
@@ -70,7 +66,7 @@ class Exhibit extends AppModel {
 		$q = str_replace(' ', '%20', $q);
 
 		//Using cURL or file_get_contents
-		if ($curl){
+		if ($curl) {
 			$c = curl_init();
 			curl_setopt($c, CURLOPT_URL, $q);
 			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -84,17 +80,15 @@ class Exhibit extends AppModel {
 		$this->data['Exhibit']['lattitude'] = $phpContent['ResultSet']['Result']['Latitude'];
 		$this->data['Exhibit']['longitude'] = $phpContent['ResultSet']['Result']['Longitude'];
 	}
-?>
-{% endhighlight %}
+}
+```
 
 I have allowed you to use either cURL or fopen. For cURL, you need to have that installed on your server, and for fopen, you need to have `allow_url_fopen` set to true in php.ini. Just giving options in case you can't do one or the other :)
 
 You'll notice that when I get the State for this location, I initialize the model via `ClassRegistry`. Just out of habit. I also don't have a relationship to the State in my model, which is why I did this. Read about `Containable` (and `BindModel` for extra points!) for more information. The code for that call in the State model is as follows:
 
-{% highlight state.php %}
-<?php
+``` lang.php
 class State extends AppModel{
-	var $name = 'State';
 	function getState($state = null){
 		$state = $this->find('first',
 			array(
@@ -108,8 +102,7 @@ class State extends AppModel{
 		return $state['State']['title'];
 	}
 }
-?>
-{% endhighlight %}
+```
 
 So lets review:
 

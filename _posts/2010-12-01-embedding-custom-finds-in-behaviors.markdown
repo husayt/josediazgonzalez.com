@@ -7,8 +7,11 @@
     - custom find
     - code
     - cakephp 1.3
-  layout: post
   description: Embedding custom finds in behaviors is extremely useful, but not the most straight-forward thing to do. Here's how.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Today, while outlining a datasource for a CDN, I REALLY needed to add a custom model find from outside of the model. Custom find types would greatly simplify the Model api and give the developer access to exotic types of finds without having to specify ridiculous option keys.
@@ -19,8 +22,7 @@ By default, adding a custom model find is as follows:
 
 * Add the find to the `$_findMethods` model property:
 
-{% highlight post.php %}
-<?php
+``` lang:php
 class Post extends Model {
     function __construct($id = false, $table = null, $ds = null) {
         $this->_findMethods['custom'] = true;
@@ -28,13 +30,11 @@ class Post extends Model {
         parent::__construct($id, $table, $ds);
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Define the method
 
-{% highlight post.php %}
-<?php
+``` lang:php
 class Post extends Model {
     function __construct($id = false, $table = null, $ds = null) {
         $this->_findMethods['custom'] = true;
@@ -50,8 +50,7 @@ class Post extends Model {
         return $results;
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Win at life
 
@@ -61,21 +60,18 @@ Unfortunately, this doesn't quite work as I thought it would by doing similarly 
 
 So a work-around is to use the oft-forgotten `$mapMethods` method. Lets define a simple behavior:
 
-{% highlight custom.php %}
-<?php
+``` lang:php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array();
 
     function setup(&$model, $settings = array()) {
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Define the custom find method:
 
-{% highlight custom.php %}
-<?php
+``` lang:php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array();
 
@@ -90,13 +86,11 @@ class CustomBehavior extends ModelBehavior {
         return $results;
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Add the custom find to the available custom finds for the Model:
 
-{% highlight custom.php %}
-<?php
+``` lang:php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array();
 
@@ -112,13 +106,11 @@ class CustomBehavior extends ModelBehavior {
         return $results;
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Add the appropriate `$mapMethods` regex:
 
-{% highlight custom.php %}
-<?php
+``` lang:php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array('/\b_findCustom\b/' => '_findCustom');
 
@@ -134,13 +126,11 @@ class CustomBehavior extends ModelBehavior {
         return $results;
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Ensure that the arguments in your `_findCustom()` method don't overlap with how `ModelBehavior::dispatchMethod()` works:
 
-{% highlight custom.php %}
-<?php
+``` lang:php
 class CustomBehavior extends ModelBehavior {
     var $mapMethods = array('/\b_findCustom\b/' => '_findCustom');
 
@@ -156,8 +146,7 @@ class CustomBehavior extends ModelBehavior {
         return $results;
     }
 }
-?>
-{% endhighlight %}
+```
 
 * Win at life
 

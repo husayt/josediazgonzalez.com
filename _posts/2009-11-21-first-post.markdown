@@ -1,14 +1,17 @@
 ---
-  title: First Post
-  category: Other
+  title:       "First Post"
+  description: my first post
+  category:    Other
   tags:
     - jekyll
     - ruby
     - first
     - blog
     - cakephp
-  layout: post
-  description: my first post
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Finally decided to get something back up in terms of a blog. Currently using Jekyll, as my own clone of Jekyll in PHP doesn't work quite as well as I want it to yet (I actually implemented it all as a CakePHP shell, but thats for another blog post).

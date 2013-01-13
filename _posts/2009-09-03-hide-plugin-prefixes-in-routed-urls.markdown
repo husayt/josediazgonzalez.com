@@ -1,17 +1,20 @@
 ---
-  title: Hide Plugin Prefixes in Routed Urls
-  category: Routing
+  title:       "Hide Plugin Prefixes in Routed Urls"
+  date:        2009-09-03 00:00
+  description: Hack on the CakePHP Router to hide the plugin prefix in connected routes
+  category:    Routing
   tags:
     - cakephp
     - router
     - quicktip
     - cakephp 1.2
-  layout: post
-  description: Hack on the CakePHP Router to hide the plugin prefix in connected routes
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
-{% highlight php %}
-<?php
+``` lang:php
 /**
  * Parses the request URL into controller, action, and parameters.
  *
@@ -43,21 +46,20 @@ class Router extends Object {
 			}
 			if ($options['namespace'] !== null) {
 				foreach ($pluginControllers[$pluginName] as $ctrlName) {
-					Router::connect("/{$options['namespace']}_{$ctrlName}/:action/*", 
+					Router::connect("/{$options['namespace']}_{$ctrlName}/:action/*",
 						array('plugin' => $pluginName, 'controller' => $ctrlName));
-					Router::connect("/" . Configure::read('Routing.admin') . "/{$options['namespace']}_{$ctrlName}/:action/*", 
+					Router::connect("/" . Configure::read('Routing.admin') . "/{$options['namespace']}_{$ctrlName}/:action/*",
 						array('plugin' => $pluginName, 'controller' => $ctrlName, 'prefix' => Configure::read('Routing.admin'), Configure::read('Routing.admin') => true));
 				}
 			} else {
 				foreach ($pluginControllers[$pluginName] as $ctrlName) {
-					Router::connect("/{$ctrlName}/:action/*", 
+					Router::connect("/{$ctrlName}/:action/*",
 						array('plugin' => $pluginName, 'controller' => $ctrlName));
-					Router::connect("/" . Configure::read('Routing.admin') . "/{$ctrlName}/:action/*", 
+					Router::connect("/" . Configure::read('Routing.admin') . "/{$ctrlName}/:action/*",
 						array('plugin' => $pluginName, 'controller' => $ctrlName, 'prefix' => Configure::read('Routing.admin'), Configure::read('Routing.admin') => true));
 				}
 			}
 		}
 	}
 }
-?>
-{% endhighlight %}
+```

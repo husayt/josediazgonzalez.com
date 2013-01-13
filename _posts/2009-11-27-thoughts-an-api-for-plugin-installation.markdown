@@ -1,14 +1,16 @@
 ---
-  title: Thoughts - An API for Plugin Installation
-  category: CakePHP
+  title:       "Thoughts - An API for Plugin Installation"
+  description: One of my current projects is a CakePHP plugin server. The existing sample was created by John David Anderson of http://www.thoughtglade.com. It is neat and all, and one of the first things I came across when looking at CakePHP 11 months ago.
+  category:    CakePHP
   tags:
     - thoughts
     - cakephp
     - plugins
     - side projects
-  layout: post
-  description: One of my current projects is a CakePHP plugin server. The existing sample was created by John David Anderson of http://www.thoughtglade.com. It is neat and all, and one of the first things I came across when looking at CakePHP 11 months ago.
-  
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 One of my current projects is a CakePHP plugin server. [The existing sample](http://www.thoughtglade.com/posts/plugin-server) was created by John David Anderson of [http://www.thoughtglade.com](http://www.thoughtglade.com/posts/plugin-server). It is neat and all, and one of the first things I came across when looking at CakePHP 11 months ago.
@@ -21,7 +23,7 @@ Regardless, it would be nice to have any code that is already plugin-ready to be
 
 Anyways, here is what I think. JSON.
 
-{% highlight js %}
+``` lang:javascript
 {
 	"id" : "123",
 	"slug" : "trackable-behavior",
@@ -45,7 +47,7 @@ Anyways, here is what I think. JSON.
 		"dev" : "experimental"
 	}
 }
-{% endhighlight %}
+```
 
 Ideally, the plugin would be standalone, both a server and a set of shell scripts. The server would output JSON similar to the above for each record. A user would be able to log onto the site, register a plugin of theirs (with the appropriate links for repository browsing, branches where necessary, dependencies, etc.) and that plugin would be available immediately via a JSON api. Users would also be able to browse the plugin server, check out available plugins, perhaps see screenshots or readme files where appropriate, and more information about the author. Maybe even a download in zip or tar format of the plugin. So something akin to Github, except explicitly for CakePHP code.
 
@@ -63,21 +65,21 @@ The final thing would be a cake shell that will be able to query this API and in
 
 Ideally, one would be able to specify a server from which to grab a plugin. The following is a sample cake shell call:
 
-{% highlight sh %}
+``` lang:shell
 cake plugin install -server http://thechaw.com/plugins -name trackable-behavior -branch 1.3 -scm git -basepath app/plugins/trackable
-{% endhighlight %}
+```
 
 The above would query [http://thechaw.com/plugins](http://thechaw.com/plugins) for a plugin matching the slug _trackable-behavior_ and, using git, install the _1.3_ branch in _app/plugins/trackable_. Updating *only* the trackable behavior plugin would be a breeze (assuming we cached the installed plugins somewhere, like in a database or something):
 
-{% highlight sh %}
+``` lang:shell
 cake plugin update -server http://thechaw.com/plugins -name trackable-behavior
-{% endhighlight %}
+```
 
 If you don't like typing out the server, scm, branch, or base install path, one might do the following
 
-{% highlight sh %}
+``` lang:shell
 cake plugin configure -server http://thechaw.com/plugins -branch 1.3 -scm git -path app/plugins/
-{% endhighlight %}
+```
 
 New plugins would be installed using the 1.3 branch where possible (master in all other cases) from thechaw.com into app/plugins (we would be able to specify a directory name using something like -relpath later).
 

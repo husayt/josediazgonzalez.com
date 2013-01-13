@@ -1,6 +1,7 @@
 ---
-  title: Rails-Style Error Messages in CakePHP
-  category: Helpers
+  title:       "Rails-Style Error Messages in CakePHP"
+  description: A simple CakePHP helper for outputting grouped error messages as in the Ruby on Rails framework.
+  category:    Helpers
   tags:
     - cakephp
     - rails
@@ -9,29 +10,29 @@
     - errorhelper
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: A simple CakePHP helper for outputting grouped error messages as in the Ruby on Rails framework.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 I've had a bit of code tucked away in various files for a while. It was code to deal with error messages.
 
 In CakePHP, error messages are wrapped around the FormHelper::method() that created it. So if you create an error and you did the following:
 
-{% highlight php %}
-<?php
-	echo $form->input('Post.title');
-?>
-{% endhighlight %}
+``` lang:php
+echo $form->input('Post.title');
+```
 
 You'd probably get the error message appended below that particular FormHelper::input() call. If you have the default stylesheet, it looks good. And you can still make it look good without the default by specifying your own styles. The correct item to style is ".error-message", for the record.
 
 It's annoying to have to view a form and figure out what you messed up sometimes, and maybe you don't want it to break your beautifully laid out form. In the latter case, you could just set the following:
 
-{% highlight css %}
+``` lang:css
 .error-message {
 	display: none
 }
-{% endhighlight %}
+```
 
 And presto chango, you are done. NOT. You forgot about actually outputting the errors. And this also doesn't cover when you have the former case. It might actually be a Section 508 requirement, I would have to get back to you.
 
@@ -41,29 +42,27 @@ So while I was building out a [now defunct cms](http://github.com/josegonzalez/m
 
 Usage is quite simple. Simply add the helper to the controller you need it to be in. In my example, I will attach it to the AppController (I also included the way to add it in one place specifically, such as the Controller::beforeRender() callback):
 
-{% highlight php %}
-<?php
+``` lang:php
 class AppController extends Appcontroller {
-	var $helpers = array('Errors');
+	public $helpers = array('Errors');
 
-	function beforeRender() {
+	public function beforeRender() {
 		$this->helpers[] = 'Errors';
 	}
 }
-?>
-{% endhighlight %}
+```
 
 Then in your layout, simply do the follow:
 
-{% highlight php %}
-<?php echo $errors_for_layout; ?>
-{% endhighlight %}
+``` lang:php
+echo $errors_for_layout;
+```
 
 It works via the Helper::beforeRender() callback. For the moment, it is called automatically in the beforeRender, but in the future I will add some helpful configuration for you to use. You can also manually call the following:
 
-{% highlight php %}
-<?php echo $errors->for_layout(); ?>
-{% endhighlight %}
+``` lang:php
+echo $errors->for_layout();
+```
 
 It also takes care of echoing Session messages, both the default and the Authentication message. That will also be configurable in the near future. ErrorHelper requires jQuery, which is something I will ALSO make configurable (jeez, seems like I was being lazy, no?). I just wanted to get it out for you people, give me a break. I'll remove these warnings when I get them done...
 

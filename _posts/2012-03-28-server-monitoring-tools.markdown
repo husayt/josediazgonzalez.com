@@ -6,8 +6,11 @@
     - tools
     - monitoring
     - devops
-  layout: post
   description: An easy to install, maintain, and use tool for server monitoring doesn't exist, why is that?
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 I've been recently doing a bit of devops work at SeatGeek, and it strikes me that much of the monitoring/alerting code there sucks for one or more of the following reasons:
@@ -68,7 +71,9 @@ Preferably not spaghetti PHP. So something built in a framework.
 
 I already have a system for storing data: [Graphite](http://graphite.wikidot.com/) and [StatsD](https://github.com/seatgeek/statsd_rb). I already have the application tossing data at Graphite, but I also have existing Cacti data. What would be nice is a tool to migrate from an existing set of `.rrd` files to Graphite. I can back-date data in Graphite, so this should hopefully be straightforward. The data keys can be:
 
-    hostname.service_name.metric
+``` lang:generic
+hostname.service_name.metric
+```
 
 Grouping metrics is key. Because Graphite already stores non-devops related statistics, and also would store stats on a per-instance basis, I would like a way to track different sets of metrics somewhere. Because of how graphs are created, it would be useful to store information about each graph - who created the graph, usecase, a damned name - along with it. This data could change from graph to graph of course.
 

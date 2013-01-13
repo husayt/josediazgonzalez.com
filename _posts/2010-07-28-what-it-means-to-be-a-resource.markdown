@@ -4,8 +4,11 @@
   tags:
     - thoughts
     - life
-  layout: post
   description: Wherein I complain loudly about being used.
+  comments:    true
+  sharing:     false
+  published:   false
+  layout:      post
 ---
 
 **Feel free to skip this post, I just need to get some thoughts out there.**

@@ -5,8 +5,11 @@
     - deployment
     - chef
     - cakephp
-  layout: post
   description: What goes in a Chef Recipe, and how much do I really need to know about resources?
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 {% blockquote %}
@@ -39,7 +42,7 @@ The most interesting of these is the Recipe, for obvious reasons
 
 The following is a very simple recipe meant to show off a few things in Chef.
 
-{% highlight Static Application Installation with Ruby (default.rb) %}
+``` lang:ruby
 node[:static_applications].each do |hostname, sites|
 
   sites.each do |base, info|
@@ -65,11 +68,11 @@ node[:static_applications].each do |hostname, sites|
   end
 
 end
-{% endhighlight %}
+```
 
 If you'll notice, I'm referencing `node` quite a few times. `node` is a reference to the configuration in your `DNA` file. I normally use `json` files, so `node[:static_applications]` is simply a key in that json file. In this case, I'm iterating over all the `:static_applications` which is a set of hostnames mapping to site configurations. Each one of these is actually a base path mapping to some configuration info as follows:
 
-{% highlight This should be dna.json (dna.js) %}
+``` lang:javascript
 {
   "static_applications": {
     "josediazgonzalez.com": {
@@ -93,7 +96,7 @@ If you'll notice, I'm referencing `node` quite a few times. `node` is a referenc
     }
   }
 }
-{% endhighlight %}
+```
 
 So we iterate over some configuration. Cool. But whats the stuff inside the loops do?
 
@@ -113,33 +116,33 @@ So in my loop, I do the following:
 
 #### Create a directory in the servers production directory for the given static_app
 
-{% highlight ruby %}
+``` lang:ruby
 directory "#{node[:server][:production][:dir]}/#{hostname}/#{base}" do
   owner "deploy"
   group "deploy"
   mode "0755"
   recursive true
 end
-{% endhighlight %}
+```
 
 #### Clone the application from github to the aforementioned directory
 
-{% highlight ruby %}
+``` lang:ruby
 git "#{node[:server][:production][:dir]}/#{hostname}/#{base}/public" do
   repository info[:repository]
   user "deploy"
   group "deploy"
 end
-{% endhighlight %}
+```
 
 #### Use a custom defined Resource to tell nginx to turn on this static_app
 
-{% highlight ruby %}
+``` lang:ruby
 nginx_up "#{node[:nginx][:dir]}/sites-available/#{hostname}.#{base}" do
   hostname "#{base}.#{hostname}"
   variables(info)
 end
-{% endhighlight %}
+```
 
 ## Recap
 

@@ -1,14 +1,18 @@
 ---
-  title: Why to Actually Choose CakePHP
-  category: CakePHP
+  title:       Why to Actually Choose CakePHP
+  date:        2012-09-07 00:00
+  description: Why I think CakePHP is a great framework option
+  category:    CakePHP
   tags:
     - cakephp
-  layout: post
-  description: Why I think CakePHP is a great framework option
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 {% blockquote %}
-For those looking for the original, Symfony post, please <a href="http://fabien.potencier.org/article/65/why-symfony">Fabian's excellent post here</a>. I still would choose CakePHP, but Symfony might jive with you :)
+For those looking for the original, Symfony post, please read <a href="http://fabien.potencier.org/article/65/why-symfony">Fabian's excellent post here</a>. I still would choose CakePHP, but Symfony might jive with you :)
 {% endblockquote %}
 
 

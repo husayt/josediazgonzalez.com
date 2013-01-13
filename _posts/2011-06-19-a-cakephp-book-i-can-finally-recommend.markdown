@@ -5,8 +5,11 @@
     - book
     - cakephp
     - application
-  layout: post
   description: Review of Mariano Iglesias' CakePHP 1.3 Application Development Cookbook
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 {% blockquote %}

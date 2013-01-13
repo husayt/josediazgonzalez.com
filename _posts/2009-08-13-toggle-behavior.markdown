@@ -1,6 +1,8 @@
 ---
-  title: Toggle Behavior
-  category: Behaviors
+  title:       "Toggle Behavior"
+  description: Toggle CakePHP Behavior for toggling boolean model fields in CakePHP
+  date:        2009-08-13 00:00
+  category:    Behaviors
   tags:
     - cakephp
     - toggle
@@ -8,8 +10,10 @@
     - cakephp bin
     - quicktip
     - cakephp 1.2
-  layout: post
-  description: Toggle CakePHP Behavior for toggling boolean model fields in CakePHP
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 ## UPDATE: Fixed link to latest revision of ToggleBehavior
@@ -21,11 +25,10 @@ Cheers if it works for you, and feedback is always welcome!
 
 [Original Bin](http://bin.cakephp.org/saved/49042)
 
-{% highlight toggle.php %}
-<?php
+``` lang:php
 /**
  * Toggle Model Behavior
- * 
+ *
  * Allows you to toggle default fields or a specific field/fields
  * Can also toggle a field on or off explicitly
  *
@@ -73,7 +76,7 @@ class ToggleBehavior extends ModelBehavior {
 
 /**
  * Toggles the fields on
- * 
+ *
  * @param AppModel $Model Model instance
  * @param mixed $id Optional The ID of the record to read
  * @param array $fieldNames name of fields to be toggled
@@ -140,18 +143,18 @@ class ToggleBehavior extends ModelBehavior {
 					$toSave[$field] = 'NOT ' . $field;
 				}
 				break;
-			default: 
+			default:
 				foreach ($fields as $field) {
 					$toSave[$field] = $type;
 				}
 				break;
 		}
-		
+
 		if ($this->settings[$model->alias]['callbacks']) {
 			$model->beforeSave();
 			$data = $model->updateAll($toSave, array($model->escapeField() => $id));
 			$model->afterSave();
-			
+
 		} else {
 			$data = $model->updateAll($toSave, array($model->escapeField() => $id));
 		}
@@ -179,5 +182,4 @@ class ToggleBehavior extends ModelBehavior {
 		return array('fields' => $fields, 'errors' => $errors);
 	}
 }
-?>
-{% endhighlight %}
+```

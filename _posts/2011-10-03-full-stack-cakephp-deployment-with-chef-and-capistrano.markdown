@@ -6,8 +6,11 @@
     - chef
     - capistrano
     - cakephp
-  layout: post
   description: This text is the first in a long series to correct an extremely disastrous talk at CakeFest 2011. It will also hopefully apply to more than CakePHP.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 {% pullquote %}

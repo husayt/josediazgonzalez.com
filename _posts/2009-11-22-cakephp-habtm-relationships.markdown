@@ -1,21 +1,24 @@
 ---
-  title: CakePHP HABTM Relationships
-  category: Models
+  title:       "CakePHP HABTM Relationships"
+  description: A slightly misguided post on CakePHP HABTM relationships
+  category:    Models
   tags:
     - cakephp
     - habtm
     - relationships
     - join tables
     - counterCache
-  layout: post
-  description: A slightly misguided post on CakePHP HABTM relationships
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 I'm working with a startup at the moment and am attempting to add a simple counterCache to a [http://book.cakephp.org/view/83/hasAndBelongsToMany-HABTM](hasAndBelongsToMany) (HABTM) relationship. Let me briefly define the HABTM relationship before I move on and go insane...
 
 An habtm relationship consists of two different objects. Normally it is something like Tag HABTM Post, or Post HABTM Category. These are relatively simple and CakePHP gives a number of options for one to use. A common mistake is that CakePHP sets the 'unique' key on the HABTM relationship to true, and then people forget to pass the existing relationships in when saving new ones. This can be mitigated through:
 
-1. simply setting the 'unique' key to false. 
+1. simply setting the 'unique' key to false.
 2. behaviors to insert directly into the table
 3. using a HasMany<->BelongsTo relationship between the models and the join Table
 
@@ -36,7 +39,7 @@ I would use these, except the app I am working on is using HABTM INCORRECTLY! er
 
 The application has Businesses, and Users can Favorite them. Of course, Users can also own their own businesses. So Users have many Favorite Businesses and Users own many businesses. These two are best modeled by the HABTM relationship. So what the company did was to create a businesses_users table, and then set a type on that table. The type indicates what kind of relationship it is.
 
-:-\
+:-\\
 
 This is wrong. Clearly wrong. Why? Because there should be, ideally, a `business_users` table that tracks ownership (you can name it `owners` if you really want to show the relationship in the database), and a `favorites` table to track the favoriting aspect. This would remove the need for a type, and allow the app to use CakePHP's built-ins for adding HABTM relations between records. Then I would be able to use any of the two previous HABTM CounterCache solutions. Instead, they add directly to the table, as if it were a HasMany<->BelongsTo relationship, when it most clearly is not (even in the models). This is very upsetting, as now I have to do an updateAll manually.
 

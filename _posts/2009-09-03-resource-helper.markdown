@@ -1,25 +1,28 @@
 ---
-  title: ResourceHelper
-  category: Helpers
+  title: 			 "ResourceHelper"
+  date:        2009-09-03 00:00
+  description: A general purpose helper to support random functionality that need not be in it's own helper. Has BlueprintCSS support, jQuery ASM HABTM, File displaying, jQuery Error displaying and Google Maps support.
+  category: 	 Helpers
   tags:
     - cakephp
     - helpers
     - overload
     - quicktip
     - cakephp 1.2
-  layout: post
-  description: A general purpose helper to support random functionality that need not be in it's own helper. Has BlueprintCSS support, jQuert ASM HABTM, File displaying, jQuery Error displaying and Google Maps support.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
-{% highlight php %}
-<?php
+``` lang:php
 /**
  * ResourceHelper class file.
- * 
+ *
  * General Helper to support random functionality that need not be in it's own helper
  * Has BlueprintCSS support, jQuert ASM HABTM, File displaying, jQuery Error displaying
  * and Google Maps support
- * 
+ *
  * @author Jose Diaz-Gonzalez
  * @license	http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link http://josediazgonzalez/code/resourcehelper/
@@ -51,7 +54,7 @@ class ResourceHelper extends AppHelper {
 
 /**
  * The value of the class attribute assigned to the wrapper div for every
- * label in the format elementType => class 
+ * label in the format elementType => class
  *
  * @var array
  */
@@ -64,7 +67,7 @@ class ResourceHelper extends AppHelper {
  * @var string
  */
 	var $_inputClass = array();
-	
+
 /**
  * The value of the class assigned outside the input element if necessary
  *
@@ -371,7 +374,7 @@ class ResourceHelper extends AppHelper {
 	}
 
 	function map($api, $options = array()) {
-		return 
+		return
 			'<div id="map_container">
 				<div id="big_spinner" style="display:none"></div>
 				<div id="map"></div>
@@ -389,7 +392,7 @@ class ResourceHelper extends AppHelper {
 
 /**
 * Prints out a jQuery enhanced list of validation errors
-* 
+*
 * @param array $data Array of all possible errors for all models being validated
 * @param integer $type Integer indicating the css id of the error
 * @param boolean $flash Boolean indicating whether this is a flash message
@@ -404,7 +407,7 @@ class ResourceHelper extends AppHelper {
 
 /**
 * Prints out a jQuery enhanced list of validation errors
-* 
+*
 * @param array $data Array of all possible errors
 * @param integer $type Integer indicating the css id of the error
 * @param boolean $flash Boolean indicating whether this is a flash message
@@ -436,7 +439,7 @@ class ResourceHelper extends AppHelper {
 /**
 * Used in conjunction with jQueryList
 * Returns the id of the notice
-* 
+*
 * @param integer $data Integer referencing an error type
 * @return string String assigned to an error
 * @access public
@@ -465,7 +468,7 @@ class ResourceHelper extends AppHelper {
 
 /**
 * Returns a list of items, each wrapped in an <li></li>
-* 
+*
 * @param array $data Array of all possible items
 * @param boolean $flash Boolean indicating whether this is a flash message
 * @return string String containing a <li></li> wrapped list of items
@@ -490,7 +493,7 @@ class ResourceHelper extends AppHelper {
 
 /**
 * Returns an Array of items that are nested within some other array
-* 
+*
 * @param array $data Array of items which may be arrays themselves
 * @return array Array of items which remove one layer of nesting
 * @access public
@@ -561,5 +564,4 @@ class ResourceHelper extends AppHelper {
 		return $_this->_check();
 	}
 }
-?>
-{% endhighlight %}
+```

@@ -1,6 +1,8 @@
 ---
-  title: Adding a Helper/Behavior/Component on the fly
-  category: CakePHP
+  title:       "Adding a Helper/Behavior/Component on the fly"
+  date:        2009-08-14 00:00
+  description: A short tutorial on adding behaviors/components/helpers to your application in a dynamic fashion
+  category:    CakePHP
   tags:
     - cakephp
     - behaviors
@@ -10,8 +12,10 @@
     - snippet
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: A short tutorial on adding behaviors/components/helpers to your application in a dynamic fashion
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 Since I am on #cakephp at irc.freenode.org, I noticed a question about using a component in only one controller action.
@@ -20,68 +24,57 @@ I previously had a similar question about a helper and it was pointed out that t
 
 Controller Class:
 
-{% highlight posts_controller.php %}
-<?php
+``` lang:php
 class PostsController extends Appcontroller {
 	var $name = 'Posts';
 	var $helpers = array('Text');
-	
+
 	function index() {
 		$this->helpers[] = 'Time';
 	}
-	
+
 	function add() {
 	}
 }
-?>
-{% endhighlight %}
+```
 
-In the above example, the TextHelper can be used everywhere. Note that the FormHelper is always available, as is the HtmlHelper and the XmlHelper (depending upon the type of request). The TimeHelper would ONLY be available at the PostsController::index() action. Good way to decrease the memory usage in an app, as some helpers are rarely always needed.
+In the above example, the TextHelper can be used everywhere. Note that the FormHelper is always available, as is the `HtmlHelper` and the `XmlHelper` (depending upon the type of request). The `TimeHelper` would ONLY be available at the `PostsController::index()` action. Good way to decrease the memory usage in an app, as some helpers are rarely always needed.
 
 Behaviors are a bit trickier. You need to attach it to the Model's BehaviorCollection
 Model Class:
 
-{% highlight post.php %}
-<?php
+``` lang:php
 class Post extends AppModel {
-	var $name = 'Post';
-	var $actsAs = array('Cacheable');
-	
-	function beforeSave() {
+	public $actsAs = array('Cacheable');
+
+	public function beforeSave() {
 		$this->Behaviors->attach('Twitterable');
 	}
 }
-?>
-{% endhighlight %}
+```
 
 Controller Class:
 
-{% highlight posts_controller.php %}
-<?php
+``` lang:php
 class PostsController extends Appcontroller {
-	var $name = 'Pages';
-	
-	function index() {
+	public function index() {
 		$this->Post->Behaviors->attach('Trim.Trim');
 		// Some model stuff goes on here, with TrimBehavior in play
 		$this->Post->Behaviors->detach('Trim.Trim');
 		// No more TrimBehavior :(
 	}
-	
+
 	function add() {
 	}
 }
-?>
-{% endhighlight %}
+```
 
-In the above example, I use my custom CacheableBehavior (might be on my http://github.com account...) in all interactions with my Post Model. On the beforeSave, I attached the TwitterableBehavior (another custom thing, works at the Model::afterSave() level). TwitterableBehavior is therefore never loaded in my PostsController::index() action, but it IS loaded in my PostsController::add() action (I've omitted the code for brevity). I also load TrimBehavior from my TrimPlugin, which creates a tinyurl for the current resource, and detach it when I am done (you do not have to detach a behavior). Nifty way of saving on memory usage.
+In the above example, I use my custom CacheableBehavior (might be on my http://github.com account...) in all interactions with my Post Model. On the beforeSave, I attached the `TwitterableBehavior` (another custom thing, works at the `Model::afterSave()` level). `TwitterableBehavior` is therefore never loaded in my `PostsController::index()` action, but it IS loaded in my `PostsController::add()` action (I've omitted the code for brevity). I also load `TrimBehavior` from my `TrimPlugin`, which creates a tinyurl for the current resource, and detach it when I am done (you do not have to detach a behavior). Nifty way of saving on memory usage.
 
 For Components, we are in a whole other ballgame. We could try the same trick as the one used for Helpers, but that will give you an error
 
-{% highlight posts_controller.php %}
-<?php
+``` lang:php
 class PostsController extends AppController {
-
 	function mail() {
 		$this->components[] = 'Email';
 		// Some email-fu here
@@ -89,16 +82,13 @@ class PostsController extends AppController {
 		# Call to undefined method stdClass::send()
 	}
 }
-?>
-{% endhighlight %}
+```
 
 FAIL
 There is no ComponentCollection, so don't even think of attempting the following:
 
-{% highlight posts_controller.php %}
-<?php
+``` lang:php
 class PostsController extends AppController {
-
 	function mail() {
 		$this->Post->Components->attach('Email');
 		// Some email-fu here
@@ -106,46 +96,40 @@ class PostsController extends AppController {
 		# Call to undefined method stdClass::send()
 	}
 }
-?>
-{% endhighlight %}
+```
 
-So what are we to do? See the following: http://tinyurl.com/ovf92z
-
-Basically, since Components are loaded at startup (or at least before the Controller::beforeFilter() as far as I know), App::import() cannot be used as is. The loading of the Components runs Component::initialize() and Component::startup(), and therefore simply trying the Helper trick won't work. So instead, we must ALSO do what the loading does 
+Basically, since Components are loaded at startup (or at least before the `Controller::beforeFilter()` as far as I know), `App::import()` cannot be used as is. The loading of the Components runs `Component::initialize()` and `Component::startup()`, and therefore simply trying the Helper trick won't work. So instead, we must ALSO do what the loading does
 
 Below is the Component attached to that particular ticket in it's entirety. I'd probably add it to my AppController and then use it wherever I need a component. But that's just me :P
 Component Class:
 
-{% highlight component_loader.php %}
-<?php
-//loads a component on the fly from within the controller
+``` lang:php
 class ComponentLoaderComponent extends Object {
-	
-	var $controller = null;
-	
-	function initialize(&$controller) {
+
+	public $controller = null;
+
+	public function initialize(&$controller) {
 		// saving the controller reference for later use
 		$this->controller =& $controller;
 	}
-	
-	function load($component_name) {
+
+	public function load($component_name) {
 		App::import('Component', $component_name);
 		$component2 = $component_name.'Component';
 		$component =& new $component2(null);
-		
+
 		if (method_exists($component, 'initialize')) {
 			$component->initialize($this->controller);
 		}
-		
+
 		if (method_exists($component, 'startup')) {
 			$component->startup($this->controller);
 		}
-		
+
 		$this->controller->{$component_name} = &$component;
 	}
 }
-?>
-{% endhighlight %}
+```
 
 Feel free to correct or improve any and all of the above gobbledyk-gook.
 

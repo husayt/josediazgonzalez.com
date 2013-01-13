@@ -4,8 +4,11 @@
   tags:
     - passwords
     - authentication
-  layout: post
   description: I'm developing an application where the client wants the username and password combination to be a lastname and member ID number. This is quite stupid.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 I'm developing an application where the client wants the username and password combination to be a lastname and member ID number.

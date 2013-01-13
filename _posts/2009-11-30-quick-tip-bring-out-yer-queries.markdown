@@ -1,6 +1,7 @@
 ---
-  title: Quick Tip - Bring Out Yer Queries
-  category: Datasources
+  title:       "Quick Tip - Bring Out Yer Queries"
+  description: Log your queries to find out what CakePHP is doing when it has 9 million blobs or is taking 34234 years to process.
+  category:    Datasources
   tags:
     - cakephp
     - github
@@ -11,16 +12,17 @@
     - logging
     - cakephp 1.2
     - cakephp 1.3
-  layout: post
-  description: Log your queries to find out what CakePHP is doing when it has 9 million blobs or is taking 34234 years to process.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 When I was a lad... jk
 
 Log your queries to find out what CakePHP is doing when it has 9 million blobs or is taking 34234 years to process (then use the 'contain' and 'fields' keys in your queries to trim it down.)
 
-{% highlight php %}
-<?php
+``` lang:php
 /**
  * MySQL Logging layer for DBO.
  *
@@ -75,8 +77,7 @@ class DboMysqlLog extends DboMysql {
 		return $return;
 	}
 }
-?>
-{% endhighlight %}
+```
 
 Place that in `app/models/datasources/dbo_mysql_log.php` and set `driver` key in your database configuration to `mysql_log`. You'll need to use `Configure::write('logQueries', true)` whenever you want to enable logging. I normally turn this on and off in my bootstrap file. I modified this datasource to work in 1.3, and the original code is from a bakery article.
 

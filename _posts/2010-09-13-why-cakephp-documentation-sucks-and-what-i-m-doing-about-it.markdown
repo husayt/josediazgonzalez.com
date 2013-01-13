@@ -5,8 +5,11 @@
     - cakephp
     - github
     - side projects
-  layout: post
   description: When people complain about documentation, the solution is to write more, and better, documentation.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 The CakePHP documentation _sucks_. By sucks I mean dumbasses are unable to read/use/search it. Which translates into more support in IRC, more ass-kicking on my part, and more repetition. I would like a *DRY* IRC channel. Also, I assume people do not appreciate my smart-ass remarks.

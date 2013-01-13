@@ -6,8 +6,11 @@
     - development
     - os x
     - useful
-  layout: post
   description: A list of things I install and do on my mac whenever I re-install or update it.
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
 ---
 
 When I install, make the user `jose`, NOT some pseudonym. Will help later when ssh'ing into a box...
@@ -69,16 +72,18 @@ First thing is first, install all my applications (as dictated by my current /Ap
 - WBFS for MacOS X
 
 Update ruby
-{% highlight lang:bash %}
+
+``` lang:shell
 sudo gem install rvm
 rvm-install
 rvm install ree
 rvm ree --default
 gem update
-{% endhighlight %}
+```
 
 Install homebrew and related tools
-{% highlight lang:bash %}
+
+``` lang:shell
 Install XCode+X11 https://connect.apple.com
 curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
 brew update
@@ -86,7 +91,7 @@ brew install wget
 brew install git
 brew install bazaar
 brew install subversion
-{% endhighlight %}
+```
 
 [Install a LAMP server with PHP 5.2 Support in homebrew](http://boztek.net/blog/2009/10/07/install-lamp-stack-source-mac-os-x-106-snow-leopard-using-homebrew)
 
@@ -94,7 +99,7 @@ brew install subversion
 
 Setup CakePHP in ~/Sites:
 
-{% highlight lang:bash %}
+``` lang:shell
 cd ~/Sites
 git clone git://github.com/cakephp/cakephp1x.git cakephp1.2 -b 1.2
 git clone git://github.com/cakephp/cakephp1x.git cakephp1.3 -b 1.3
@@ -105,7 +110,7 @@ git clone git://github.com/cakephp/debug_kit.git
 git clone git://github.com/mcurry/interactive.git
 git clone git://codaset.com/cakedc/migrations.git
 git clone git://github.com/mcurry/status.git
-{% endhighlight %}
+```
 
 Install the Android Development Tools
 

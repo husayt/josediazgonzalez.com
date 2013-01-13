@@ -1,6 +1,8 @@
 ---
-  title: Auto-Building your ACOs table with Plugins
-  category: Authorization
+  title:       "Auto-Building your ACOs table with Plugins"
+  date:        2009-08-26 00:00
+  description: Snippet of code that can automatically build CakePHP ACL ACOs for plugins
+  category: 	 Authorization
   tags:
     - acos
     - cakephp
@@ -8,18 +10,19 @@
     - book
     - snippet
     - cakephp 1.2
-  layout: post
-  descrption: Snippet of code that can automatically build CakePHP ACL ACOs for plugins
-----
+  comments:    true
+  sharing:     false
+  published:   true
+  layout:      post
+---
 
-I was fed up with the implementation that is on the Cookbook as far as plugin support goes, so I modified the AuthComponent to recognize things such as controllers/Plugin.Controller/action. Worked well enough, except for the fact that this means that my AuthComponent was simply a patch and therefore unlikely to be merged into the core. I'm also doing a lot of work with making plugin usage in your application seamless, so I guess it was high-time the Cookbook's implementation kicked it up a notch. And since I'm currently idling overnight at JFK (long story :P), here is a present from my delirium to you. 
+I was fed up with the implementation that is on the Cookbook as far as plugin support goes, so I modified the AuthComponent to recognize things such as controllers/Plugin.Controller/action. Worked well enough, except for the fact that this means that my AuthComponent was simply a patch and therefore unlikely to be merged into the core. I'm also doing a lot of work with making plugin usage in your application seamless, so I guess it was high-time the Cookbook's implementation kicked it up a notch. And since I'm currently idling overnight at JFK (long story :P), here is a present from my delirium to you.
 
 I personally have a 'Core' plugin that has a 'DashboardsController' where I place this code, but you can place it in your AppController and run it as you wish:
 
 Controller Class:
 
-{% highlight dashboards_controller.php %}
-<?php
+``` lang:php
 /**
  * DashboardsController
  *
@@ -29,7 +32,7 @@ Controller Class:
  * @author Jose Diaz-Gonzalez
  * @version 0.1
  **/
-	
+
 class DashboardsController extends AppController {
 /**
  * The name of this controller. Controller names are plural, named after the model they manipulate.
@@ -38,7 +41,7 @@ class DashboardsController extends AppController {
  * @access public
  */
 	var $name = 'Dashboards';
-	
+
 /**
  * Array of models this Controller should have direct access to
  *
@@ -46,7 +49,7 @@ class DashboardsController extends AppController {
  * @access public
  */
 	var $uses = array();
-	
+
 /**
  * This function should automatically build your ACO tree
  *
@@ -56,7 +59,7 @@ class DashboardsController extends AppController {
 	function build_acos() {
 		if (Configure::read('debug') != 0) {
 			$log = array();
-			
+
 			$aco =& $this->Acl->Aco;
 			$root = $aco->node('controllers');
 			if (!$root) {
@@ -67,7 +70,7 @@ class DashboardsController extends AppController {
 			} else {
 				$root = $root[0];
 			}
-			
+
 			App::import('Core', 'File');
 			$Controllers = App::objects('controller');
 			$appIndex = array_search('App', $Controllers);
@@ -76,14 +79,14 @@ class DashboardsController extends AppController {
 			}
 			$baseMethods = get_class_methods('Controller');
 			$baseMethods[] = 'buildAcl';
-			
+
 			$Plugins = $this->_getPluginControllerNames();
 			$Controllers = array_merge($Controllers, $Plugins);
-			
+
 			// look at each controller in app/controllers
 			foreach ($Controllers as $ctrlName) {
 				$methods = $this->_getClassMethods($this->_getPluginControllerPath($ctrlName));
-				
+
 				// Do all Plugins First
 				if ($this->_isPlugin($ctrlName)){
 					$pluginNode = $aco->node('controllers/'.$this->_getPluginName($ctrlName));
@@ -112,7 +115,7 @@ class DashboardsController extends AppController {
 				} else {
 					$controllerNode = $controllerNode[0];
 				}
-				
+
 				//clean the methods. to remove those in Controller and private actions.
 				foreach ($methods as $k => $method) {
 					if (strpos($method, '_', 0) === 0) {
@@ -136,7 +139,7 @@ class DashboardsController extends AppController {
 			}
 		}
 	}
-	
+
 /**
  * Returns the methods of a Controller Class
  *
@@ -154,7 +157,7 @@ class DashboardsController extends AppController {
 		$ctrlclass = $ctrlName . 'Controller';
 		return get_class_methods($ctrlclass);
 	}
-	
+
 /**
  * Checks whether the controller is part of a plugin or not
  *
@@ -170,7 +173,7 @@ class DashboardsController extends AppController {
 			return false;
 		}
 	}
-	
+
 /**
  * Returns a dot separated PluginController path
  *
@@ -186,7 +189,7 @@ class DashboardsController extends AppController {
 			return $arr[0];
 		}
 	}
-	
+
 /**
  * Returns the name of the plugin for the current controller
  *
@@ -202,7 +205,7 @@ class DashboardsController extends AppController {
 			return false;
 		}
 	}
-	
+
 /**
  * Returns the name of the controller for the PluginController pair
  *
@@ -218,7 +221,7 @@ class DashboardsController extends AppController {
 			return false;
 		}
 	}
-	
+
 /**
  * Get the names of the plugin controllers ...
  *
@@ -234,12 +237,12 @@ class DashboardsController extends AppController {
 		$paths = Configure::getInstance();
 		$folder =& new Folder();
 		$folder->cd(APP . 'plugins');
-		
+
 		// Get the list of plugins
 		$Plugins = $folder->ls();
 		$Plugins = $Plugins[0];
 		$arr = array();
-		
+
 		// Loop through the plugins
 		foreach($Plugins as $pluginName) {
 			// Change directory to the plugin
@@ -247,12 +250,12 @@ class DashboardsController extends AppController {
 			// Get a list of the files that have a file name that ends
 			// with controller.php
 			$files = $folder->findRecursive('.*_controller\.php');
-		
+
 			// Loop through the controllers we found in the plugins directory
 			foreach($files as $fileName) {
 				// Get the base file name
 				$file = basename($fileName);
-				
+
 				// Get the controller name
 				$file = Inflector::camelize(substr($file, 0, strlen($file)-strlen('_controller.php')));
 				if (!preg_match('/^'. Inflector::humanize($pluginName). 'App/', $file)) {
@@ -269,5 +272,4 @@ class DashboardsController extends AppController {
 		return $arr;
 	}
 }
-?>
-{% endhighlight %}
+```
